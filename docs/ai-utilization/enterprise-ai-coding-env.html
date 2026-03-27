@@ -5,44 +5,430 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>企業向けAIコーディング環境 比較ガイド</title>
   <style>
-    body { font-family: sans-serif; max-width: 860px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
-    h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; }
-    h2 { font-size: 1.2rem; color: #222; margin-top: 2.5rem; border-left: 4px solid #0066cc; padding-left: 10px; }
-    h3 { font-size: 1rem; color: #444; margin-top: 1.5rem; }
-    table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.9rem; }
+    body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
+    h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
+    h2 { font-size: 1.15rem; color: #222; margin-top: 2.8rem; border-left: 4px solid #0066cc; padding-left: 10px; }
+    h3 { font-size: 0.97rem; color: #444; margin-top: 1.6rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.88rem; }
     th { background: #f0f4f8; text-align: left; padding: 8px 12px; border: 1px solid #ccc; }
     td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
     tr:nth-child(even) td { background: #fafafa; }
-    .tag-ok { color: #2a8a2a; font-weight: bold; }
-    .tag-ng { color: #cc0000; font-weight: bold; }
-    .tag-partial { color: #996600; font-weight: bold; }
-    .note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.9rem; }
-    .summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 2rem 0; }
+    td:first-child { white-space: nowrap; min-width: 160px; }
+    .tag-ok  { color: #2a8a2a; font-weight: bold; }
+    .tag-ng  { color: #cc0000; font-weight: bold; }
+    .tag-mid { color: #996600; font-weight: bold; }
+    .note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.88rem; }
+    .summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
+    .config-label { display: inline-block; border-radius: 3px; padding: 2px 7px; font-size: 0.78rem; font-weight: bold; margin-right: 4px; }
+    .c1 { background: #fff0e0; color: #a05000; }
+    .c2 { background: #e0f0e0; color: #1a6e1a; }
+    .c3 { background: #e0eeff; color: #004db3; }
+    .toc { background: #f7f7f7; border: 1px solid #ddd; border-radius: 4px; padding: 12px 20px; margin: 1.4rem 0; font-size: 0.88rem; }
+    .toc ol { margin: 0; padding-left: 1.4rem; }
+    .toc li { margin: 4px 0; }
     .meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
     a { color: #0066cc; }
-    ul { padding-left: 1.4rem; }
-    li { margin: 6px 0; }
+    ul, ol { padding-left: 1.4rem; }
+    li { margin: 5px 0; }
+    .star-4::after { content: "★★★★"; color: #c90; }
+    .star-3::after { content: "★★★☆"; color: #c90; }
+    .star-2::after { content: "★★☆☆"; color: #c90; }
   </style>
 </head>
 <body>
 
 <h1>企業向けAIコーディング環境 比較ガイド</h1>
-<p style="color:#666; font-style:italic;">Claude Code / GitHub Copilot のセキュリティ・機能比較（2026年3月時点）</p>
+<p style="color:#666; font-style:italic; margin-top:0.3rem;">GitHub Copilot Enterprise / Claude Code on Bedrock — セキュリティ・機能・コスト比較（2026年3月時点）</p>
 
 <div class="summary-box">
   <strong>このページの結論</strong>
   <ul>
-    <li>データ隔離・セキュリティ要件が厳しい企業には <strong>Claude Code + Amazon Bedrock</strong> が有効な選択肢</li>
-    <li>GitHub中心の開発フローを持つ組織には <strong>GitHub Copilot</strong> がエコシステム統合で優位</li>
-    <li>GitLabをSCMとする場合、GitHub Copilot固有の統合機能は利用不可</li>
+    <li>GitLab on-prem＋Copilot Enterprise（構成①）は<strong>費用対効果が低い</strong>：Enterprise固有機能のほとんどが使えない</li>
+    <li>Copilot Enterpriseをフル活用するには<strong>コードをGitHubに移す（構成②）</strong>とセットで必要</li>
+    <li>データ隔離・現行GitLab維持を優先するなら<strong>Bedrock＋Claude Code（構成③）</strong>が最適</li>
   </ul>
 </div>
 
-<h2>1. データセキュリティと展開モデルの比較</h2>
+<div class="toc">
+  <strong>目次</strong>
+  <ol>
+    <li><a href="#overview">3構成の全体像</a></li>
+    <li><a href="#security">データセキュリティ・情報隔離</a></li>
+    <li><a href="#ai-features">AIコーディング機能</a></li>
+    <li><a href="#cicd">CI/CD・Runner 比較</a></li>
+    <li><a href="#cost">コスト構造</a></li>
+    <li><a href="#decision">選択の指針</a></li>
+    <li><a href="#appendix">補足：Claude Code / GitHub Copilot の展開モデル</a></li>
+  </ol>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="overview">1. 3構成の全体像</h2>
+
+<table>
+  <tr>
+    <th></th>
+    <th><span class="config-label c1">構成①</span></th>
+    <th><span class="config-label c2">構成②</span></th>
+    <th><span class="config-label c3">構成③</span></th>
+  </tr>
+  <tr>
+    <td><strong>AI基盤</strong></td>
+    <td>GitHub Enterprise Cloud<br>+ Copilot Enterprise</td>
+    <td>GitHub Enterprise Cloud<br>+ Copilot Enterprise</td>
+    <td>Amazon Bedrock<br>+ Claude Code</td>
+  </tr>
+  <tr>
+    <td><strong>SCM</strong></td>
+    <td>オンプレ GitLab（現行）</td>
+    <td>GitHub Enterprise Cloud</td>
+    <td>オンプレ GitLab（現行）</td>
+  </tr>
+  <tr>
+    <td><strong>Runner</strong></td>
+    <td>GitLab Runner（Self-hosted）</td>
+    <td>GitHub Actions（Self-hosted）</td>
+    <td>GitLab Runner（Self-hosted）</td>
+  </tr>
+  <tr>
+    <td><strong>移行コスト</strong></td>
+    <td>最小（現行GitLab維持）</td>
+    <td>大（全リポジトリ移行が必要）</td>
+    <td>最小（Bedrock設定追加のみ）</td>
+  </tr>
+  <tr>
+    <td><strong>総合評価</strong></td>
+    <td><span class="star-2"></span><br>費用対効果が低い</td>
+    <td><span class="star-4"></span><br>AI機能を最大活用</td>
+    <td><span class="star-3"></span><br>セキュリティ最優先</td>
+  </tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="security">2. データセキュリティ・情報隔離</h2>
+
+<table>
+  <tr>
+    <th>観点</th>
+    <th><span class="config-label c1">構成①</span></th>
+    <th><span class="config-label c2">構成②</span></th>
+    <th><span class="config-label c3">構成③</span></th>
+  </tr>
+  <tr>
+    <td>コードの格納場所</td>
+    <td>社内オンプレ</td>
+    <td>Microsoft クラウド（GHEC）</td>
+    <td>社内オンプレ</td>
+  </tr>
+  <tr>
+    <td>AI推論の実行場所</td>
+    <td>Microsoft Azure<br>（Copilot推論）</td>
+    <td>Microsoft Azure<br>（Copilot推論）</td>
+    <td><strong>自社AWSアカウント内</strong><br>（VPC内完結）</td>
+  </tr>
+  <tr>
+    <td>Anthropic/Microsoft への<br>コード送信</td>
+    <td>コードスニペットのみ<br>Azure通過</td>
+    <td>コードスニペットのみ<br>Azure通過 ＋ コード本体がMSクラウド上</td>
+    <td><span class="tag-ok">Anthropicインフラを<br>一切経由しない</span></td>
+  </tr>
+  <tr>
+    <td>学習利用の除外保証</td>
+    <td><span class="tag-ok">○</span> Enterprise契約で保証</td>
+    <td><span class="tag-ok">○</span> Enterprise契約で保証</td>
+    <td><span class="tag-ok">○</span> Bedrock契約で保証</td>
+  </tr>
+  <tr>
+    <td>社内ネットワーク内完結度</td>
+    <td><span class="tag-mid">△</span> IDE→Azureの通信が発生</td>
+    <td><span class="tag-ng">✗</span> コードもAzureも外部</td>
+    <td><span class="tag-ok">◎</span> 推論もコードも社内/自社AWS</td>
+  </tr>
+  <tr>
+    <td>機密コードの外部露出リスク</td>
+    <td>低（コード本体は社内）</td>
+    <td>中（コードがMSクラウド上）</td>
+    <td><strong>最低</strong></td>
+  </tr>
+</table>
+
+<div class="note">
+  <strong>Bedrockの特徴：</strong> 推論リクエストが自社AWSアカウントのVPC内で処理され、Anthropicのインフラを一切経由しません。通信ログ・アクセス制御・暗号化をすべて自社ポリシーで管理できる点が最大のメリットです。
+</div>
+
+<!-- ============================================================ -->
+<h2 id="ai-features">3. AIコーディング機能の比較</h2>
+
+<h3>IDE・コード補完・チャット</h3>
+<table>
+  <tr>
+    <th>機能</th>
+    <th><span class="config-label c1">構成①</span></th>
+    <th><span class="config-label c2">構成②</span></th>
+    <th><span class="config-label c3">構成③</span></th>
+  </tr>
+  <tr>
+    <td>IDEコード補完</td>
+    <td><span class="tag-ok">○</span></td>
+    <td><span class="tag-ok">○</span></td>
+    <td><span class="tag-ok">○</span>（Claude Code拡張）</td>
+  </tr>
+  <tr>
+    <td>IDE内 Chat（汎用）</td>
+    <td><span class="tag-ok">○</span></td>
+    <td><span class="tag-ok">○</span></td>
+    <td><span class="tag-ok">○</span></td>
+  </tr>
+  <tr>
+    <td>VS Code / JetBrains 対応</td>
+    <td><span class="tag-ok">○</span> 公式プラグイン</td>
+    <td><span class="tag-ok">○</span> 公式プラグイン</td>
+    <td><span class="tag-mid">△</span> 主にターミナルベース（VS Code拡張あり）</td>
+  </tr>
+  <tr>
+    <td>Xcode / Neovim 対応</td>
+    <td><span class="tag-ok">○</span></td>
+    <td><span class="tag-ok">○</span></td>
+    <td><span class="tag-ng">✗</span></td>
+  </tr>
+  <tr>
+    <td>Copilot CLI</td>
+    <td><span class="tag-ok">○</span></td>
+    <td><span class="tag-ok">○</span></td>
+    <td><span class="tag-ok">○</span>（Claude Code CLI）</td>
+  </tr>
+</table>
+
+<h3>GitHub プラットフォーム統合機能（Copilot Enterprise 固有）</h3>
+<table>
+  <tr>
+    <th>機能</th>
+    <th><span class="config-label c1">構成①</span></th>
+    <th><span class="config-label c2">構成②</span></th>
+    <th><span class="config-label c3">構成③</span></th>
+  </tr>
+  <tr>
+    <td>Knowledge Bases<br>（社内コードを文脈に）</td>
+    <td><span class="tag-ng">✗</span> コードがGitHubにない</td>
+    <td><span class="tag-ok">○</span> リポジトリをインデックス化しCopilot Chatが社内コードを参照</td>
+    <td><span class="tag-ng">✗</span>（ローカルでコード全体を直接渡す方法は可）</td>
+  </tr>
+  <tr>
+    <td>PR サマリー自動生成</td>
+    <td><span class="tag-ng">✗</span> GitLab MRは非対応</td>
+    <td><span class="tag-ok">○</span> GitHub PRページに自動表示</td>
+    <td><span class="tag-ng">✗</span></td>
+  </tr>
+  <tr>
+    <td>Copilot Workspace<br>（Issue→計画→実装→PRをブラウザ完結）</td>
+    <td><span class="tag-ng">✗</span></td>
+    <td><span class="tag-ok">○</span></td>
+    <td><span class="tag-ng">✗</span></td>
+  </tr>
+  <tr>
+    <td>Copilot Coding Agent<br>（Issue → 自律実装 → PR自動作成）</td>
+    <td><span class="tag-ng">✗</span> GitHub Issues + Actions が必須</td>
+    <td><span class="tag-ok">○</span></td>
+    <td><span class="tag-ng">✗</span></td>
+  </tr>
+  <tr>
+    <td>GitHub.com Web UIでのChat<br>（リポジトリ文脈付き）</td>
+    <td><span class="tag-ng">✗</span></td>
+    <td><span class="tag-ok">○</span></td>
+    <td><span class="tag-ng">✗</span></td>
+  </tr>
+  <tr>
+    <td>Copilot Autofix<br>（脆弱性検出 → 自動修正PR）</td>
+    <td><span class="tag-ng">✗</span> GHAS + GitHub PRが必要</td>
+    <td><span class="tag-ok">○</span></td>
+    <td><span class="tag-ng">✗</span></td>
+  </tr>
+  <tr>
+    <td>Dependabot + 自動修正PR</td>
+    <td><span class="tag-ng">✗</span></td>
+    <td><span class="tag-ok">○</span></td>
+    <td><span class="tag-ng">✗</span></td>
+  </tr>
+  <tr>
+    <td>Copilot Extensions<br>（Marketplace サードパーティ拡張）</td>
+    <td><span class="tag-ng">✗</span></td>
+    <td><span class="tag-ok">○</span></td>
+    <td><span class="tag-ng">✗</span></td>
+  </tr>
+</table>
+
+<div class="note">
+  <strong>構成①の実態：</strong> GHEC + Copilot Enterprise を契約しても、SCMがGitLab on-premである限り、上記のEnterprise固有機能はすべて利用できません。実質的に <strong>Copilot Business 相当</strong>（IDE補完＋汎用Chat）しか使えないため、Enterprise ライセンス費用の費用対効果が著しく低下します。
+</div>
+
+<h3>カスタムエージェント・自動化</h3>
+<table>
+  <tr>
+    <th>観点</th>
+    <th><span class="config-label c1">構成①</span></th>
+    <th><span class="config-label c2">構成②</span></th>
+    <th><span class="config-label c3">構成③</span></th>
+  </tr>
+  <tr>
+    <td>カスタムエージェント構築</td>
+    <td><span class="tag-ng">✗</span> 限定的</td>
+    <td><span class="tag-mid">△</span> GitHub Actions経由で部分的に可</td>
+    <td><span class="tag-ok">○</span> Bedrock APIで柔軟に構築可</td>
+  </tr>
+  <tr>
+    <td>パイプライン内でのAI実行</td>
+    <td><span class="tag-ng">✗</span> GitLab CI内にCopilot連携なし</td>
+    <td><span class="tag-ok">○</span> GitHub Actions + Coding Agent</td>
+    <td><span class="tag-mid">△</span> GitLab CI内でClaude Code CLIを呼び出し可（公式統合はなし）</td>
+  </tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="cicd">4. CI/CD・Runner 比較</h2>
+
+<table>
+  <tr>
+    <th>観点</th>
+    <th><span class="config-label c1">構成① GitLab Runner</span></th>
+    <th><span class="config-label c2">構成② GitHub Actions + Self-hosted</span></th>
+    <th><span class="config-label c3">構成③ GitLab Runner</span></th>
+  </tr>
+  <tr>
+    <td>Runnerの実行環境</td>
+    <td>社内（自社管理）</td>
+    <td>社内（自社管理）</td>
+    <td>社内（自社管理）</td>
+  </tr>
+  <tr>
+    <td>内部ネットワークアクセス</td>
+    <td><span class="tag-ok">○</span></td>
+    <td><span class="tag-ok">○</span></td>
+    <td><span class="tag-ok">○</span></td>
+  </tr>
+  <tr>
+    <td>パイプライン定義</td>
+    <td>GitLab CI YAML</td>
+    <td>GitHub Actions YAML</td>
+    <td>GitLab CI YAML</td>
+  </tr>
+  <tr>
+    <td>Marketplace / 拡張規模</td>
+    <td>GitLab CI Components（小）</td>
+    <td><span class="tag-ok">GitHub Actions 20,000+</span></td>
+    <td>GitLab CI Components（小）</td>
+  </tr>
+  <tr>
+    <td>AI AgentのCI連携</td>
+    <td><span class="tag-ng">✗</span> Copilot AgentとGitLab CIは非連携</td>
+    <td><span class="tag-ok">○</span> Copilot Coding AgentをActions経由で起動可</td>
+    <td><span class="tag-mid">△</span> Claude Code CLIをパイプラインから直接実行可</td>
+  </tr>
+  <tr>
+    <td>現行環境からの移行コスト</td>
+    <td>なし（現行維持）</td>
+    <td>大（全リポジトリ + CI/CD設定の移行）</td>
+    <td>最小（Bedrock設定の追加のみ）</td>
+  </tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="cost">5. コスト構造</h2>
+
+<table>
+  <tr>
+    <th>コスト項目</th>
+    <th><span class="config-label c1">構成①</span></th>
+    <th><span class="config-label c2">構成②</span></th>
+    <th><span class="config-label c3">構成③</span></th>
+  </tr>
+  <tr>
+    <td>GHECライセンス</td>
+    <td>必要（Copilot利用のため）</td>
+    <td>必要（SCM兼用）</td>
+    <td><span class="tag-ok">不要</span></td>
+  </tr>
+  <tr>
+    <td>Copilot Enterprise ライセンス</td>
+    <td>$39 / user / 月</td>
+    <td>$39 / user / 月</td>
+    <td><span class="tag-ok">不要</span></td>
+  </tr>
+  <tr>
+    <td>GitLab インフラ</td>
+    <td>継続維持（既存コスト）</td>
+    <td>移行後に廃止可</td>
+    <td>継続維持（既存コスト）</td>
+  </tr>
+  <tr>
+    <td>AI推論コスト</td>
+    <td>ライセンス内（定額）</td>
+    <td>ライセンス内（定額）</td>
+    <td>従量課金（Bedrock）<br>※上限設定可</td>
+  </tr>
+  <tr>
+    <td>Self-hosted Runner インフラ</td>
+    <td>GitLab Runner用（既存）</td>
+    <td>GitHub Actions用（新規 or 転用）</td>
+    <td>GitLab Runner用（既存）</td>
+  </tr>
+  <tr>
+    <td>コスト予測のしやすさ</td>
+    <td><span class="tag-ok">◎</span> 定額</td>
+    <td><span class="tag-ok">◎</span> 定額</td>
+    <td><span class="tag-mid">△</span> 使用量次第</td>
+  </tr>
+  <tr>
+    <td><strong>費用対効果</strong></td>
+    <td><span class="tag-ng">低</span><br>Enterprise機能をほぼ活かせない</td>
+    <td><span class="tag-ok">高</span><br>フル活用できる</td>
+    <td><span class="tag-ok">高</span><br>現行環境を活かせる</td>
+  </tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="decision">6. 選択の指針</h2>
+
+<table>
+  <tr>
+    <th>優先する要件</th>
+    <th>推奨構成</th>
+    <th>理由</th>
+  </tr>
+  <tr>
+    <td>コードを外部に出したくない<br>データ隔離が最優先</td>
+    <td><span class="config-label c3">構成③</span><br>Bedrock + Claude Code</td>
+    <td>推論まで自社AWSで完結。外部に一切コードが渡らない。</td>
+  </tr>
+  <tr>
+    <td>AI機能を最大限活用したい<br>GitHub移行を許容できる</td>
+    <td><span class="config-label c2">構成②</span><br>GHEC + Copilot Enterprise</td>
+    <td>Knowledge Bases・Coding Agent・Workspace・AutofixなどEnterprise機能がフル活用できる。</td>
+  </tr>
+  <tr>
+    <td>GitLab on-premを変えられない<br>Copilotを試したい</td>
+    <td><span class="config-label c3">構成③</span>を推奨<br>または構成①でCopilot Business契約に変更</td>
+    <td>構成①でEnterprise契約は費用対効果が低い。同じ機能ならBusinessで十分。</td>
+  </tr>
+  <tr>
+    <td>AWS環境を持ちコンプライアンス要件が厳しい</td>
+    <td><span class="config-label c3">構成③</span><br>Bedrock + Claude Code</td>
+    <td>Bedrockなら既存AWSポリシー・監査ログ・VPC設定をそのまま適用できる。</td>
+  </tr>
+  <tr>
+    <td>現行GitLabを維持しつつ段階的にAI導入したい</td>
+    <td><span class="config-label c3">構成③</span><br>Bedrock + Claude Code</td>
+    <td>SCM移行なしでAI機能を追加できる。導入リスクが最小。</td>
+  </tr>
+</table>
+
+<div class="note">
+  <strong>構成②と③の併用も現実的：</strong> セキュリティ感度の高いコードはGitLab on-prem + Bedrockで処理し、公開・社内公開リポジトリはGitHubに置いてCopilot Enterpriseを活用するという使い分けも選択肢のひとつです。
+</div>
+
+<!-- ============================================================ -->
+<h2 id="appendix">7. 補足：各AIの展開モデルとセキュリティ認定</h2>
 
 <h3>Claude Code の展開オプション</h3>
-<p>Claude Code は以下の3つの展開パターンを持ち、それぞれセキュリティレベルが異なります。</p>
-
 <table>
   <tr>
     <th>展開パターン</th>
@@ -52,7 +438,7 @@
   <tr>
     <td>Anthropic API（直接）</td>
     <td>Anthropicのインフラを経由</td>
-    <td><span class="tag-partial">△</span> Team/Enterprise契約で学習利用除外</td>
+    <td><span class="tag-mid">△</span> Team/Enterprise契約で学習利用除外</td>
   </tr>
   <tr>
     <td><strong>Amazon Bedrock 経由</strong></td>
@@ -66,19 +452,15 @@
   </tr>
 </table>
 
-<div class="note">
-  <strong>Bedrockの特徴：</strong> 推論リクエストが自社AWSアカウントのVPC内で処理されるため、通信ログ・アクセス制御・暗号化をすべて自社ポリシーで管理できます。Anthropic側にプロンプトやコードが渡らない構造が最大のメリットです。
-</div>
-
 <h3>GitHub Copilot のデータ処理</h3>
 <ul>
   <li>推論はすべて <strong>Microsoft Azure OpenAI Service</strong> 上で実行（選択・変更不可）</li>
-  <li>Business/Enterprise契約では、入力コードを学習に使用しないことが契約上保証される</li>
-  <li>ただし、Bedrockのような「自社クラウド内完結」モデルは現時点で非対応</li>
+  <li>Business/Enterprise 契約では、入力コードを学習に使用しないことが契約上保証される</li>
+  <li>Bedrockのような「自社クラウド内完結」モデルは現時点で非対応</li>
   <li>セルフホストオプションなし</li>
 </ul>
 
-<h3>セキュリティ認定（Claude Code / Anthropic）</h3>
+<h3>Anthropic / Claude Code のセキュリティ認定</h3>
 <ul>
   <li>SOC 2 Type II</li>
   <li>ISO 27001:2022</li>
@@ -86,142 +468,9 @@
   <li>HIPAA BAA 対応</li>
 </ul>
 
-<h2>2. Claude Code + GitLab で実現できること</h2>
-<ul>
-  <li>GitLab CI/CD パイプライン内での Claude Code CLI 実行</li>
-  <li><code>.claudeignore</code> による機密ファイルの除外設定</li>
-  <li><code>settings.json</code> の deny-rules による危険コマンドのブロック</li>
-  <li>OSレベルのサンドボックス（ファイルシステム・ネットワーク隔離）</li>
-  <li>Bedrockエンドポイント経由のプライベート推論</li>
-</ul>
-
-<h2>3. GitHub Copilot にあって Claude Code + GitLab にないもの</h2>
-<p>以下は、<strong>GitLabをSCMとして使用する場合</strong>に利用できないGitHub Copilot固有の機能です。</p>
-
-<h3>GitHub固有の深い統合</h3>
-<table>
-  <tr>
-    <th>機能</th>
-    <th>GitHub Copilot</th>
-    <th>Claude Code + GitLab</th>
-  </tr>
-  <tr>
-    <td>Issues → Coding Agent 自動割り当て</td>
-    <td><span class="tag-ok">○</span> IssueにCopilotをアサインするだけで自動実装開始</td>
-    <td><span class="tag-ng">✗</span> GitLab Issuesへの同等統合なし</td>
-  </tr>
-  <tr>
-    <td>Copilot Workspace</td>
-    <td><span class="tag-ok">○</span> Issue→計画→実装→PRをブラウザ完結で実行</td>
-    <td><span class="tag-ng">✗</span> 相当する統合ワークフローなし</td>
-  </tr>
-  <tr>
-    <td>PRへの自動サマリー（GitHub UI内）</td>
-    <td><span class="tag-ok">○</span> PRページに要約が自動表示</td>
-    <td><span class="tag-ng">✗</span> GitLab MRへのネイティブ統合なし</td>
-  </tr>
-  <tr>
-    <td>Copilot Extensions（Marketplace）</td>
-    <td><span class="tag-ok">○</span> サードパーティ拡張のエコシステム</td>
-    <td><span class="tag-ng">✗</span> 同等のマーケットプレイスなし</td>
-  </tr>
-  <tr>
-    <td>GitHub.com Web UIでのChat</td>
-    <td><span class="tag-ok">○</span> ブラウザ上でリポジトリに直接質問</td>
-    <td><span class="tag-partial">△</span> GitLab DuoはあるがCopilotほど成熟していない</td>
-  </tr>
-  <tr>
-    <td>Dependabot + 自動修正PR</td>
-    <td><span class="tag-ok">○</span> 脆弱性検出→自動修正PR生成</td>
-    <td><span class="tag-ng">✗</span> GitLab Security Botは別物</td>
-  </tr>
-  <tr>
-    <td>GitHub Advisory Database 自動連携</td>
-    <td><span class="tag-ok">○</span> セキュリティアドバイザリーとの統合</td>
-    <td><span class="tag-ng">✗</span> 同等の自動連携なし</td>
-  </tr>
-</table>
-
-<h3>GitHub Actions 固有の連携</h3>
-<table>
-  <tr>
-    <th>機能</th>
-    <th>GitHub Copilot</th>
-    <th>Claude Code + GitLab</th>
-  </tr>
-  <tr>
-    <td>Actions ワークフロー内からのCopilot Agent起動</td>
-    <td><span class="tag-ok">○</span> 公式統合</td>
-    <td><span class="tag-partial">△</span> GitLab CI内でのCLI呼び出しは可能だが公式統合なし</td>
-  </tr>
-  <tr>
-    <td>Actions Marketplace の規模</td>
-    <td><span class="tag-ok">○</span> 20,000以上のアクション</td>
-    <td><span class="tag-partial">△</span> GitLab CI Componentsは規模で劣る</td>
-  </tr>
-  <tr>
-    <td>Larger Runners（GPU付き）</td>
-    <td><span class="tag-ok">○</span> GitHub-hosted大型ランナー選択可</td>
-    <td><span class="tag-partial">△</span> GitLab SaaS runnerのGPU選択肢は限定的</td>
-  </tr>
-</table>
-
-<h3>IDE・エコシステムの対応範囲</h3>
-<table>
-  <tr>
-    <th>対応環境</th>
-    <th>GitHub Copilot</th>
-    <th>Claude Code</th>
-  </tr>
-  <tr>
-    <td>VS Code / JetBrains</td>
-    <td><span class="tag-ok">○</span> 公式プラグインで深く統合</td>
-    <td><span class="tag-partial">△</span> 主にターミナルベース（VS Code拡張あり）</td>
-  </tr>
-  <tr>
-    <td>Xcode</td>
-    <td><span class="tag-ok">○</span>（限定的）</td>
-    <td><span class="tag-ng">✗</span></td>
-  </tr>
-  <tr>
-    <td>Neovim</td>
-    <td><span class="tag-ok">○</span></td>
-    <td><span class="tag-ng">✗</span></td>
-  </tr>
-</table>
-
-<h2>4. 選択の指針</h2>
-
-<table>
-  <tr>
-    <th>状況</th>
-    <th>推奨</th>
-  </tr>
-  <tr>
-    <td>社内コードをクラウドベンダーに渡したくない / データ隔離が必須</td>
-    <td><strong>Claude Code + Amazon Bedrock</strong></td>
-  </tr>
-  <tr>
-    <td>GitHubをSCMとして使っており、Issues/PRとのAI統合を最大化したい</td>
-    <td><strong>GitHub Copilot Enterprise</strong></td>
-  </tr>
-  <tr>
-    <td>GitLabをSCMとして使っており、AIコーディング支援を導入したい</td>
-    <td><strong>Claude Code + Bedrock</strong>（またはGitLab Duo）</td>
-  </tr>
-  <tr>
-    <td>AWS環境を既に持っており、コンプライアンス要件が厳しい</td>
-    <td><strong>Claude Code + Amazon Bedrock</strong></td>
-  </tr>
-</table>
-
-<div class="note">
-  <strong>両者の併用も有効：</strong> IDE内の補完・PR要約にGitHub Copilot、機密コードの分析・設計支援にBedrock経由のClaude Codeという使い分けも現実的な選択肢です。
-</div>
-
 <p class="meta">
   作成：2026年3月 ／ 情報の正確性には注意を払っていますが、各ツールのアップデートにより内容が変わる場合があります。最新情報は各公式ドキュメントをご確認ください。<br>
-  参考：<a href="https://www.aquallc.jp/claude-code-enterprise-security-guide/" target="_blank">Claude Code Enterprise Security Guide (aquallc.jp)</a> ／ Anthropic公式ドキュメント ／ GitHub Copilot公式ドキュメント
+  参考：<a href="https://www.aquallc.jp/claude-code-enterprise-security-guide/" target="_blank">Claude Code Enterprise Security Guide (aquallc.jp)</a> ／ Anthropic 公式ドキュメント ／ GitHub Copilot 公式ドキュメント
 </p>
 
 </body>
