@@ -59,6 +59,7 @@
     <li><a href="#cost">コスト構造</a></li>
     <li><a href="#decision">選択の指針</a></li>
     <li><a href="#appendix">補足：Claude Code / GitHub Copilot の展開モデル</a></li>
+    <li><a href="#m365-vs-copilot">補足：M365 Copilot と GitHub Copilot のセキュリティモデルの違い</a></li>
   </ol>
 </div>
 
@@ -467,6 +468,105 @@
   <li>ISO/IEC 42001:2023（AI管理システム）</li>
   <li>HIPAA BAA 対応</li>
 </ul>
+
+<!-- ============================================================ -->
+<h2 id="m365-vs-copilot">8. 補足：M365 Copilot と GitHub Copilot のセキュリティモデルの違い</h2>
+
+<p>「M365 Copilot は自社の Azure テナント内で動くから安全」という認識は企業内でよく共有されています。しかし GitHub Copilot も同様に安全と考えるのは誤りです。両者のセキュリティモデルは根本的に異なります。</p>
+
+<h3>M365 Copilot の「テナント内安全性」の実態</h3>
+
+<div class="note">
+  <strong>よくある誤解：</strong>「自社 Azure テナント内で推論が走る＝自社インフラ内で物理的に完結している」<br>
+  <strong>正確には：</strong>「Microsoft のマネージドインフラ上で動いているが、Microsoft 365 テナント境界による<em>論理的な分離</em>が保証されている」
+</div>
+
+<p>M365 Copilot のデータ保護は以下の仕組みによるものです：</p>
+<ul>
+  <li>Azure AD（Entra ID）テナントと紐付き、組織の ID 境界で保護される</li>
+  <li>Microsoft Graph のアクセス権限がそのまま適用される（既存の権限設定を継承）</li>
+  <li>他テナントのデータとは論理的に分離され、混在しない</li>
+  <li>プロンプト・レスポンスはサービス提供に必要な範囲を超えて保存されない</li>
+  <li>モデルの学習には使用されない</li>
+</ul>
+
+<p>ただし、推論が「自社の Azure サブスクリプション内のリソース」で実行されるわけではありません。あくまで Microsoft の管理するインフラ上で、テナント単位の論理分離が行われているという構造です。</p>
+
+<h3>3製品のセキュリティモデル比較</h3>
+
+<table>
+  <tr>
+    <th>観点</th>
+    <th>Amazon Bedrock<br>+ Claude Code</th>
+    <th>M365 Copilot</th>
+    <th>GitHub Copilot</th>
+  </tr>
+  <tr>
+    <td>推論の実行場所</td>
+    <td><strong>自社 AWS アカウント内<br>（VPC 内完結）</strong></td>
+    <td>Microsoft 管理インフラ<br>（テナント境界あり）</td>
+    <td>GitHub の共有 Azure インフラ</td>
+  </tr>
+  <tr>
+    <td>自社 Azure テナントとの紐付き</td>
+    <td>非該当（AWS）</td>
+    <td><span class="tag-ok">○</span> Entra ID テナントと統合</td>
+    <td><span class="tag-ng">✗</span> 自社 Azure テナントと無関係</td>
+  </tr>
+  <tr>
+    <td>テナント単位の論理分離</td>
+    <td>非該当（物理分離）</td>
+    <td><span class="tag-ok">○</span> M365 テナント境界で保護</td>
+    <td><span class="tag-ng">✗</span> 同等の分離モデルなし</td>
+  </tr>
+  <tr>
+    <td>自社 Azure OpenAI エンドポイント<br>への接続（BYOA）</td>
+    <td>非該当</td>
+    <td>非該当（MS 管理）</td>
+    <td><span class="tag-ng">✗</span> 非対応</td>
+  </tr>
+  <tr>
+    <td>学習利用の除外保証</td>
+    <td><span class="tag-ok">○</span> Bedrock 契約</td>
+    <td><span class="tag-ok">○</span> Enterprise 契約</td>
+    <td><span class="tag-ok">○</span> Enterprise 契約</td>
+  </tr>
+  <tr>
+    <td>物理的な自社インフラ内完結</td>
+    <td><span class="tag-ok">◎</span></td>
+    <td><span class="tag-ng">✗</span>（論理分離のみ）</td>
+    <td><span class="tag-ng">✗</span></td>
+  </tr>
+</table>
+
+<h3>データ隔離レベルの整理</h3>
+
+<table>
+  <tr>
+    <th>レベル</th>
+    <th>製品</th>
+    <th>分離の種類</th>
+  </tr>
+  <tr>
+    <td><span class="tag-ok">◎ 最強</span></td>
+    <td>Amazon Bedrock + Claude Code</td>
+    <td>自社 AWS アカウント内で物理的に完結。外部ベンダーのインフラを一切経由しない。</td>
+  </tr>
+  <tr>
+    <td><span class="tag-mid">○ 中間</span></td>
+    <td>M365 Copilot</td>
+    <td>Microsoft のインフラ上だが、Entra ID テナント境界による論理分離が保証されている。</td>
+  </tr>
+  <tr>
+    <td><span class="tag-ng">△ 弱め</span></td>
+    <td>GitHub Copilot</td>
+    <td>GitHub の共有 Azure インフラで実行。テナント分離モデルなし。学習除外は契約保証のみ。</td>
+  </tr>
+</table>
+
+<div class="note">
+  <strong>判断のポイント：</strong> 「Microsoft 製品だから M365 Copilot と同様に安全」という前提で GitHub Copilot を評価するのは危険です。GitHub は Microsoft の傘下ですが、M365 とは別のプラットフォームであり、Azure テナント統合モデルは適用されません。企業のセキュリティ審査では、両者を別製品として個別に評価することが必要です。
+</div>
 
 <p class="meta">
   作成：2026年3月 ／ 情報の正確性には注意を払っていますが、各ツールのアップデートにより内容が変わる場合があります。最新情報は各公式ドキュメントをご確認ください。<br>
