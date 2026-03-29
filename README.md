@@ -1,93 +1,63 @@
 # zooming-knowledge-strata
 
-Knowledge here is not static.  
-It accumulates in **layers (strata)** through practice, failure, and reflection.
-
-This repository is a living knowledge base where insights evolve over time.
+**知は積み重なる。地層のように。**
 
 ---
 
-## 🌱 What is this repository?
+## このリポジトリについて
 
-**zooming-knowledge-strata** is a place to store and grow practical knowledge.
+私（zooming）が実践してきたことの記録です。
 
-Rather than polished conclusions, it values:
-- real experiments
-- things that worked
-- things that failed
-- why they worked or failed
-- how they were improved next
-
-Each entry represents one layer in an evolving knowledge landscape.
+磨かれた結論ではなく、試行・失敗・改善のプロセスそのものを置いています。
+完成したものを発信するより、**プロセスに価値がある**と思っているから。
 
 ---
 
-## 🧠 How knowledge grows here
+## 私がやっていること
 
-Knowledge is treated as **strata**, not as a single truth.
+会社員として働きながら、家族と暮らし、AIと協働しながら自分の人生を設計しています。
 
-A typical flow looks like this:
+特に今、力を入れているのは：
 
-1. Someone tries a practice
-2. The result is recorded (success or failure)
-3. Context and assumptions are noted
-4. Another person (or the same person later) tries again
-5. Improvements are proposed and recorded
-6. A new layer is added on top of the previous one
+- **Life Flow** — 睡眠・食事・家族時間・健康など、生活リズムの安定
+- **Focus Flow** — 深い集中と、本当にやりたい仕事への時間確保
+- **Integrity Flow** — 個人の誠実さを起点に、社会との接続を広げていくこと
 
-Old layers are never erased.  
-They remain as context.
+これらをAI（主に Claude Code）と一緒に設計・記録・改善しています。
+日々の会話ログ、ダッシュボード、エージェントの設定まで含めて、プロセスごと公開していく予定です。
 
 ---
 
-## 📚 What you will find
+## なぜ公開するのか
 
-You may find documents such as:
+**maximize Σ Integrity** — 個人・コミュニティ・社会のIntegrityの総和を最大化する。
 
-- practice notes (Markdown)
-- failure reports and reflections
-- improved procedures derived from experience
-- links to related GitHub Issues or discussions
-- time-stamped records of who tried what and when
+これが私の軸です。
 
-Some knowledge starts rough and becomes refined over time.
+私一人が良くなっても意味が薄い。
+このプロセスを見て「自分もやってみたい」と思う人が増えることが、
+私にとってのmaximize Σ Integrityの実践です。
 
----
-
-## 🤖 About AI support
-
-This repository is maintained by a **human thinker augmented by AI**.
-
-AI is used to:
-- support reflection
-- connect related ideas
-- help structure evolving knowledge
-
-AI does **not** make final decisions.  
-Responsibility always remains human.
+バズを狙っていません。マラソンのように、長く走りたいと思っています。
 
 ---
 
-## 🔁 Living knowledge, not documentation
+## ここで見つかるもの
 
-This is not a traditional documentation repository.
+- AIと協働した生活設計の実践記録
+- 試してうまくいったこと・うまくいかなかったこと
+- ツール・仕組み・考え方の変化のログ
+- 将来的には：環境の立ち上げ方・参加の仕方
 
-- Entries may change
-- New layers may contradict older ones
-- Improvement is continuous
+> 古い記録は消えません。すべてが地層として残ります。
 
-Think of this place as a **geological record of thinking**, not a textbook.
+---
+
+## もし興味を持ってくれたなら
+
+まずは → **[start-here.md](./start-here.md)** を読んでみてください。
 
 ---
 
-## 🌍 Philosophy
-
-- Knowledge grows through use
-- Failure is valuable data
-- Context matters
-- Improvement is ongoing
-- Sharing strengthens understanding
-
-If this approach resonates with you, feel free to explore and learn from the layers.
-
----
+*This repository is maintained by a human thinker, augmented by AI.*
+*Responsibility always remains human.*
