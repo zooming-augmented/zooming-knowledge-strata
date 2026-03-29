@@ -4,10 +4,10 @@
 
 ## Who I am
 
-会社員。30代後半。妻と娘とパグ2匹と暮らしています。
+会社員。40代後半。妻と娘とパグ4匹と暮らしています。
 仕事は技術系。趣味はサックスと家庭菜園。
 
-I'm a company employee in my late 30s, living with my wife, daughter, and two pugs.
+I'm a company employee in my late 40s, living with my wife, daughter, and four pugs.
 My work is in the technical domain. I play saxophone and grow vegetables in the garden.
 
 ミッドライフ、と呼ばれる時期に差し掛かったとき、
@@ -21,7 +21,7 @@ My work is in the technical domain. I play saxophone and grow vegetables in the 
 
 ## このプロジェクトの出発点
 
-2023年から生成AIを使い始め、2025年に Claude Code に出会いました。
+2023年から生成AIを使い始め、2026年に Claude Code に出会いました。
 
 最初は「仕事を効率化するツール」として使っていたけれど、
 気づいたら**自分の人生を設計するパートナー**として使うようになっていました。

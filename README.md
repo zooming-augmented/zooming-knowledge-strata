@@ -17,7 +17,7 @@ The **process itself** — in real time.
 
 ## The premise
 
-I'm in my late 30s. Midlife, by most definitions.
+I'm in my late 40s. Midlife, by most definitions.
 
 At some point, the question shifts from *"how do I succeed?"*
 to *"what actually matters to me?"*
