@@ -1,63 +1,85 @@
 # zooming-knowledge-strata
 
-**知は積み重なる。地層のように。**
+**Knowledge accumulates in layers — through practice, failure, and reflection.**
+
+*知は積み重なる。実践と失敗と振り返りを経て、地層のように。*
 
 ---
 
-## このリポジトリについて
+## What this is
 
-私（zooming）が実践してきたことの記録です。
+A living record of someone redesigning their life in the age of AI.
 
-磨かれた結論ではなく、試行・失敗・改善のプロセスそのものを置いています。
-完成したものを発信するより、**プロセスに価値がある**と思っているから。
-
----
-
-## 私がやっていること
-
-会社員として働きながら、家族と暮らし、AIと協働しながら自分の人生を設計しています。
-
-特に今、力を入れているのは：
-
-- **Life Flow** — 睡眠・食事・家族時間・健康など、生活リズムの安定
-- **Focus Flow** — 深い集中と、本当にやりたい仕事への時間確保
-- **Integrity Flow** — 個人の誠実さを起点に、社会との接続を広げていくこと
-
-これらをAI（主に Claude Code）と一緒に設計・記録・改善しています。
-日々の会話ログ、ダッシュボード、エージェントの設定まで含めて、プロセスごと公開していく予定です。
+Not polished conclusions.
+The **process itself** — in real time.
 
 ---
 
-## なぜ公開するのか
+## The premise
 
-**maximize Σ Integrity** — 個人・コミュニティ・社会のIntegrityの総和を最大化する。
+I'm in my late 30s. Midlife, by most definitions.
 
-これが私の軸です。
+At some point, the question shifts from *"how do I succeed?"*
+to *"what actually matters to me?"*
 
-私一人が良くなっても意味が薄い。
-このプロセスを見て「自分もやってみたい」と思う人が増えることが、
-私にとってのmaximize Σ Integrityの実践です。
+I started using AI not to be more productive,
+but to **think more clearly about how I want to live**.
 
-バズを狙っていません。マラソンのように、長く走りたいと思っています。
-
----
-
-## ここで見つかるもの
-
-- AIと協働した生活設計の実践記録
-- 試してうまくいったこと・うまくいかなかったこと
-- ツール・仕組み・考え方の変化のログ
-- 将来的には：環境の立ち上げ方・参加の仕方
-
-> 古い記録は消えません。すべてが地層として残ります。
+That's what this repository documents.
 
 ---
 
-## もし興味を持ってくれたなら
+## Three layers of flow
 
-まずは → **[start-here.md](./start-here.md)** を読んでみてください。
+I organize my life around three interconnected flows:
+
+**Life Flow** — the foundation.
+Sleep, meals, health, family time, daily rhythm.
+Nothing else works if this is broken.
+
+**Focus Flow** — the work.
+Deep concentration. The projects that matter.
+Protecting time for what I actually want to build.
+
+**Integrity Flow** — the contribution.
+Living honestly. Leaving something of value
+for the people around me, and the generation after.
 
 ---
 
-*This repository is maintained by a human thinker, augmented by AI.*
+## Why share the process?
+
+AI adoption is moving fast — faster in some parts of the world than others.
+I pay close attention to how people are using these tools globally,
+and try to bring those practices into my daily life.
+
+Sharing the process is part of the practice.
+
+When the *process* itself becomes the content,
+something shifts. You stop performing and start living.
+
+This is what I'm exploring.
+
+---
+
+## What you'll find here
+
+- Daily practice logs and reflections
+- AI-assisted life design experiments
+- Tools, systems, and setups — including what failed
+- Over time: guides for setting up your own version
+
+Old layers are never erased. Everything remains as context.
+
+---
+
+## Follow along
+
+**GitHub** → raw process, tools, systems *(here)*
+**note** → stories, reflections, curated insights *(coming)*
+**YouTube** → visual documentation of the practice *(coming)*
+
+---
+
+*Maintained by zooming — a human thinker, augmented by AI.*
 *Responsibility always remains human.*
