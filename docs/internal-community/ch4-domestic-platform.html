@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch.4 国内事例 II ── 人をつなぐプラットフォーム設計 ── 越境コミュニティ 3年目以降の設計指針</title>
+<style>
+body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
+h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
+h2 { font-size: 1.15rem; color: #222; margin-top: 2.8rem; border-left: 4px solid #0066cc; padding-left: 10px; }
+h3 { font-size: 0.97rem; color: #444; margin-top: 1.6rem; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.88rem; }
+th { background: #f0f4f8; text-align: left; padding: 8px 12px; border: 1px solid #ccc; }
+td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
+tr:nth-child(even) td { background: #fafafa; }
+.note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.88rem; }
+.summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
+.toc { background: #f7f7f7; border: 1px solid #ddd; border-radius: 4px; padding: 12px 20px; margin: 1.4rem 0; font-size: 0.88rem; }
+.toc ol { margin: 0; padding-left: 1.4rem; }
+.toc li { margin: 4px 0; }
+.meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
+.nav { font-size: 0.85rem; margin-bottom: 2rem; color: #888; }
+.nav a { color: #0066cc; text-decoration: none; margin: 0 6px; }
+.wip { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; margin: 1.5rem 0; font-size: 0.9rem; color: #856404; }
+a { color: #0066cc; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 5px 0; }
+</style>
+</head>
+<body>
+
+<p class="nav">
+  <a href="index.html">← 目次へ戻る</a> |
+  <a href="../index.html">zooming-knowledge-strata</a>
+</p>
+
+<h1>Ch.4 国内事例 II ── 人をつなぐプラットフォーム設計</h1>
+
+<div class="summary-box">
+  コミュニティの「場」ではなく、人と人を接続するためのプラットフォーム設計に焦点を当てた国内事例。スキルマッチング・社内副業・AI活用の観点で整理する。
+</div>
+
+<h2>4-1. トヨタ「カラフルスター」── 人起点の接続設計</h2>
+<p class="wip">このセクションは執筆中です。</p>
+<p>トヨタ自動車が導入した社内人材可視化・接続プラットフォーム。社員が自分の「スキル・得意・関心・やってみたいこと」を登録し、社内で互いを発見・接続できる設計になっている。</p>
+<ul>
+  <li>設計思想：スキルの完全マッチングより、「人として知る」ことを優先</li>
+  <li>特徴：プロフィールの粒度が「業務スキル」だけでなく「趣味・価値観・将来やりたいこと」まで含む</li>
+  <li>活用シーン：プロジェクト組成・社内副業・メンタリング候補の検索など</li>
+</ul>
+<div class="note">
+  <strong>設計ポイント：</strong>「スキル起点」ではなく「人起点」にすることで、業務上の役割を超えたつながりが生まれやすくなる。
+</div>
+
+<h2>4-2. スキル・マッチング設計の国内進化（NEC / 富士通 / KDDI）</h2>
+<p class="wip">このセクションは執筆中です。</p>
+<table>
+  <thead>
+    <tr>
+      <th>企業</th>
+      <th>プラットフォーム名</th>
+      <th>特徴</th>
+      <th>マッチングの軸</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NEC</td>
+      <td>（社内人材タグシステム）</td>
+      <td>スキルタグによる検索・マッチング</td>
+      <td>スキル起点</td>
+    </tr>
+    <tr>
+      <td>富士通</td>
+      <td>（タレントマネジメント基盤）</td>
+      <td>キャリア志向・経験の可視化</td>
+      <td>キャリア起点</td>
+    </tr>
+    <tr>
+      <td>KDDI</td>
+      <td>（社内副業・兼業制度連動型）</td>
+      <td>社内課題×スキル提供のマッチング</td>
+      <td>課題起点</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>4-3. 社内副業・課題提示型（KDDI・日立SFMS）</h2>
+<p class="wip">このセクションは執筆中です。</p>
+<p>「社内に副業的に関わる」モデルは、コミュニティ参加より一歩踏み込んだ接続形式である。</p>
+<h3>KDDI 社内副業制度</h3>
+<p>自部門の業務を維持しながら、他部門の課題解決に週数時間参加できる仕組み。課題を提示する部門と、スキルを提供する社員をマッチングするプラットフォームを通じて運営される。</p>
+<h3>日立 SFMS（Smart Flow Management System）</h3>
+<p class="wip">このセクションは執筆中です。</p>
+<p>日立グループ内での人材流動を促進するシステム。部門を超えた短期プロジェクト参加・スキル提供を効率的にコーディネートする。</p>
+
+<h2>4-4. 行動データ自動抽出型（日立ソリューションズ・クリエイト）</h2>
+<p class="wip">このセクションは執筆中です。</p>
+<p>自己申告ではなく、業務活動のデータ（メール・会議・資料）からスキルや専門性を自動抽出するアプローチ。</p>
+<ul>
+  <li>メリット：プロフィール登録の手間がなく、気づいていない自分の強みが可視化される</li>
+  <li>課題：プライバシーへの配慮・データ精度・「見られている」感による行動変容のリスク</li>
+  <li>日立ソリューションズ・クリエイトの取り組みでは、社員の同意のもと業務データから専門領域マップを作成する実験が行われた</li>
+</ul>
+
+<h2>4-5. NRI「Talent Marketplace」── 応募者10倍・希望マッチ7倍</h2>
+<p class="wip">このセクションは執筆中です。</p>
+<p>野村総合研究所（NRI）が導入した社内タレントマーケットプレイス。社員が自分の希望キャリアや提供できるスキルを登録し、社内プロジェクトや職種転換の機会に応募できる。</p>
+<ul>
+  <li>導入効果（公開情報より）：社内公募への応募者数が約10倍に増加、希望に沿った異動マッチング率が約7倍に向上</li>
+  <li>設計のポイント：従来の人事主導型配置から、社員の意志起点型への転換</li>
+  <li>副次効果：「自分のキャリアを自分で動かせる」という感覚が社員エンゲージメントを向上させた</li>
+</ul>
+
+<h2>4-6. プラットフォーム設計の2軸比較</h2>
+<p class="wip">このセクションは執筆中です。</p>
+<p>国内プラットフォーム事例を「接続の起点」と「つながりの深さ」の2軸で整理する。</p>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>ゆるやか接続</th>
+      <th>課題解決接続</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>スキル起点</strong></td>
+      <td>NEC（タグ検索・発見）</td>
+      <td>KDDI社内副業（スキル×課題マッチング）</td>
+    </tr>
+    <tr>
+      <td><strong>関心・人起点</strong></td>
+      <td>トヨタ カラフルスター（人として知る）</td>
+      <td>ONE JAPAN（有志×課題×変革）</td>
+    </tr>
+  </tbody>
+</table>
+<p>自分たちのプラットフォームがどの象限を狙うかを明確にすることが、設計の第一歩になる。</p>
+
+<p style="margin-top: 3rem; font-size: 0.88rem;">
+  <a href="ch3-domestic-community.html">← Ch.3 国内事例 I</a> ｜ <a href="ch5-overseas-internal.html">Ch.5 海外事例 I →</a>
+</p>
+
+<p class="meta">調査・執筆：Rity（Claude Code） / 公開：zooming-knowledge-strata / 2026-04</p>
+</body>
+</html>

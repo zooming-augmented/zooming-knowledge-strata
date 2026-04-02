@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch.8 コンセプト設計のための問い ── 越境コミュニティ 3年目以降の設計指針</title>
+<style>
+body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
+h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
+h2 { font-size: 1.15rem; color: #222; margin-top: 2.8rem; border-left: 4px solid #0066cc; padding-left: 10px; }
+h3 { font-size: 0.97rem; color: #444; margin-top: 1.6rem; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.88rem; }
+th { background: #f0f4f8; text-align: left; padding: 8px 12px; border: 1px solid #ccc; }
+td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
+tr:nth-child(even) td { background: #fafafa; }
+.note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.88rem; }
+.summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
+.toc { background: #f7f7f7; border: 1px solid #ddd; border-radius: 4px; padding: 12px 20px; margin: 1.4rem 0; font-size: 0.88rem; }
+.toc ol { margin: 0; padding-left: 1.4rem; }
+.toc li { margin: 4px 0; }
+.meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
+.nav { font-size: 0.85rem; margin-bottom: 2rem; color: #888; }
+.nav a { color: #0066cc; text-decoration: none; margin: 0 6px; }
+.wip { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; margin: 1.5rem 0; font-size: 0.9rem; color: #856404; }
+a { color: #0066cc; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 5px 0; }
+.hint { background: #f0f7ee; border-left: 4px solid #4caf50; padding: 10px 16px; margin: 0.8rem 0; font-size: 0.88rem; color: #2e5e2e; }
+</style>
+</head>
+<body>
+
+<p class="nav">
+  <a href="index.html">← 目次へ戻る</a> |
+  <a href="../index.html">zooming-knowledge-strata</a>
+</p>
+
+<h1>Ch.8 コンセプト設計のための問い</h1>
+
+<div class="summary-box">
+  このレポートを通じて浮かび上がった、コンセプト設計のための核心的な問い。事例の「答え」を鵜呑みにするのではなく、これらの問いを自分たちの文脈で考えることが設計の出発点になる。
+</div>
+
+<h2>問いの使い方</h2>
+<p>以下の問いは順番に答える必要はない。気になる問いから始め、チームで対話しながら考えを深めるための素材として使う。答えが出なくてもよい。「まだわからない」こと自体が設計の余白になる。</p>
+
+<h2>問い 1. 私たちのプラットフォームは「誰が何をきっかけに使い始めるか」？</h2>
+
+<h3>この問いのヒント：</h3>
+<div class="hint">
+  カラフルスターは「自分のことを書く」という行動が入口だった。Schneider ElectricのOpen Talent Marketは「自分のスキルが見える」ことへの好奇心が登録の動機になった。「使い始めるきっかけ」を設計することは、参加者数より参加の質を左右する。最初の一歩のハードルをどこに置くかが、コミュニティの初期メンバーの性質を決める。
+</div>
+
+<h2>問い 2. 入口は「好き・得意・関心」か、「困りごと・課題」か、その両方か？</h2>
+
+<h3>この問いのヒント：</h3>
+<div class="hint">
+  継続性の高い事例（デンソー夢卵・ONE JAPAN）は「好き・関心」起点が多く、短期に成果を出す事例（KDDI副業・NASA Tournament Lab）は「課題」起点が多い。どちらを優先するかで、集まる人の性質も活動の持続性も変わる。「両方欲しい」なら、それぞれに異なる入口を設計することも選択肢になる。
+</div>
+
+<h2>問い 3. カラフルスターと同じ設計にする必要はない。何を変えるか？</h2>
+
+<h3>この問いのヒント：</h3>
+<div class="hint">
+  カラフルスターは「人として知る」ことを重視し、業務スキルより関心・志向を前面に出した設計だった。自社の文化・規模・目的が違うなら、設計も変わって当然。「マネする」より「何を借りて、何を変えるか」を明確にすることが、本当の意味での設計思考になる。
+</div>
+
+<h2>問い 4. 「ゆるやかにつながる」先に、何が起きてほしいか？</h2>
+
+<h3>この問いのヒント：</h3>
+<div class="hint">
+  Bosch Connectや夢卵のような「ゆるやかな場」の事例では、すぐには見えない価値（信頼の蓄積・偶発的な協力関係）が数年単位で積み重なっていた。「ゆるやかさ」を設計するなら、その先に何を期待するかを言語化しておく必要がある。そうでないと、ゆるやかなまま止まってしまう。
+</div>
+
+<h2>問い 5. 本線コミュニティとの接続・往来をどう設計するか？</h2>
+
+<h3>この問いのヒント：</h3>
+<div class="hint">
+  Team SunriseやONE JAPANの事例では、分科会が独立してしまうとコミュニティ全体のアイデンティティが失われる危機があった。本線（全体場）と分科会の往来を意図的に設計することで、多様さを保ちながら一体感を維持できる。「往来のきっかけ」をどこに置くかが設計の腕の見せ所。
+</div>
+
+<h2>問い 6. 小さな成果を「見える化」する仕組みをどう作るか？</h2>
+
+<h3>この問いのヒント：</h3>
+<div class="hint">
+  NRIのTalent Marketplaceでは「応募者数10倍・マッチング7倍」という数値が、制度の継続を後押しした。有志コミュニティでも「参加して何か変わった」という小さな実感を言語化・蓄積する仕組みがあると、メンバーのモチベーションと外部への説明力が両方高まる。数値でなくても「物語」として残す設計でも機能する。
+</div>
+
+<h2>問い 7. 10年後、このプラットフォームはどんな姿であるべきか？</h2>
+
+<h3>この問いのヒント：</h3>
+<div class="hint">
+  夢卵は30年、Team Sunriseは19年続いた。どちらも「10年後の姿」を創設時に描いていたわけではないが、活動の意味を問い直す節目があった。「10年後の姿」を今から具体的に描くことよりも、「その時代の文脈に合わせて意味を問い直せる仕組みがあるか」を設計に組み込む方が、長期継続には効く。
+</div>
+
+<h2>問い 8. マネジャーの協力をどう引き出すか、を設計に組み込めているか？</h2>
+
+<h3>この問いのヒント：</h3>
+<div class="hint">
+  社内コミュニティや副業制度が機能しない最大の障壁の一つが「直属マネジャーの不承認」である。UnileverやSchneider Electricの事例では、参加実績が評価指標に含まれるよう制度設計が行われた。有志ベースを維持しながらも、「マネジャーが邪魔しない」から「マネジャーが後押しする」への転換を設計に組み込めると、参加層が劇的に広がる。
+</div>
+
+<p style="margin-top: 3rem; font-size: 0.88rem;">
+  <a href="ch7-comparison.html">← Ch.7 設計要素の横断比較</a> ｜ <a href="index.html">目次へ戻る →</a>
+</p>
+
+<p class="meta">調査・執筆：Rity（Claude Code） / 公開：zooming-knowledge-strata / 2026-04</p>
+</body>
+</html>

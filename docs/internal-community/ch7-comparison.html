@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch.7 設計要素の横断比較 ── 越境コミュニティ 3年目以降の設計指針</title>
+<style>
+body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
+h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
+h2 { font-size: 1.15rem; color: #222; margin-top: 2.8rem; border-left: 4px solid #0066cc; padding-left: 10px; }
+h3 { font-size: 0.97rem; color: #444; margin-top: 1.6rem; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.88rem; }
+th { background: #f0f4f8; text-align: left; padding: 8px 12px; border: 1px solid #ccc; }
+td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
+tr:nth-child(even) td { background: #fafafa; }
+.note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.88rem; }
+.summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
+.toc { background: #f7f7f7; border: 1px solid #ddd; border-radius: 4px; padding: 12px 20px; margin: 1.4rem 0; font-size: 0.88rem; }
+.toc ol { margin: 0; padding-left: 1.4rem; }
+.toc li { margin: 4px 0; }
+.meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
+.nav { font-size: 0.85rem; margin-bottom: 2rem; color: #888; }
+.nav a { color: #0066cc; text-decoration: none; margin: 0 6px; }
+.wip { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; margin: 1.5rem 0; font-size: 0.9rem; color: #856404; }
+a { color: #0066cc; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 5px 0; }
+</style>
+</head>
+<body>
+
+<p class="nav">
+  <a href="index.html">← 目次へ戻る</a> |
+  <a href="../index.html">zooming-knowledge-strata</a>
+</p>
+
+<h1>Ch.7 設計要素の横断比較</h1>
+
+<div class="summary-box">
+  Ch.3〜Ch.6 の事例を横断し、設計の核心となる要素を比較・整理する。「入口設計」「マッチング」「公認化」「継続性」「本線×分科会」の5軸で読み解く。
+</div>
+
+<h2>7-1. 参加の入口設計の比較</h2>
+<p class="wip">このセクションは執筆中です。</p>
+<table>
+  <thead>
+    <tr>
+      <th>入口の種類</th>
+      <th>特徴</th>
+      <th>代表事例</th>
+      <th>向いている場面</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>役割起点</td>
+      <td>「○○担当者向け」など属性で集める</td>
+      <td>多くの社内勉強会・ERG</td>
+      <td>対象を絞った課題解決・初期ネットワーク形成</td>
+    </tr>
+    <tr>
+      <td>好き・関心起点</td>
+      <td>「これが好きな人」で集める</td>
+      <td>デンソー夢卵・ONE JAPAN・カラフルスター</td>
+      <td>多様性の確保・長期継続・エネルギーの持続</td>
+    </tr>
+    <tr>
+      <td>スキル起点</td>
+      <td>「この能力を持つ人」で集める</td>
+      <td>NEC・Unilever Flex Experiences</td>
+      <td>プロジェクト組成・課題解決の効率化</td>
+    </tr>
+    <tr>
+      <td>課題起点</td>
+      <td>「この課題に挑みたい人」で集める</td>
+      <td>KDDI社内副業・NASA Tournament Lab</td>
+      <td>成果創出・参加者のコミットメント確保</td>
+    </tr>
+  </tbody>
+</table>
+<div class="note">
+  <strong>示唆：</strong>長期継続を目指すコミュニティは「好き・関心起点」が強く、短期の成果を求める場合は「課題起点」が向く。組み合わせることも有効。
+</div>
+
+<h2>7-2. マッチングの仕組みの比較</h2>
+<p class="wip">このセクションは執筆中です。</p>
+<table>
+  <thead>
+    <tr>
+      <th>マッチング方式</th>
+      <th>仕組み</th>
+      <th>代表事例</th>
+      <th>メリット / デメリット</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ゆるやか接続</td>
+      <td>プロフィール公開→自然発生的なつながり</td>
+      <td>カラフルスター・Bosch Connect</td>
+      <td>自由度高・強制感なし / 偶発性頼みで深い接続が生まれにくい</td>
+    </tr>
+    <tr>
+      <td>課題提示型</td>
+      <td>課題を公開→手を挙げた人がマッチング</td>
+      <td>KDDI社内副業・NASA Tournament Lab</td>
+      <td>目的明確・成果出やすい / 参加ハードルが上がる</td>
+    </tr>
+    <tr>
+      <td>AI型</td>
+      <td>AIがスキル・関心・経験から候補を提案</td>
+      <td>Schneider Electric・Unilever</td>
+      <td>網羅性高・偶発的出会いも設計可能 / データ整備・プライバシーの課題</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>7-3. 会社公認化のパターンと最適タイミング</h2>
+<p class="wip">このセクションは執筆中です。</p>
+<p>有志コミュニティが会社公認を得ることには、メリットとリスクの両面がある。事例から見えてくる「最適タイミング」の条件を整理する。</p>
+<table>
+  <thead>
+    <tr>
+      <th>公認化のパターン</th>
+      <th>特徴</th>
+      <th>リスク</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>早期公認型（立ち上げ直後）</td>
+      <td>会社リソースを最初から活用できる</td>
+      <td>有志のエネルギーが失われやすい・会社の評価軸に縛られる</td>
+    </tr>
+    <tr>
+      <td>実績後公認型（2〜3年後）</td>
+      <td>自律性を保ちながら公認のメリットを得る</td>
+      <td>公認前の期間にメンバーが疲弊するリスク</td>
+    </tr>
+    <tr>
+      <td>部分公認型</td>
+      <td>場所・広報のみ公認・運営は有志が主体</td>
+      <td>曖昧さによる混乱・責任の所在不明確</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>7-4. 継続性を高める設計の共通点（全事例横断）</h2>
+<p class="wip">このセクションは執筆中です。</p>
+<p>Ch.3〜Ch.6 の全事例を横断して見えてくる、継続性を高めるための設計の共通点を列挙する。</p>
+<ul>
+  <li><strong>世代交代の仕組み：</strong>創設者が意図的に「卒業」し、次世代リーダーが主体になれる設計がある</li>
+  <li><strong>小さな成果の可視化：</strong>大きな成果より、「参加してよかった」という小さな手応えを積み重ねられる</li>
+  <li><strong>参加の入口の多様性：</strong>一つの参加経路に依存せず、様々なきっかけで入れる設計がある</li>
+  <li><strong>活動の「軽さ」と「重さ」のバランス：</strong>負荷ゼロのゆるい参加と、本格的に関わる機会の両方が用意されている</li>
+  <li><strong>外部との接続：</strong>社内に閉じず、外部の視点・人・情報が定期的に入ってくる設計</li>
+</ul>
+
+<h2>7-5. 「本線＋分科会」設計の成功パターン</h2>
+<p class="wip">このセクションは執筆中です。</p>
+<table>
+  <thead>
+    <tr>
+      <th>要素</th>
+      <th>本線（全体）</th>
+      <th>分科会（小グループ）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>役割</td>
+      <td>アイデンティティ・文化の共有</td>
+      <td>深い対話・実験・課題解決</td>
+    </tr>
+    <tr>
+      <td>頻度</td>
+      <td>低頻度（年数回）</td>
+      <td>高頻度（月次〜隔週）</td>
+    </tr>
+    <tr>
+      <td>参加者数</td>
+      <td>大人数</td>
+      <td>少人数（5〜15人）</td>
+    </tr>
+    <tr>
+      <td>成功の鍵</td>
+      <td>参加者が「同じ船に乗っている」感を持てる</td>
+      <td>テーマへの当事者意識・フラットな関係</td>
+    </tr>
+    <tr>
+      <td>接続の設計</td>
+      <td colspan="2">本線⇔分科会の往来が意図的に設計されていること（孤立した分科会にしない）</td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="margin-top: 3rem; font-size: 0.88rem;">
+  <a href="ch6-overseas-open.html">← Ch.6 海外事例 II</a> ｜ <a href="ch8-questions.html">Ch.8 コンセプト設計のための問い →</a>
+</p>
+
+<p class="meta">調査・執筆：Rity（Claude Code） / 公開：zooming-knowledge-strata / 2026-04</p>
+</body>
+</html>

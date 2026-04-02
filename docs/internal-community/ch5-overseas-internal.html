@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ch.5 海外事例 I ── 社内プラットフォームの先端設計 ── 越境コミュニティ 3年目以降の設計指針</title>
+<style>
+body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
+h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
+h2 { font-size: 1.15rem; color: #222; margin-top: 2.8rem; border-left: 4px solid #0066cc; padding-left: 10px; }
+h3 { font-size: 0.97rem; color: #444; margin-top: 1.6rem; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.88rem; }
+th { background: #f0f4f8; text-align: left; padding: 8px 12px; border: 1px solid #ccc; }
+td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
+tr:nth-child(even) td { background: #fafafa; }
+.note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.88rem; }
+.summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
+.toc { background: #f7f7f7; border: 1px solid #ddd; border-radius: 4px; padding: 12px 20px; margin: 1.4rem 0; font-size: 0.88rem; }
+.toc ol { margin: 0; padding-left: 1.4rem; }
+.toc li { margin: 4px 0; }
+.meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
+.nav { font-size: 0.85rem; margin-bottom: 2rem; color: #888; }
+.nav a { color: #0066cc; text-decoration: none; margin: 0 6px; }
+.wip { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; margin: 1.5rem 0; font-size: 0.9rem; color: #856404; }
+a { color: #0066cc; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 5px 0; }
+</style>
+</head>
+<body>
+
+<p class="nav">
+  <a href="index.html">← 目次へ戻る</a> |
+  <a href="../index.html">zooming-knowledge-strata</a>
+</p>
+
+<h1>Ch.5 海外事例 I ── 社内プラットフォームの先端設計</h1>
+
+<div class="summary-box">
+  グローバル企業が実装した社内タレントマーケット・人材流動プラットフォームの先端事例。規模・速度・設計思想のいずれも、日本の現状と大きな差がある。
+</div>
+
+<h2>5-1. Unilever「Flex Experiences」── 100か国・6万人の常設タレントマーケット</h2>
+<p class="wip">このセクションは執筆中です。</p>
+<p>ユニリーバが全世界で運用する社内タレントマーケットプレイス「Flex Experiences」は、100か国以上・6万人以上の社員が登録し、スキル・経験・希望を可視化した上で、社内プロジェクトへの参加機会をマッチングする。</p>
+<ul>
+  <li>規模：グローバル全社員対象（常設・常時稼働）</li>
+  <li>マッチング方式：AIがプロフィールとプロジェクト要件を照合し、候補者を提案</li>
+  <li>参加形式：プロジェクト単位（期間数週間〜数か月）の短期参加が多く、本業を維持しながら参加</li>
+  <li>効果：タレント発見コストの削減・社員の越境経験・部門間の協力関係構築</li>
+</ul>
+<div class="note">
+  <strong>日本との差：</strong>「常設・常時稼働」という設計は、日本の多くの社内副業制度が「公募期間限定」である点と大きく異なる。
+</div>
+
+<h2>5-2. Schneider Electric「Open Talent Market」── 2か月で60%登録・89%採用率</h2>
+<p class="wip">このセクションは執筆中です。</p>
+<p>シュナイダーエレクトリックが導入したAI駆動の社内タレントマーケット。導入後2か月で全社員の約60%が自発的に登録し、マッチングから実際の採用・プロジェクト参加への転換率は89%に達したと報告されている。</p>
+<ul>
+  <li>AI機能：スキル自動抽出・学習コンテンツのレコメンデーション・メンター候補の提案</li>
+  <li>設計思想：「会社が人を配置する」から「人が機会を選ぶ」へのパラダイム転換</li>
+  <li>副次効果：離職率低下・エンゲージメント向上・社内での垂直・水平移動の増加</li>
+</ul>
+
+<h2>5-3. Bosch「Connect」── Enterprise 2.0型社内共創基盤</h2>
+<p class="wip">このセクションは執筆中です。</p>
+<p>ボッシュが運用する社内ソーシャルプラットフォーム「Bosch Connect」は、従業員同士の知識共有・コミュニティ形成・共同作業を支援する。Enterprise 2.0（社内SNS×コラボレーション）の代表的実装例とされている。</p>
+<ul>
+  <li>機能：社内ブログ・フォーラム・グループ・Wiki・ファイル共有</li>
+  <li>特徴：トップダウンの情報発信より、現場からの知識共有を優先</li>
+  <li>コミュニティ設計：自然発生的なコミュニティ形成を支援し、マネジメントが介入しすぎない</li>
+</ul>
+
+<h2>5-4. 3社比較：何が「日本未普及」か</h2>
+<p class="wip">このセクションは執筆中です。</p>
+<table>
+  <thead>
+    <tr>
+      <th>観点</th>
+      <th>Unilever</th>
+      <th>Schneider Electric</th>
+      <th>Bosch</th>
+      <th>日本の現状</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>常設性</td>
+      <td>常設・常時</td>
+      <td>常設・常時</td>
+      <td>常設・常時</td>
+      <td>公募期間型が多い</td>
+    </tr>
+    <tr>
+      <td>AI活用</td>
+      <td>マッチングAI</td>
+      <td>スキル抽出AI</td>
+      <td>部分的</td>
+      <td>試験導入段階</td>
+    </tr>
+    <tr>
+      <td>参加の自発性</td>
+      <td>社員が選ぶ</td>
+      <td>社員が選ぶ</td>
+      <td>コミュニティ自発</td>
+      <td>人事主導型が多い</td>
+    </tr>
+    <tr>
+      <td>対象範囲</td>
+      <td>全社・全世界</td>
+      <td>全社・全世界</td>
+      <td>全社・全世界</td>
+      <td>特定部門・試験運用が多い</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>5-5. 日本への輸入可能性の評価</h2>
+<p class="wip">このセクションは執筆中です。</p>
+<ul>
+  <li><strong>高：</strong>「人が機会を選ぶ」思想・プロフィールの豊かさ（スキル＋関心＋志向）・分科会的小グループ設計</li>
+  <li><strong>中：</strong>AI自動マッチング（データ整備・プライバシー課題の先行解決が必要）</li>
+  <li><strong>低（現時点）：</strong>全社常設・大規模運用（制度整備・変革リーダーシップが前提）</li>
+</ul>
+<div class="note">
+  <strong>インサイト：</strong>「設計思想」は輸入可能。「規模と速度」は段階的に近づける。どちらを先に取り入れるかを選ぶことが、次フェーズ設計の最初の問いになる。
+</div>
+
+<p style="margin-top: 3rem; font-size: 0.88rem;">
+  <a href="ch4-domestic-platform.html">← Ch.4 国内事例 II</a> ｜ <a href="ch6-overseas-open.html">Ch.6 海外事例 II →</a>
+</p>
+
+<p class="meta">調査・執筆：Rity（Claude Code） / 公開：zooming-knowledge-strata / 2026-04</p>
+</body>
+</html>
