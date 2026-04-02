@@ -8,28 +8,28 @@
 body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
 h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
 h2 { font-size: 1.15rem; color: #222; margin-top: 2.8rem; border-left: 4px solid #0066cc; padding-left: 10px; }
-h3 { font-size: 0.97rem; color: #444; margin-top: 1.6rem; }
+h3 { font-size: 0.95rem; color: #555; margin-top: 1rem; }
 table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.88rem; }
 th { background: #f0f4f8; text-align: left; padding: 8px 12px; border: 1px solid #ccc; }
 td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
 tr:nth-child(even) td { background: #fafafa; }
 .note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.88rem; }
-.summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
-.toc { background: #f7f7f7; border: 1px solid #ddd; border-radius: 4px; padding: 12px 20px; margin: 1.4rem 0; font-size: 0.88rem; }
-.toc ol { margin: 0; padding-left: 1.4rem; }
-.toc li { margin: 4px 0; }
 .meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
 .nav { font-size: 0.85rem; margin-bottom: 2rem; color: #888; }
 .nav a { color: #0066cc; text-decoration: none; margin: 0 6px; }
-.wip { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; margin: 1.5rem 0; font-size: 0.9rem; color: #856404; }
-a { color: #0066cc; }
-ul, ol { padding-left: 1.4rem; }
-li { margin: 5px 0; }
-.hint { background: #f0f7ee; border-left: 4px solid #4caf50; padding: 10px 16px; margin: 0.8rem 0; font-size: 0.88rem; color: #2e5e2e; }
 .chapter-summary { background: #f0f7ff; border: 2px solid #0066cc; border-radius: 6px; padding: 16px 20px; margin: 1.2rem 0 2rem 0; font-size: 0.92rem; }
 .chapter-summary ul { margin: 6px 0 0 0; padding-left: 1.2rem; }
 .chapter-summary li { margin: 4px 0; }
 .chapter-summary .label { font-weight: bold; color: #0055aa; font-size: 0.85rem; display: block; margin-bottom: 4px; }
+.q-block { border: 1px solid #c5d8f0; border-radius: 6px; padding: 18px 20px; margin: 1.6rem 0; background: #f8fbff; }
+.q-block h2 { border: none; padding: 0; margin: 0 0 10px 0; font-size: 1.05rem; color: #003580; }
+.hint { background: #f0f7ee; border-left: 4px solid #4caf50; padding: 10px 16px; margin: 0.8rem 0; font-size: 0.88rem; color: #2e5e2e; }
+.hint-label { font-size: 0.78rem; font-weight: bold; color: #4caf50; display: block; margin-bottom: 4px; }
+.q-theme { display: inline-block; font-size: 0.75rem; background: #dce8ff; color: #003580; border-radius: 3px; padding: 1px 8px; margin-bottom: 8px; }
+.ai-disclaimer { background: #fff3cd; border: 1px solid #ffc107; border-radius: 5px; padding: 14px 18px; margin: 2rem 0; font-size: 0.85rem; color: #5d4300; }
+a { color: #0066cc; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 5px 0; }
 </style>
 </head>
 <body>
@@ -40,80 +40,128 @@ li { margin: 5px 0; }
 </p>
 
 <h1>Ch.8 コンセプト設計のための問い</h1>
-
-<div class="summary-box">
-  このレポートを通じて浮かび上がった、コンセプト設計のための核心的な問い。事例の「答え」を鵜呑みにするのではなく、これらの問いを自分たちの文脈で考えることが設計の出発点になる。
-</div>
+<p style="color:#555; font-size:0.9rem;">つながりが、動きになる ── 越境コミュニティ 3年目以降の設計指針</p>
 
 <div class="chapter-summary">
   <span class="label">このページの使い方</span>
   <ul>
     <li>設計チームでの議論の出発点として使う。全問に答える必要はない。刺さる問いを1〜2つ選んで深掘りする。</li>
     <li>各問いの下に「事例からのヒント」を添えている。ヒントは答えではなく、問いを深めるための素材。</li>
-    <li>答えの出た問いは、そのままコンセプト設計のアウトプットになる。</li>
+    <li>答えの出た問いは、そのままコンセプト設計のアウトプットになる。「まだわからない」こと自体が設計の余白になる。</li>
   </ul>
 </div>
 
-<h2>問いの使い方</h2>
-<p>以下の問いは順番に答える必要はない。気になる問いから始め、チームで対話しながら考えを深めるための素材として使う。答えが出なくてもよい。「まだわからない」こと自体が設計の余白になる。</p>
+<p>以下の10の問いは、Ch.1〜7の事例横断から浮かび上がったものだ。答えは事例の中にはない。事例は「他の組織がどう考えたか」を示しているだけで、自分たちの文脈での答えは自分たちで出すしかない。これらの問いを手がかりに、チームで対話してほしい。</p>
 
-<h2>問い 1. 私たちのプラットフォームは「誰が何をきっかけに使い始めるか」？</h2>
-
-<h3>この問いのヒント：</h3>
-<div class="hint">
-  カラフルスターは「自分のことを書く」という行動が入口だった。Schneider ElectricのOpen Talent Marketは「自分のスキルが見える」ことへの好奇心が登録の動機になった。「使い始めるきっかけ」を設計することは、参加者数より参加の質を左右する。最初の一歩のハードルをどこに置くかが、コミュニティの初期メンバーの性質を決める。
+<!-- Q1 -->
+<div class="q-block">
+  <span class="q-theme">参加設計</span>
+  <h2>問い 1. 私たちのコミュニティは「誰が、何をきっかけに使い始めるか」？</h2>
+  <div class="hint">
+    <span class="hint-label">事例からのヒント</span>
+    トヨタ カラフルスターは「自分の好きなことを書く」という行動が入口だった。シュナイダー OTM は「自分のスキルが誰かに見つかるかもしれない」という好奇心が登録の動機になった。「使い始めるきっかけ」の設計は、参加者数より参加の質を左右する。最初の一歩のハードルをどこに置くかが、初期コミュニティの性質を決める。
+  </div>
 </div>
 
-<h2>問い 2. 入口は「好き・得意・関心」か、「困りごと・課題」か、その両方か？</h2>
-
-<h3>この問いのヒント：</h3>
-<div class="hint">
-  継続性の高い事例（デンソー夢卵・ONE JAPAN）は「好き・関心」起点が多く、短期に成果を出す事例（KDDI副業・NASA Tournament Lab）は「課題」起点が多い。どちらを優先するかで、集まる人の性質も活動の持続性も変わる。「両方欲しい」なら、それぞれに異なる入口を設計することも選択肢になる。
+<!-- Q2 -->
+<div class="q-block">
+  <span class="q-theme">参加設計</span>
+  <h2>問い 2. 入口は「好き・得意・関心」か、「困りごと・課題」か、その両方か？</h2>
+  <div class="hint">
+    <span class="hint-label">事例からのヒント</span>
+    継続性の高いコミュニティ型事例（デンソー夢卵・ONE JAPAN・日立 Team Sunrise）は「好き・関心」起点が多く、短期に成果を出す事業化型事例（ソニー SAP・NASA Tournament Lab）は「課題・困りごと」起点が多い。どちらを優先するかで、集まる人の性質も活動の持続性も変わる。「両方欲しい」なら、それぞれに異なる入口を設計することも選択肢になる。
+  </div>
 </div>
 
-<h2>問い 3. カラフルスターと同じ設計にする必要はない。何を変えるか？</h2>
-
-<h3>この問いのヒント：</h3>
-<div class="hint">
-  カラフルスターは「人として知る」ことを重視し、業務スキルより関心・志向を前面に出した設計だった。自社の文化・規模・目的が違うなら、設計も変わって当然。「マネする」より「何を借りて、何を変えるか」を明確にすることが、本当の意味での設計思考になる。
+<!-- Q3 -->
+<div class="q-block">
+  <span class="q-theme">役割設計</span>
+  <h2>問い 3. 参加者に「同じ役割・同じ熱量」を求めていないか？</h2>
+  <div class="hint">
+    <span class="hint-label">事例からのヒント</span>
+    日立 Team Sunrise は5年目の暗礁の後、「挑戦する自主性」と「応援する自主性」を分けて設計し直した。全員に発信・企画を求めると、できない人が脱落する。「挑戦者・応援者・つなぎ役」という役割の分化は、参加層を広げながらコアメンバーの燃え尽きも防ぐ。InnoCentive の「課題を出す側（シーカー）と解く側（ソルバー）」という分離も同じ原理だ。
+  </div>
 </div>
 
-<h2>問い 4. 「ゆるやかにつながる」先に、何が起きてほしいか？</h2>
-
-<h3>この問いのヒント：</h3>
-<div class="hint">
-  Bosch Connectや夢卵のような「ゆるやかな場」の事例では、すぐには見えない価値（信頼の蓄積・偶発的な協力関係）が数年単位で積み重なっていた。「ゆるやかさ」を設計するなら、その先に何を期待するかを言語化しておく必要がある。そうでないと、ゆるやかなまま止まってしまう。
+<!-- Q4 -->
+<div class="q-block">
+  <span class="q-theme">二層設計</span>
+  <h2>問い 4. 「ゆるやかにつながる場」と「成果を出す場」を混在させていないか？</h2>
+  <div class="hint">
+    <span class="hint-label">事例からのヒント</span>
+    コミュニティ層（関係資本・心理的安全性）と事業化層（審査・資源配分）を同一設計に詰め込むと、両方が機能不全になる。富士通の「FIC（公式）× Fujitsu大学院（有志）」、トヨタの「カラフルスター × A-1 × BE creation」が同一企業内での二層設計の好例だ。「分けて設計しながら、接続経路を用意する」のが正解だ。
+  </div>
 </div>
 
-<h2>問い 5. 本線コミュニティとの接続・往来をどう設計するか？</h2>
-
-<h3>この問いのヒント：</h3>
-<div class="hint">
-  Team SunriseやONE JAPANの事例では、分科会が独立してしまうとコミュニティ全体のアイデンティティが失われる危機があった。本線（全体場）と分科会の往来を意図的に設計することで、多様さを保ちながら一体感を維持できる。「往来のきっかけ」をどこに置くかが設計の腕の見せ所。
+<!-- Q5 -->
+<div class="q-block">
+  <span class="q-theme">継続設計</span>
+  <h2>問い 5. 3年目に「目的の問い直し」をする仕組みが設計の中にあるか？</h2>
+  <div class="hint">
+    <span class="hint-label">事例からのヒント</span>
+    日立 Team Sunrise は5年目、ONE JAPAN は8年目にそれぞれ組織の定義を更新した。「コミュニティが止まる」のは多くの場合、外部環境の変化より「なぜこれをやっているのか」が言語化されなくなることが原因だ。2〜3年ごとに「自分たちの存在意義を問い直す節目」を設計に組み込むことが、長期継続のために最も重要な一手だ。
+  </div>
 </div>
 
-<h2>問い 6. 小さな成果を「見える化」する仕組みをどう作るか？</h2>
-
-<h3>この問いのヒント：</h3>
-<div class="hint">
-  NRIのTalent Marketplaceでは「応募者数10倍・マッチング7倍」という数値が、制度の継続を後押しした。有志コミュニティでも「参加して何か変わった」という小さな実感を言語化・蓄積する仕組みがあると、メンバーのモチベーションと外部への説明力が両方高まる。数値でなくても「物語」として残す設計でも機能する。
+<!-- Q6 -->
+<div class="q-block">
+  <span class="q-theme">継続設計</span>
+  <h2>問い 6. 本線（全体コミュニティ）と分科会の往来をどう設計するか？</h2>
+  <div class="hint">
+    <span class="hint-label">事例からのヒント</span>
+    アイシン CONNECT の「本線（ラジオ・全体イベント）× CONNECT分科会 × SWITCH（事業化）」は、三層を意識的に接続している。分科会が独立してしまうと全体のアイデンティティが失われる。「往来のきっかけ」（全体報告会・分科会成果の可視化等）をどこに置くかが設計の腕の見せ所だ。
+  </div>
 </div>
 
-<h2>問い 7. 10年後、このプラットフォームはどんな姿であるべきか？</h2>
-
-<h3>この問いのヒント：</h3>
-<div class="hint">
-  夢卵は30年、Team Sunriseは19年続いた。どちらも「10年後の姿」を創設時に描いていたわけではないが、活動の意味を問い直す節目があった。「10年後の姿」を今から具体的に描くことよりも、「その時代の文脈に合わせて意味を問い直せる仕組みがあるか」を設計に組み込む方が、長期継続には効く。
+<!-- Q7 -->
+<div class="q-block">
+  <span class="q-theme">可視化・評価</span>
+  <h2>問い 7. 小さな成果を「見える化」する仕組みをどう作るか？</h2>
+  <div class="hint">
+    <span class="hint-label">事例からのヒント</span>
+    エアバス IdeaSpace はスコアカード・KPI・評価セッションを組み込み、「なぜこのアイデアが採択されたか」が可視化される設計にした。有志コミュニティでも「参加して何か変わった」という実感を言語化・蓄積する仕組みがあると、メンバーのモチベーションと外部への説明力が両方高まる。数値でなくても「物語として残す」設計でも機能する。
+  </div>
 </div>
 
-<h2>問い 8. マネジャーの協力をどう引き出すか、を設計に組み込めているか？</h2>
-
-<h3>この問いのヒント：</h3>
-<div class="hint">
-  社内コミュニティや副業制度が機能しない最大の障壁の一つが「直属マネジャーの不承認」である。UnileverやSchneider Electricの事例では、参加実績が評価指標に含まれるよう制度設計が行われた。有志ベースを維持しながらも、「マネジャーが邪魔しない」から「マネジャーが後押しする」への転換を設計に組み込めると、参加層が劇的に広がる。
+<!-- Q8 -->
+<div class="q-block">
+  <span class="q-theme">承認・制度</span>
+  <h2>問い 8. マネジャーの協力を「邪魔しない」から「後押しする」へ転換できるか？</h2>
+  <div class="hint">
+    <span class="hint-label">事例からのヒント</span>
+    社内コミュニティが機能しない最大の障壁の一つが「直属マネジャーの不承認・無関心」だ。シュナイダー OTM は承認ゲートを撤廃し、20%の時間枠を公式化した。アイシン CONNECT は広報部・人事部のメンバーが参加したことで公認化につながった。「マネジャーが後押しする」仕組みを設計に組み込めると、参加層が劇的に広がる。
+  </div>
 </div>
 
-<p style="margin-top: 3rem; font-size: 0.88rem;">
+<!-- Q9 -->
+<div class="q-block">
+  <span class="q-theme">外部接続</span>
+  <h2>問い 9. 社内だけで完結させないための「外部との接続経路」があるか？</h2>
+  <div class="hint">
+    <span class="hint-label">事例からのヒント</span>
+    ONE JAPAN への加盟（アイシン・富士通等）、NASA の社外 NTL 接続、パナソニック GCC の外部展示会（SXSW・Slush Tokyo）での市場検証など、内部だけで閉じない設計が2〜3年以上のコミュニティの鮮度を保つ。「社内だけで完結する」と外部刺激が枯渇し、議論が内向きになっていく。
+  </div>
+</div>
+
+<!-- Q10 -->
+<div class="q-block">
+  <span class="q-theme">長期設計</span>
+  <h2>問い 10. 10年後、このコミュニティはどんな姿であるべきか？</h2>
+  <div class="hint">
+    <span class="hint-label">事例からのヒント</span>
+    デンソー夢卵は30年、日立 Team Sunrise は19年続いた。どちらも創設時に「10年後の姿」を具体的に描いていたわけではない。ただ、活動の意味を問い直す節目があった。「10年後の具体像」より「時代の変化に合わせて意味を問い直せる仕組みがあるか」を設計に組み込む方が、長期継続には効く。10年後も残るのは「活動の形」ではなく「問い直す文化」だ。
+  </div>
+</div>
+
+<div class="note" style="margin-top:2.4rem;">
+  <strong>設計チームへ：</strong>これらの問いに「正解」はない。正解があれば、それは設計ではなく実装になる。このレポートの事例は「他の組織がどう答えたか」を示しているだけで、あなたたちの組織の答えにはならない。問いを持ち寄り、対話の中で自分たちの文脈に合った答えを育ててほしい。
+</div>
+
+<div class="ai-disclaimer">
+  <strong>このレポートについて：</strong>本レポートはAI（Claude）が調査・執筆しています。各事例の情報は公開情報をもとにしていますが、内容の正確性・最新性は保証されません。重要な意思決定の前には、各自で一次情報の裏どりをお願いします。
+</div>
+
+<p style="margin-top: 2rem; font-size: 0.88rem;">
   <a href="ch7-comparison.html">← Ch.7 設計要素の横断比較</a> ｜ <a href="index.html">目次へ戻る →</a>
 </p>
 
