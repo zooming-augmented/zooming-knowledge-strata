@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ch.4 国内事例 II ── 人をつなぐプラットフォーム設計 ── 越境コミュニティ 3年目以降の設計指針</title>
+<title>Ch.4 国内事例 II ── 越境コミュニティ 3年目以降の設計指針</title>
 <style>
 body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
 h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
@@ -14,21 +14,24 @@ th { background: #f0f4f8; text-align: left; padding: 8px 12px; border: 1px solid
 td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
 tr:nth-child(even) td { background: #fafafa; }
 .note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.88rem; }
-.summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
-.toc { background: #f7f7f7; border: 1px solid #ddd; border-radius: 4px; padding: 12px 20px; margin: 1.4rem 0; font-size: 0.88rem; }
-.toc ol { margin: 0; padding-left: 1.4rem; }
-.toc li { margin: 4px 0; }
 .meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
 .nav { font-size: 0.85rem; margin-bottom: 2rem; color: #888; }
 .nav a { color: #0066cc; text-decoration: none; margin: 0 6px; }
-.wip { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; margin: 1.5rem 0; font-size: 0.9rem; color: #856404; }
-a { color: #0066cc; }
-ul, ol { padding-left: 1.4rem; }
-li { margin: 5px 0; }
 .chapter-summary { background: #f0f7ff; border: 2px solid #0066cc; border-radius: 6px; padding: 16px 20px; margin: 1.2rem 0 2rem 0; font-size: 0.92rem; }
 .chapter-summary ul { margin: 6px 0 0 0; padding-left: 1.2rem; }
 .chapter-summary li { margin: 4px 0; }
 .chapter-summary .label { font-weight: bold; color: #0055aa; font-size: 0.85rem; display: block; margin-bottom: 4px; }
+.case-card { border: 1px solid #ddd; border-radius: 6px; padding: 18px 20px; margin: 1.4rem 0; }
+.case-card h3 { margin: 0 0 10px 0; font-size: 1rem; color: #0055aa; border: none; padding: 0; }
+.case-meta { font-size: 0.82rem; color: #888; margin-bottom: 10px; }
+.case-tag { display: inline-block; background: #e8f0fe; color: #1a56c4; border-radius: 3px; padding: 1px 7px; font-size: 0.78rem; margin-right: 4px; }
+.case-tag-biz { background: #fce4ec; color: #b71c1c; }
+.case-tag-vol { background: #fff8e1; color: #e65100; }
+.case-tag-long { background: #e8f5e9; color: #2e7d32; }
+.highlight { background: #fffde7; border-left: 3px solid #f9a825; padding: 8px 12px; margin: 8px 0; font-size: 0.88rem; }
+a { color: #0066cc; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 5px 0; }
 </style>
 </head>
 <body>
@@ -38,121 +41,274 @@ li { margin: 5px 0; }
   <a href="../index.html">zooming-knowledge-strata</a>
 </p>
 
-<h1>Ch.4 国内事例 II ── 人をつなぐプラットフォーム設計</h1>
-
-<div class="summary-box">
-  コミュニティの「場」ではなく、人と人を接続するためのプラットフォーム設計に焦点を当てた国内事例。スキルマッチング・社内副業・AI活用の観点で整理する。
-</div>
+<h1>Ch.4 国内事例 II ── 事業創出プログラムとSNS型プラットフォーム</h1>
+<p style="color:#555; font-size:0.9rem;">つながりが、動きになる ── 越境コミュニティ 3年目以降の設計指針</p>
 
 <div class="chapter-summary">
   <span class="label">この章で分かること ── 急ぐ人はここだけでOK</span>
   <ul>
-    <li>トヨタ「カラフルスター」は「好き・得意・関心タグ」でゆるやかにつなぐ設計。ユーザー→アンバサダーへの自走動線が特徴。</li>
-    <li>NRI「Talent Marketplace」実証では応募者10倍・希望マッチ7倍を達成。「将来チャレンジしたいこと」を入力させる設計が鍵。</li>
-    <li>日立ソリューションズ・クリエイトは業務メール・Teamsから自動でスキルを抽出（自己申告不要）。参加障壁ゼロの最先進設計。</li>
+    <li>ソニー SAP・ホンダ IGNITION は「アイデア→事業化」の制度設計が精緻で、コミュニティ層とは明確に分けて設計されている。</li>
+    <li>パナソニック GCC は6年・約2,200名参加の実績を持つが、「プログラム終了後の事業化接続」に課題が残ることも公表している。</li>
+    <li>トヨタのカラフルスター・A-1・BE creation は、SNS型／有志型／公認型の3層が同一企業内で並走する稀有な設計例だ。</li>
   </ul>
 </div>
 
-<h2>4-1. トヨタ「カラフルスター」── 人起点の接続設計</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>トヨタ自動車が導入した社内人材可視化・接続プラットフォーム。社員が自分の「スキル・得意・関心・やってみたいこと」を登録し、社内で互いを発見・接続できる設計になっている。</p>
-<ul>
-  <li>設計思想：スキルの完全マッチングより、「人として知る」ことを優先</li>
-  <li>特徴：プロフィールの粒度が「業務スキル」だけでなく「趣味・価値観・将来やりたいこと」まで含む</li>
-  <li>活用シーン：プロジェクト組成・社内副業・メンタリング候補の検索など</li>
-</ul>
-<div class="note">
-  <strong>設計ポイント：</strong>「スキル起点」ではなく「人起点」にすることで、業務上の役割を超えたつながりが生まれやすくなる。
+<h2>4-1. 本章の位置づけ</h2>
+
+<p><a href="ch3-domestic-community.html">Ch.3</a> では「つながり・学びの場（コミュニティ層）」を主軸とする事例を扱った。本章では、<strong>「アイデアを事業に変える（事業化層）」</strong>を主目的とするプログラム型・プラットフォーム型の国内事例を整理する。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>事例</th>
+      <th>開始</th>
+      <th>規模・継続性</th>
+      <th>主な特徴</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>トヨタ A-1 TOYOTA</strong></td>
+      <td>2017年</td>
+      <td>7年以上継続<br>毎年約100名参加</td>
+      <td>時間外・有志型ビジネスコンテスト。顧客課題重視の審査</td>
+    </tr>
+    <tr>
+      <td><strong>トヨタ BE creation</strong></td>
+      <td>〜2020年代</td>
+      <td>年間約300件応募<br>最終通過3〜4件</td>
+      <td>公認型の段階審査制度。伴走「シェルパ」付き</td>
+    </tr>
+    <tr>
+      <td><strong>パナソニック GCC</strong></td>
+      <td>2016年</td>
+      <td>6年以上継続<br>関与約2,200名</td>
+      <td>社員公募型アクセラレーター。外部展示会での市場検証が特徴</td>
+    </tr>
+    <tr>
+      <td><strong>ソニー SAP</strong></td>
+      <td>2014年</td>
+      <td>10年以上継続<br>7製品化（当時点）</td>
+      <td>社長直轄スタート。四半期公募・集中育成・専門家スポット支援</td>
+    </tr>
+    <tr>
+      <td><strong>ホンダ IGNITION</strong></td>
+      <td>2017年</td>
+      <td>8年以上継続<br>複数の事業化実績</td>
+      <td>専門人材チームによる伴走。出資比率20%未満の独立性担保</td>
+    </tr>
+    <tr>
+      <td><strong>トヨタ カラフルスター</strong></td>
+      <td>〜2025年</td>
+      <td>全社員対象</td>
+      <td>「好き・強み・関心」でつながるSNS型社内プラットフォーム</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>4-2. トヨタ A-1 TOYOTA ── 有志・時間外のビジネスコンテスト</h2>
+
+<div class="case-card">
+  <h3>A-1 TOYOTA</h3>
+  <div class="case-meta">
+    <span class="case-tag case-tag-vol">有志・時間外</span>
+    <span class="case-tag">ONE JAPAN加盟</span>
+    <span class="case-tag">2017年〜</span>
+  </div>
+
+  <p>2016年にトヨタ社員3名が「トヨタを変えよう」と出会ったことに端を発し、2017年に有志団体として発足。業務時間外に社員がビジネスアイデアを持ち寄り、チームで4ヶ月かけて顧客課題に向き合うコンテスト（A-1 CONTEST）を毎年開催している。</p>
+
+  <ul>
+    <li><strong>年次サイクル：</strong>8月頃にチーム結成 → 4ヶ月で顧客課題を深掘り → 12月に最終プレゼン</li>
+    <li><strong>審査基準：</strong>収益性より「顧客課題に真摯に寄り添っているか」を重視。初期探索の行動（顧客に会う・仮説を修正する）が正当化されやすい設計。</li>
+    <li><strong>運営体制：</strong>有志事務局が運営。役員級・社内先輩によるメンタリングと社外者との交流も組み込まれている。</li>
+    <li><strong>実績：</strong>4年間で累計800人以上・85チーム参加。20件超が次につながったと報告（当時点）。</li>
+  </ul>
+
+  <div class="highlight">
+    <strong>設計の鍵：</strong>有志・時間外でありながら、年次サイクルと顧客課題重視の審査軸が「こなすだけの活動」への転落を防いでいる。A-1はのちにトヨタの公認制度「BE creation（B-Project）」の設立きっかけになったとも語られており、有志活動が制度の種になった事例として注目できる。
+  </div>
+
+  <p style="font-size:0.83rem; color:#888;">出典：<a href="https://toyotatimes.jp/spotlights/1054.html" target="_blank">「私服の自分」が世の中を変える？（トヨタイムズ）</a> / <a href="https://note.com/onejapan/n/n63bedb2534db" target="_blank">ONE JAPAN加盟団体紹介「A-1 TOYOTA」（note）</a></p>
 </div>
 
-<h2>4-2. スキル・マッチング設計の国内進化（NEC / 富士通 / KDDI）</h2>
-<p class="wip">このセクションは執筆中です。</p>
+<h2>4-3. トヨタ BE creation ── 公認型・段階審査の事業創出制度</h2>
+
+<div class="case-card">
+  <h3>トヨタ BE creation（B-pro / E-biz）</h3>
+  <div class="case-meta">
+    <span class="case-tag">会社公認</span>
+    <span class="case-tag case-tag-biz">段階審査制</span>
+    <span class="case-tag">年間約300件応募</span>
+  </div>
+
+  <p>トヨタが設けた公認の社内新規事業創出制度。社員・グループ企業・再雇用社員まで対象に公募し、段階的な審査（3ヶ月×3段階等）で事業化を支援する。各プロジェクトには伴走支援者「シェルパ」が付き、マーケティング・営業・事業開発などのスキルを持つE-biz支援も用意されている。</p>
+
+  <ul>
+    <li><strong>B-pro：</strong>年間約300件の応募から最終3〜4件が通過する高倍率の選抜。審査では「WILL（やりたいという意志）」と顧客理解を重視。</li>
+    <li><strong>シェルパ：</strong>各プロジェクトに個別で伴走する支援者。「提案者と同じ目線で手を動かす」関係性が設計の特徴。</li>
+    <li><strong>2025年の進化：</strong>モビリティ特化・社内資産の事業化・特定テーマのトラックが追加され、探索ドメインを絞り込む方向に進化している。</li>
+  </ul>
+
+  <div class="highlight">
+    <strong>A-1との対比：</strong>A-1が「顧客課題を探索する場」であるのに対し、BE creationは「事業化の審査・支援を制度化した場」として機能する。2つが社内で並走することで、「有志で試して、公認で育てる」という連続性が生まれている。
+  </div>
+
+  <p style="font-size:0.83rem; color:#888;">出典：<a href="https://toyotatimes.jp/series/new_business/004.html" target="_blank">BE creation が描くトヨタの未来と人づくりの物語（トヨタイムズ）</a></p>
+</div>
+
+<h2>4-4. パナソニック GCC ── 社内アクセラレーターの6年</h2>
+
+<div class="case-card">
+  <h3>パナソニック Game Changer Catapult（GCC）</h3>
+  <div class="case-meta">
+    <span class="case-tag case-tag-long">6年以上継続</span>
+    <span class="case-tag">会社公認</span>
+    <span class="case-tag">関与約2,200名</span>
+  </div>
+
+  <p>2016年にパナソニック アプライアンス社で開始した社内アクセラレータープログラム。「ゲームチェンジ」をテーマに社員からアイデアを公募し、半年間のメンタリング・外部展示会での市場検証（SXSW・Slush Tokyo等）・卒業生ネットワーク（カタパリスト）への接続までを一体設計している。</p>
+
+  <ul>
+    <li><strong>審査規模：</strong>5年間で200件超の応募から年6〜8件が通過する選抜制。</li>
+    <li><strong>市場検証：</strong>展示会出展によって「社内承認だけに閉じない」検証を行い、外部フィードバックで不確実性を下げる設計。</li>
+    <li><strong>カタパリスト：</strong>卒業生がメーリングリストで常時つながり、説明会で「リアルな苦労と学び」を語ることで次世代の参加を後押しする。</li>
+    <li><strong>正直な課題開示：</strong>プログラム終了後に事業化へ接続できず「検討中止」になった事例も公表されている。「ビジネスとしての広がりを描き切れない」「技術的困難をチームだけで解決しきれない」が要因として語られている。</li>
+  </ul>
+
+  <div class="highlight">
+    <strong>設計の示唆：</strong>GCC が示すのは「プログラムの充実度」だけでなく、「プログラム後のレール（継続検証・追加資源・専門家接続）」の設計が事業化の鍵になるということだ。失敗事例を公表していること自体が、コミュニティの心理的安全性を高めている。
+  </div>
+
+  <p style="font-size:0.83rem; color:#888;">出典：<a href="https://news.panasonic.com/jp/topics/147140" target="_blank">「Game Changer Catapult」本格始動（パナソニック Newsroom）</a> / <a href="https://news.panasonic.com/jp/stories/565" target="_blank">新たな「カデン」で社会課題の解決に貢献（パナソニック Stories）</a> / <a href="https://makenew.panasonic.jp/colab/articles/085/" target="_blank">多様性に富んだGame Changer Catapultのこれから</a></p>
+</div>
+
+<h2>4-5. ソニー SAP ── 社長直轄・四半期公募の10年</h2>
+
+<div class="case-card">
+  <h3>ソニー SAP（Seed Acceleration Program / SSAP）</h3>
+  <div class="case-meta">
+    <span class="case-tag case-tag-long">10年以上継続</span>
+    <span class="case-tag">社長直轄</span>
+    <span class="case-tag">7製品化（当時点）</span>
+  </div>
+
+  <p>2014年にソニー社長直轄で立ち上げた社内スタートアッププログラム。年齢・職歴を問わず、既存事業の領域に当てはまらないアイデアを対象に四半期ごとに公募（オーディション）を実施する。採択後は部署異動で専念期間と予算を提供し、社内外の専門人材がスポット支援する設計だ。</p>
+
+  <ul>
+    <li><strong>参加導線：</strong>四半期ごとのオーディション制。上長承認は本人の自己責任で取るルールとし、スピード感を優先。</li>
+    <li><strong>集中育成：</strong>採択後は部署異動＋3ヶ月分の予算等を段階的に拡張。「逃げ道を減らす」自立性の設計。</li>
+    <li><strong>専門家のスポット支援：</strong>1プロジェクトあたり3〜5名の「加速支援者」をプラットフォーム化して接続。</li>
+    <li><strong>市場検証：</strong>クラウドファンディング等を活用して社外からの評価を早期に取り込む。</li>
+  </ul>
+
+  <div class="highlight">
+    <strong>他社との違い：</strong>SAPは「スピードと自立性」の設計が際立っている。四半期公募・部署異動・上長承認の自己責任という組み合わせが、「承認の壁で失速する」典型パターンを制度的に回避している。
+  </div>
+
+  <p style="font-size:0.83rem; color:#888;">出典：<a href="https://sony-acceleration-platform.com/article460.html" target="_blank">Sony Acceleration Platform 成功事例解説</a> / <a href="https://www.joic.jp/files/report_1-3_sony.pdf" target="_blank">ソニーSAPに関する調査レポート（JOIC・PDF）</a></p>
+</div>
+
+<h2>4-6. ホンダ IGNITION ── 専門人材チームによる伴走と独立性</h2>
+
+<div class="case-card">
+  <h3>ホンダ IGNITION</h3>
+  <div class="case-meta">
+    <span class="case-tag">会社公認</span>
+    <span class="case-tag case-tag-biz">出資比率20%未満</span>
+    <span class="case-tag">2017年〜</span>
+  </div>
+
+  <p>2017年にホンダが開始した社内新事業創出プログラム。「人のために何ができるか」というホンダのDNAを起点に、デザイン・知財・広報・事業開発などの専門スキルを持つホンダ人材がチームを組んで起業家を伴走支援する。事業化判断まで基本6ヶ月。VC探索・出資（比率20%未満）を通じて独立性を担保する設計が特徴的だ。</p>
+
+  <ul>
+    <li><strong>伴走型支援：</strong>専門人材が「提案者と共に手を動かす」関係性。完成度より可能性を評価する審査姿勢。</li>
+    <li><strong>撤退基準の明文化：</strong>「顧客が存在しない」ことを撤退の判断基準として明示することで、心理的安全性を担保。</li>
+    <li><strong>独立性の設計：</strong>出資比率20%未満でホンダの意向に過度に縛られない事業化を支援。</li>
+    <li><strong>事業化実績：</strong>視覚障害者向けナビ「あしらせ」、電動三輪「Striemo」、自転車電動化「SmaChari」等が生まれている。</li>
+  </ul>
+
+  <div class="highlight">
+    <strong>設計の鍵：</strong>「撤退基準の明文化」と「20%未満の出資比率」という2点が、挑戦者に「失敗してもキャリアが傷つかない」「ホンダの都合で縛られない」という心理的安全を制度的に保証している。
+  </div>
+
+  <p style="font-size:0.83rem; color:#888;">出典：<a href="https://global.honda/jp/ignition/" target="_blank">IGNITION公式サイト（Honda）</a> / <a href="https://techblitz.com/event-report/honda-ignition/" target="_blank">ホンダ流の新規事業開発（TechBlitz）</a> / <a href="https://service.alue.co.jp/blog/alueinsight/041" target="_blank">経営学の視点で考えるHonda「IGNITION」（アルー）</a></p>
+</div>
+
+<h2>4-7. トヨタ カラフルスター ── SNS型の社内つながりプラットフォーム</h2>
+
+<div class="case-card">
+  <h3>トヨタ カラフルスター（Colorful Star）</h3>
+  <div class="case-meta">
+    <span class="case-tag">会社公認</span>
+    <span class="case-tag">全社員対象</span>
+    <span class="case-tag">SNS型プラットフォーム</span>
+  </div>
+
+  <p>トヨタの労働組合（トヨタ自動車労働組合）が主体となって運営する社内SNS型のつながりプラットフォーム。「好き・強み・関心」を軸に社員同士がつながり、組合員同士の交流・相互支援・趣味や専門性のシェアを促進する。</p>
+
+  <p>事業創出を目的とするA-1やBE creationとは異なり、カラフルスターの主目的は<strong>「人を知り、知られる」関係資本の蓄積</strong>だ。大規模組織において「誰が何に関心を持っているか」を可視化することで、自然なつながりが生まれる場を設計している。</p>
+
+  <div class="highlight">
+    <strong>設計上の位置づけ：</strong>カラフルスターはA-1・BE creationと同一企業内で並走している。SNS型（関係資本の蓄積）→ 有志コンテスト（探索）→ 公認制度（事業化）という3層が連続的に設計されているのが、トヨタの越境設計の独自性だ。
+  </div>
+
+  <p style="font-size:0.83rem; color:#888;">出典：<a href="https://www.kabanet.org/news_doc/hai/HAI_2511.pdf" target="_blank">KABANET「HAI」2025年11月号（PDF・カラフルスター紹介記事）</a></p>
+</div>
+
+<h2>4-8. 横断比較 ── 事業化層の設計2軸</h2>
+
+<p>本章で扱った事例を「参加の入口（有志型 ⇔ 公募型）」と「支援の深さ（コンテスト ⇔ 伴走型）」の2軸で整理すると、それぞれの設計の意図が見えやすくなる。</p>
+
 <table>
   <thead>
     <tr>
-      <th>企業</th>
-      <th>プラットフォーム名</th>
-      <th>特徴</th>
-      <th>マッチングの軸</th>
+      <th style="width:22%">事例</th>
+      <th>参加の入口</th>
+      <th>支援の深さ</th>
+      <th>特徴的な設計要素</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>NEC</td>
-      <td>（社内人材タグシステム）</td>
-      <td>スキルタグによる検索・マッチング</td>
-      <td>スキル起点</td>
+      <td><strong>トヨタ A-1</strong></td>
+      <td>有志・自己申告</td>
+      <td>コンテスト＋メンタリング</td>
+      <td>顧客課題重視の審査・年次サイクル</td>
     </tr>
     <tr>
-      <td>富士通</td>
-      <td>（タレントマネジメント基盤）</td>
-      <td>キャリア志向・経験の可視化</td>
-      <td>キャリア起点</td>
+      <td><strong>トヨタ BE creation</strong></td>
+      <td>公募・審査</td>
+      <td>段階審査＋シェルパ伴走</td>
+      <td>WILL重視・E-biz支援との連携</td>
     </tr>
     <tr>
-      <td>KDDI</td>
-      <td>（社内副業・兼業制度連動型）</td>
-      <td>社内課題×スキル提供のマッチング</td>
-      <td>課題起点</td>
+      <td><strong>パナソニック GCC</strong></td>
+      <td>公募・審査</td>
+      <td>半年メンタリング＋展示会検証</td>
+      <td>外部市場での検証・カタパリストネットワーク</td>
+    </tr>
+    <tr>
+      <td><strong>ソニー SAP</strong></td>
+      <td>四半期公募・オーディション</td>
+      <td>部署異動＋専門家スポット支援</td>
+      <td>スピード・自立性・上長承認の自己責任化</td>
+    </tr>
+    <tr>
+      <td><strong>ホンダ IGNITION</strong></td>
+      <td>公募・審査</td>
+      <td>専門人材チーム伴走＋VC接続</td>
+      <td>撤退基準の明文化・出資比率20%未満の独立性</td>
     </tr>
   </tbody>
 </table>
 
-<h2>4-3. 社内副業・課題提示型（KDDI・日立SFMS）</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>「社内に副業的に関わる」モデルは、コミュニティ参加より一歩踏み込んだ接続形式である。</p>
-<h3>KDDI 社内副業制度</h3>
-<p>自部門の業務を維持しながら、他部門の課題解決に週数時間参加できる仕組み。課題を提示する部門と、スキルを提供する社員をマッチングするプラットフォームを通じて運営される。</p>
-<h3>日立 SFMS（Smart Flow Management System）</h3>
-<p class="wip">このセクションは執筆中です。</p>
-<p>日立グループ内での人材流動を促進するシステム。部門を超えた短期プロジェクト参加・スキル提供を効率的にコーディネートする。</p>
-
-<h2>4-4. 行動データ自動抽出型（日立ソリューションズ・クリエイト）</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>自己申告ではなく、業務活動のデータ（メール・会議・資料）からスキルや専門性を自動抽出するアプローチ。</p>
-<ul>
-  <li>メリット：プロフィール登録の手間がなく、気づいていない自分の強みが可視化される</li>
-  <li>課題：プライバシーへの配慮・データ精度・「見られている」感による行動変容のリスク</li>
-  <li>日立ソリューションズ・クリエイトの取り組みでは、社員の同意のもと業務データから専門領域マップを作成する実験が行われた</li>
-</ul>
-
-<h2>4-5. NRI「Talent Marketplace」── 応募者10倍・希望マッチ7倍</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>野村総合研究所（NRI）が導入した社内タレントマーケットプレイス。社員が自分の希望キャリアや提供できるスキルを登録し、社内プロジェクトや職種転換の機会に応募できる。</p>
-<ul>
-  <li>導入効果（公開情報より）：社内公募への応募者数が約10倍に増加、希望に沿った異動マッチング率が約7倍に向上</li>
-  <li>設計のポイント：従来の人事主導型配置から、社員の意志起点型への転換</li>
-  <li>副次効果：「自分のキャリアを自分で動かせる」という感覚が社員エンゲージメントを向上させた</li>
-</ul>
-
-<h2>4-6. プラットフォーム設計の2軸比較</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>国内プラットフォーム事例を「接続の起点」と「つながりの深さ」の2軸で整理する。</p>
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>ゆるやか接続</th>
-      <th>課題解決接続</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>スキル起点</strong></td>
-      <td>NEC（タグ検索・発見）</td>
-      <td>KDDI社内副業（スキル×課題マッチング）</td>
-    </tr>
-    <tr>
-      <td><strong>関心・人起点</strong></td>
-      <td>トヨタ カラフルスター（人として知る）</td>
-      <td>ONE JAPAN（有志×課題×変革）</td>
-    </tr>
-  </tbody>
-</table>
-<p>自分たちのプラットフォームがどの象限を狙うかを明確にすることが、設計の第一歩になる。</p>
+<div class="note">
+  <strong>コミュニティ層との接続：</strong>本章の事例はいずれも「事業化層」に位置するが、<a href="ch3-domestic-community.html">Ch.3</a> で扱ったコミュニティ層（ONE JAPAN・アイシン CONNECT 等）と対立するものではない。設計の要点は「コミュニティ層で関係資本を蓄積し、事業化層で資源を配分する」という二層を意識的につなぐことにある（詳細は <a href="ch1-why.html">Ch.1</a> 参照）。
+</div>
 
 <p style="margin-top: 3rem; font-size: 0.88rem;">
-  <a href="ch3-domestic-community.html">← Ch.3 国内事例 I</a> ｜ <a href="ch5-overseas-internal.html">Ch.5 海外事例 I →</a>
+  <a href="ch3-domestic-community.html">← Ch.3 国内事例 I</a> ｜ <a href="ch5-overseas-community.html">Ch.5 海外事例 I →</a>
 </p>
 
 <p class="meta">調査・執筆：Rity（Claude Code） / 公開：zooming-knowledge-strata / 2026-04</p>
