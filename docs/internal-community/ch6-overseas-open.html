@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ch.6 海外事例 II ── 越境・共創プラットフォームの輸入候補 ── 越境コミュニティ 3年目以降の設計指針</title>
+<title>Ch.6 海外事例 II ── オープン共創プラットフォームの設計 ── 越境コミュニティ 3年目以降の設計指針</title>
 <style>
 body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
 h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
@@ -14,21 +14,23 @@ th { background: #f0f4f8; text-align: left; padding: 8px 12px; border: 1px solid
 td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
 tr:nth-child(even) td { background: #fafafa; }
 .note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.88rem; }
-.summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
-.toc { background: #f7f7f7; border: 1px solid #ddd; border-radius: 4px; padding: 12px 20px; margin: 1.4rem 0; font-size: 0.88rem; }
-.toc ol { margin: 0; padding-left: 1.4rem; }
-.toc li { margin: 4px 0; }
 .meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
 .nav { font-size: 0.85rem; margin-bottom: 2rem; color: #888; }
 .nav a { color: #0066cc; text-decoration: none; margin: 0 6px; }
-.wip { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; margin: 1.5rem 0; font-size: 0.9rem; color: #856404; }
-a { color: #0066cc; }
-ul, ol { padding-left: 1.4rem; }
-li { margin: 5px 0; }
 .chapter-summary { background: #f0f7ff; border: 2px solid #0066cc; border-radius: 6px; padding: 16px 20px; margin: 1.2rem 0 2rem 0; font-size: 0.92rem; }
 .chapter-summary ul { margin: 6px 0 0 0; padding-left: 1.2rem; }
 .chapter-summary li { margin: 4px 0; }
 .chapter-summary .label { font-weight: bold; color: #0055aa; font-size: 0.85rem; display: block; margin-bottom: 4px; }
+.case-card { border: 1px solid #ddd; border-radius: 6px; padding: 18px 20px; margin: 1.4rem 0; }
+.case-card h3 { margin: 0 0 10px 0; font-size: 1rem; color: #0055aa; border: none; padding: 0; }
+.case-meta { font-size: 0.82rem; color: #888; margin-bottom: 10px; }
+.case-tag { display: inline-block; background: #e8f0fe; color: #1a56c4; border-radius: 3px; padding: 1px 7px; font-size: 0.78rem; margin-right: 4px; }
+.case-tag-open { background: #f3e5f5; color: #6a1b9a; }
+.case-tag-gov { background: #e8f5e9; color: #2e7d32; }
+.highlight { background: #fffde7; border-left: 3px solid #f9a825; padding: 8px 12px; margin: 8px 0; font-size: 0.88rem; }
+a { color: #0066cc; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 5px 0; }
 </style>
 </head>
 <body>
@@ -38,121 +40,176 @@ li { margin: 5px 0; }
   <a href="../index.html">zooming-knowledge-strata</a>
 </p>
 
-<h1>Ch.6 海外事例 II ── 越境・共創プラットフォームの輸入候補</h1>
-
-<div class="summary-box">
-  社内に閉じない、越境・オープンイノベーション型のプラットフォーム事例。「課題をキャンペーン化する」「コミュニティで共創する」設計の発想が、社内活動の設計にも応用できる。
-</div>
+<h1>Ch.6 海外事例 II ── オープン共創プラットフォームの設計</h1>
+<p style="color:#555; font-size:0.9rem;">つながりが、動きになる ── 越境コミュニティ 3年目以降の設計指針</p>
 
 <div class="chapter-summary">
   <span class="label">この章で分かること ── 急ぐ人はここだけでOK</span>
   <ul>
-    <li>NASA・XPRIZE・OpenIDEO・InnoCentiveは、課題を「掲示板」ではなく「キャンペーン（期間・目標・評価基準付き）」として設計し、参加者の自発応募を生む。</li>
-    <li>OpenIDEOの「デザイン思考×コミュニティ共創（3〜5か月・フェーズ制）」は、越境コミュニティの分科会設計として輸入しやすいモデル。</li>
-    <li>日本企業への導入で最大の障壁は「知財の帰属ルール」「評価制度との不整合」「失敗許容文化の不足」の3点。</li>
+    <li>本章の事例は「組織の境界を越えてオープンに課題解決する」設計で、社内コミュニティ設計への転用ヒントとして参照する位置づけだ。</li>
+    <li>InnoCentive の「勝利解の80%が従来の採用プロファイル外から生まれる」は、社内でも「意外な部署・人が問題を解く」設計の根拠になる。</li>
+    <li>NASA CoECI の二層設計（社内Spark ＋ 社外NTL）は、「社内の場」と「外部刺激」を接続する越境コミュニティ設計の参照モデルになる。</li>
   </ul>
 </div>
 
-<h2>6-1. NASA「CoECI / NASA Tournament Lab」── 課題をキャンペーン化する設計</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>NASAはCenter of Excellence for Collaborative Innovation（CoECI）を通じ、NASA Tournament Labとして外部のソルバー（問題解決者）に課題を開放している。クラウドソーシング型のコンテスト形式で、世界中の専門家・アマチュアから解決策を募る。</p>
-<ul>
-  <li>設計の特徴：課題を「コンテスト」としてパッケージ化し、期間・報酬・評価基準を明確化</li>
-  <li>参加インセンティブ：賞金＋「NASAの課題を解いた」という実績・称賛</li>
-  <li>社内応用の示唆：社内課題を「チャレンジ」としてオープン化する設計は、コミュニティ活動のエンジンになる</li>
-</ul>
+<h2>6-1. 本章の位置づけ</h2>
 
-<h2>6-2. OpenIDEO ── デザイン思考×コミュニティ共創</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>IDEOが運営するオープンイノベーションプラットフォーム。社会課題をテーマに、世界中の参加者がアイデアを投稿・改良・評価し合う。「共創」「フィードバック文化」「多様な視点の統合」を設計の核に置く。</p>
-<ul>
-  <li>特徴：アイデアは個人の所有物でなく、コミュニティで磨かれていくものとして扱う</li>
-  <li>フェーズ設計：インスピレーション→コンセプト→評価→実現化 の段階的プロセス</li>
-  <li>社内応用の示唆：「アイデアを出したら終わり」ではなく、コミュニティで育てるプロセスの設計</li>
-</ul>
+<p><a href="ch5-overseas-internal.html">Ch.5</a> では「社内」を対象とした海外プラットフォームを扱った。本章では、<strong>組織の境界を越えてオープンに課題解決する</strong>海外プラットフォーム群（NASA・XPRIZE・InnoCentive・MIT Solve・OpenIDEO）を取り上げる。</p>
 
-<h2>6-3. InnoCentive ── 課題×ソルバーのマーケットプレイス</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>企業・研究機関が「解けない問題」を登録し、世界中のソルバーが解決策を提案するプラットフォーム（現在はHeroX等に統合）。課題を持つ側とスキルを持つ側を市場的にマッチングする発想。</p>
-<ul>
-  <li>仕組み：課題ごとに賞金を設定、採用された提案者が受け取る</li>
-  <li>特徴：解決者は「課題を見た時点で解けそうと思ったら応募する」自発的参加</li>
-  <li>社内応用の示唆：「解けない課題をオープン化する」文化の醸成。社内でも「誰が解けるかわからない課題」を公開することが新たなつながりを生む</li>
-</ul>
+<p>これらは社内コミュニティの直接の参照事例ではないが、<strong>「困りごとを投稿し、関心のある人が自発的に集まる」</strong>という設計原理は、社内の越境コミュニティ設計にそのまま転用できる。特に「課題の立て方」「参加の摩擦の下げ方」「評価の設計」の3点は、国内大企業の社内プラットフォーム設計への示唆が大きい。</p>
 
-<h2>6-4. MIT Solve / XPRIZE ── 社会課題×賞金型</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<h3>MIT Solve</h3>
-<p>MITが運営する、社会課題解決に取り組むイノベーターを支援するプラットフォーム。資金・ネットワーク・メンタリングを提供し、解決策の実装を後押しする。</p>
-<h3>XPRIZE</h3>
-<p>大規模な社会課題（宇宙・気候・医療など）に対して、数百万〜数億ドルの賞金を設けたコンテスト型のイノベーション促進機構。「不可能」とされた課題を公開コンペで解決することで、分野全体のブレークスルーを加速させた。</p>
-<ul>
-  <li>社内応用の示唆：「大きすぎる課題を小さくして公開する」設計。解決者が現れること自体が組織への刺激になる</li>
-</ul>
+<h2>6-2. NASA CoECI ── 「社内Spark × 社外NTL」の二層設計</h2>
 
-<h2>6-5. 横断比較表</h2>
-<p class="wip">このセクションは執筆中です。</p>
+<div class="case-card">
+  <h3>NASA Center of Excellence for Collaborative Innovation（CoECI）</h3>
+  <div class="case-meta">
+    <span class="case-tag case-tag-gov">政府機関</span>
+    <span class="case-tag">2011年設立</span>
+    <span class="case-tag">社内＋社外の二層</span>
+  </div>
+
+  <p>NASAが2011年に設立した協働イノベーションの専門組織。「社内」と「社外」を明確に分けた二層設計が特徴だ。</p>
+
+  <ul>
+    <li><strong>NASA Tournament Lab（NTL）：</strong>社外向け。InnoCentive・HeroX等のプラットフォームを通じ、世界中の研究者・技術者・愛好家に課題を公募する。課題ごとに問題定義・参加条件・賞金を公開し、数週間〜数ヶ月で解を集める。</li>
+    <li><strong>NASA Spark：</strong>社内向け。NASA職員限定のSNS的プラットフォームで、問題共有→アイデア募集→プロジェクトマッチングを社内で促進する。社内異動・プロジェクト横断の文化醸成にも寄与している。</li>
+  </ul>
+
+  <div class="highlight">
+    <strong>社内コミュニティへの転用：</strong>「社内の場（Spark）で関係資本を蓄積しつつ、外部への接続経路（NTL）を持つ」という二層構造は、大企業の越境コミュニティ設計の参照モデルになる。社内だけで閉じず、外部刺激を意図的に取り込む設計が、コミュニティの鮮度を保つ鍵になる。
+  </div>
+
+  <p style="font-size:0.83rem; color:#888;">出典：<a href="https://www.nasa.gov/coeci/" target="_blank">NASA Center of Excellence for Collaborative Innovation（NASA公式）</a></p>
+</div>
+
+<h2>6-3. XPRIZE ── 「大きな賞金でビジョンを引き寄せる」競技設計</h2>
+
+<div class="case-card">
+  <h3>XPRIZE Foundation</h3>
+  <div class="case-meta">
+    <span class="case-tag case-tag-open">非営利財団</span>
+    <span class="case-tag">1996年〜</span>
+    <span class="case-tag">30競技・35,000名超のイノベーター</span>
+  </div>
+
+  <p>1996年に設立された、地球規模の課題に対するインセンティブ型競技プラットフォーム。初代 Ansari XPRIZE（民間宇宙船開発・1,000万ドル）で商業宇宙産業の勃興を引き起こしたことで知られる。</p>
+
+  <ul>
+    <li><strong>規模：</strong>30競技以上を実施。35,000名超のイノベーターが参加。投資した賞金総額5億1,900万ドルに対し、生み出した経済・社会価値は310億ドルと試算されている。</li>
+    <li><strong>設計原理：</strong>「到達すべきゴールを明確に定義し、方法は問わない」競技設計。解決経路の自由度が高いほど、想定外の分野からの解が生まれる。</li>
+    <li><strong>コミュニティ継続性：</strong>競技終了後も参加チームのAlumniコミュニティが継続し、投資家・専門家ネットワークとして機能している。</li>
+  </ul>
+
+  <div class="highlight">
+    <strong>社内コミュニティへの転用：</strong>賞金額の規模は参考にならなくても、「ゴールを明確に定義し、方法は問わない」という課題設定の原則は社内コンテストに転用できる。「どんな解でもいい、ただしこの問いに答えてほしい」という問いの立て方が、異部署からの参加を引き出す。
+  </div>
+
+  <p style="font-size:0.83rem; color:#888;">出典：<a href="https://www.xprize.org/about" target="_blank">About XPRIZE（XPRIZE公式）</a></p>
+</div>
+
+<h2>6-4. InnoCentive ── 「意外な分野の人が解く」オープンR&Dマーケット</h2>
+
+<div class="case-card">
+  <h3>InnoCentive（現：Wazoku InnoCentive）</h3>
+  <div class="case-meta">
+    <span class="case-tag case-tag-open">オープンイノベーション</span>
+    <span class="case-tag">195か国・70万人超のソルバー</span>
+    <span class="case-tag">20年以上の実績</span>
+  </div>
+
+  <p>元イーライリリーの子会社として生まれ、現在はWazokuが運営するオープンイノベーション・マーケットプレイス。企業（シーカー）がR&D課題を掲載し、世界中の専門家・研究者・愛好家（ソルバー）が解決策を提案する。195か国・70万人以上のソルバーが登録している。</p>
+
+  <ul>
+    <li><strong>課題の種類：</strong>技術課題・ビジネスモデル課題・社会課題まで幅広く対応。賞金は5,000ドル〜100万ドルの範囲で設定される。</li>
+    <li><strong>最大の知見：</strong>勝利解の<strong>80%が従来の採用プロファイル外のソルバー</strong>から生まれ、成功解の<strong>70%が課題の専門分野外</strong>の人物によるもの。「専門家だけに聞いても解けない」という構造的な示唆だ。</li>
+    <li><strong>課題解決率：</strong>研究文献では「未解決だったR&D課題の3分の1以上が社外専門家によって解決された」と報告されている。</li>
+  </ul>
+
+  <div class="highlight">
+    <strong>社内コミュニティへの最大の示唆：</strong>「解くべき人は、最初から分かっていない」。社内でも「この課題は技術部門に聞けばいい」という前提を外し、営業・経理・物流など予期しない部署の人が集まれる場を作ることが、意外な解を生む設計になる。
+  </div>
+
+  <p style="font-size:0.83rem; color:#888;">出典：<a href="https://www.wazoku.com/innocentive/" target="_blank">InnoCentive（Wazoku公式）</a></p>
+</div>
+
+<h2>6-5. MIT Solve・OpenIDEO ── 学術×デザイン思考の共創設計</h2>
+
+<div class="case-card">
+  <h3>MIT Solve / OpenIDEO</h3>
+  <div class="case-meta">
+    <span class="case-tag">MIT Solve：2015年〜</span>
+    <span class="case-tag">OpenIDEO：IDEO運営</span>
+    <span class="case-tag case-tag-open">社会課題×共創</span>
+  </div>
+
+  <p>2つのプラットフォームはいずれも「社会課題をオープンなコミュニティで解く」設計だが、アプローチが異なる。</p>
+
+  <h3 style="margin-top:1rem;">MIT Solve</h3>
+  <p>MITが2015年に開始したグローバル課題解決プラットフォーム。95件以上のチャレンジで490名以上のイノベーターを支援し、調達した資金は8,000万ドル以上。支援対象イノベーターのコミュニティは3億3,000万人以上の生活に影響を与えている。</p>
+  <ul>
+    <li>応募者には賞金だけでなく、MITのネットワーク・メンタリング・投資家接続が提供される</li>
+    <li>審査はMITシニアリーダーシップと多国籍・多領域のアドバイザーで構成。バイアスを減らした評価設計</li>
+  </ul>
+
+  <h3 style="margin-top:1rem;">OpenIDEO</h3>
+  <p>デザインファームIDEOが運営する共創プラットフォーム。「リサーチ→アイデア創出→実装計画」の3フェーズ（3〜5ヶ月）をコミュニティで段階的に進める。金銭報酬より「デザイン支援・メンタリング・活動資金」が主な報酬で、参加者の内発的動機（社会貢献・自己成長）を中心に設計されている。</p>
+  <ul>
+    <li>スポンサーが「課題＋資源（予算・支援）」をセットで提供し、アイデアが提案で終わらない設計</li>
+    <li>各チャレンジにcaretaker（世話役）を配置し、コミュニティの育成・整理を担う</li>
+  </ul>
+
+  <div class="highlight">
+    <strong>社内コミュニティへの転用：</strong>MIT Solveの「賞金以外のリソース（メンタリング・ネットワーク）を報酬にする」設計と、OpenIDEOの「段階的フェーズ設計とcaretaker配置」は、社内コンテストや分科会の運営設計に直接応用できる。
+  </div>
+
+  <p style="font-size:0.83rem; color:#888;">出典：<a href="https://solve.mit.edu/about" target="_blank">About MIT Solve（MIT公式）</a> / <a href="https://www.openideo.com/" target="_blank">OpenIDEO公式サイト</a></p>
+</div>
+
+<h2>6-6. 横断比較 ── 社内コミュニティへの転用可能性</h2>
+
 <table>
   <thead>
     <tr>
-      <th>プラットフォーム</th>
-      <th>参加者範囲</th>
-      <th>運営主体</th>
-      <th>報酬</th>
-      <th>継続性</th>
+      <th style="width:18%">事例</th>
+      <th>設計の核心</th>
+      <th>社内転用のポイント</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>NASA Tournament Lab</td>
-      <td>世界中の専門家・一般</td>
-      <td>NASA（政府機関）</td>
-      <td>賞金</td>
-      <td>課題ごとの単発</td>
+      <td><strong>NASA CoECI</strong></td>
+      <td>社内Spark（関係）× 社外NTL（解決）の二層</td>
+      <td>「社内コミュニティ＋外部接続経路」の同時設計</td>
     </tr>
     <tr>
-      <td>OpenIDEO</td>
-      <td>世界中の一般参加者</td>
-      <td>IDEO（民間）</td>
-      <td>なし（承認・実績）</td>
-      <td>テーマ別・継続的</td>
+      <td><strong>XPRIZE</strong></td>
+      <td>ゴールを明確定義・方法は問わない競技設計</td>
+      <td>「問いの立て方」を磨くことで異部署参加が増える</td>
     </tr>
     <tr>
-      <td>InnoCentive / HeroX</td>
-      <td>世界中の専門家・一般</td>
-      <td>民間プラットフォーム</td>
-      <td>賞金</td>
-      <td>課題ごとの単発</td>
+      <td><strong>InnoCentive</strong></td>
+      <td>70万人のソルバー・専門外からの解が8割</td>
+      <td>「解くべき人は最初から分からない」前提で場を開く</td>
     </tr>
     <tr>
-      <td>MIT Solve</td>
-      <td>社会起業家・研究者</td>
-      <td>MIT（大学）</td>
-      <td>資金・支援</td>
-      <td>年次コホート制</td>
+      <td><strong>MIT Solve</strong></td>
+      <td>賞金以外の報酬（メンタリング・ネットワーク）</td>
+      <td>金銭以外のインセンティブ設計（成長・接続機会）</td>
     </tr>
     <tr>
-      <td>XPRIZE</td>
-      <td>チーム・組織</td>
-      <td>XPRIZE Foundation</td>
-      <td>大規模賞金</td>
-      <td>課題ごとの長期</td>
+      <td><strong>OpenIDEO</strong></td>
+      <td>段階的フェーズ＋caretaker配置</td>
+      <td>分科会・プロジェクトにファシリテーター役を置く</td>
     </tr>
   </tbody>
 </table>
 
-<h2>6-6. 日本企業への導入チェックリスト</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<ul>
-  <li>課題を「コンテスト」として設計できるか（評価基準・期間・フィードバック）</li>
-  <li>参加者が「解けそう」と思える課題の粒度に分解できているか</li>
-  <li>参加のインセンティブ（賞金以外でも：実績・称賛・機会・コミュニティ）が設計されているか</li>
-  <li>提案が「出して終わり」にならない、共創・改良のプロセスが用意されているか</li>
-  <li>解決策が実際に採用・実装されるルートが見えているか</li>
-</ul>
+<div class="note">
+  <strong>日本企業への留意点：</strong>本章の事例はいずれも「オープン・フラット・高リスク許容」を前提に設計されており、そのまま日本の大企業に移植するには法規制・知財帰属・評価制度との調整が必要だ。ただし、設計の<strong>原理</strong>（課題の立て方・参加摩擦の下げ方・評価の透明化・caretaker配置）は社内コミュニティにそのまま転用できる。「全部真似る」のではなく「設計思想を借りる」が正しい活用の仕方だ。
+</div>
 
 <p style="margin-top: 3rem; font-size: 0.88rem;">
-  <a href="ch5-overseas-internal.html">← Ch.5 海外事例 I</a> ｜ <a href="ch7-comparison.html">Ch.7 設計要素の横断比較 →</a>
+  <a href="ch5-overseas-internal.html">← Ch.5 海外事例 I</a> ｜ <a href="ch7-design-compare.html">Ch.7 設計要素の横断比較 →</a>
 </p>
 
 <p class="meta">調査・執筆：Rity（Claude Code） / 公開：zooming-knowledge-strata / 2026-04</p>
