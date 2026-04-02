@@ -9,26 +9,26 @@ body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 
 h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
 h2 { font-size: 1.15rem; color: #222; margin-top: 2.8rem; border-left: 4px solid #0066cc; padding-left: 10px; }
 h3 { font-size: 0.97rem; color: #444; margin-top: 1.6rem; }
-table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.88rem; }
-th { background: #f0f4f8; text-align: left; padding: 8px 12px; border: 1px solid #ccc; }
-td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.85rem; }
+th { background: #f0f4f8; text-align: left; padding: 8px 10px; border: 1px solid #ccc; }
+td { padding: 7px 10px; border: 1px solid #ddd; vertical-align: top; }
 tr:nth-child(even) td { background: #fafafa; }
 .note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.88rem; }
-.summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
-.toc { background: #f7f7f7; border: 1px solid #ddd; border-radius: 4px; padding: 12px 20px; margin: 1.4rem 0; font-size: 0.88rem; }
-.toc ol { margin: 0; padding-left: 1.4rem; }
-.toc li { margin: 4px 0; }
 .meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
 .nav { font-size: 0.85rem; margin-bottom: 2rem; color: #888; }
 .nav a { color: #0066cc; text-decoration: none; margin: 0 6px; }
-.wip { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; margin: 1.5rem 0; font-size: 0.9rem; color: #856404; }
-a { color: #0066cc; }
-ul, ol { padding-left: 1.4rem; }
-li { margin: 5px 0; }
 .chapter-summary { background: #f0f7ff; border: 2px solid #0066cc; border-radius: 6px; padding: 16px 20px; margin: 1.2rem 0 2rem 0; font-size: 0.92rem; }
 .chapter-summary ul { margin: 6px 0 0 0; padding-left: 1.2rem; }
 .chapter-summary li { margin: 4px 0; }
 .chapter-summary .label { font-weight: bold; color: #0055aa; font-size: 0.85rem; display: block; margin-bottom: 4px; }
+.highlight { background: #fffde7; border-left: 3px solid #f9a825; padding: 10px 14px; margin: 1rem 0; font-size: 0.88rem; }
+.pattern-block { border: 1px solid #c5d8f0; border-radius: 5px; padding: 14px 18px; margin: 1rem 0; background: #f8fbff; font-size: 0.9rem; }
+.pattern-block h4 { margin: 0 0 6px 0; color: #0055aa; font-size: 0.93rem; }
+.fail-block { border: 1px solid #f0c5c5; border-radius: 5px; padding: 14px 18px; margin: 1rem 0; background: #fff8f8; font-size: 0.9rem; }
+.fail-block h4 { margin: 0 0 6px 0; color: #b71c1c; font-size: 0.93rem; }
+a { color: #0066cc; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 5px 0; }
 </style>
 </head>
 <body>
@@ -39,176 +39,239 @@ li { margin: 5px 0; }
 </p>
 
 <h1>Ch.7 設計要素の横断比較</h1>
-
-<div class="summary-box">
-  Ch.3〜Ch.6 の事例を横断し、設計の核心となる要素を比較・整理する。「入口設計」「マッチング」「公認化」「継続性」「本線×分科会」の5軸で読み解く。
-</div>
+<p style="color:#555; font-size:0.9rem;">つながりが、動きになる ── 越境コミュニティ 3年目以降の設計指針</p>
 
 <div class="chapter-summary">
   <span class="label">この章で分かること ── 急ぐ人はここだけでOK</span>
   <ul>
-    <li>参加の入口は「役割起点／好き・関心起点／スキル起点／課題起点」の4類型に分類できる。カラフルスターは「好き・関心起点」の代表例。</li>
-    <li>継続性を高める設計の共通点は「小さな単位を残す」「役割を分ける（挑戦/応援/つなぎ）」「成果の出口を設計する」の3点。</li>
-    <li>「本線＋分科会」の二層設計が最も再現性が高い。大きな場の求心力を保ちながら、小さな場で動きを生む構造。</li>
+    <li>Ch.3〜6の事例を「参加導線・マッチング・テーマ設定・運営体制・継続性」の5軸で横断整理し、再現性の高い設計パターンを抽出する。</li>
+    <li>停滞の4パターン（目的の拡散・固定化・雑談化・事業化接続の空白）は、設計段階で予防できる。</li>
+    <li>「コミュニティ層と事業化層を分けて設計しながら、接続経路を用意する」がすべての事例に通底する原則だ。</li>
   </ul>
 </div>
 
-<h2>7-1. 参加の入口設計の比較</h2>
-<p class="wip">このセクションは執筆中です。</p>
+<h2>7-1. 5軸での横断比較</h2>
+
+<p>Ch.3〜6で扱った国内外の事例を、設計上の主要5軸で整理する。各セルの「◎・○・△」は調査データから確認できた実装の充実度を示す（◎＝特徴的・充実、○＝あり、△＝弱い・未整備）。</p>
+
 <table>
   <thead>
     <tr>
-      <th>入口の種類</th>
-      <th>特徴</th>
-      <th>代表事例</th>
-      <th>向いている場面</th>
+      <th style="width:18%">事例</th>
+      <th>① 参加導線</th>
+      <th>② マッチング</th>
+      <th>③ テーマ設定</th>
+      <th>④ 運営体制</th>
+      <th>⑤ 継続性設計</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>役割起点</td>
-      <td>「○○担当者向け」など属性で集める</td>
-      <td>多くの社内勉強会・ERG</td>
-      <td>対象を絞った課題解決・初期ネットワーク形成</td>
+      <td><strong>デンソー 夢卵</strong></td>
+      <td>○ 社内公募</td>
+      <td>△ コンテスト形式</td>
+      <td>○ ものづくり全般</td>
+      <td>◎ 会社公認・30年文化</td>
+      <td>◎ 文化の装置として定着</td>
     </tr>
     <tr>
-      <td>好き・関心起点</td>
-      <td>「これが好きな人」で集める</td>
-      <td>デンソー夢卵・ONE JAPAN・カラフルスター</td>
-      <td>多様性の確保・長期継続・エネルギーの持続</td>
+      <td><strong>日立 Team Sunrise</strong></td>
+      <td>○ 有志参加・メルマガ</td>
+      <td>◎ 挑戦者×応援者の役割分化</td>
+      <td>○ 社内ネットワーク全般</td>
+      <td>◎ 19年継続・リブランディング実績</td>
+      <td>◎ 本線×分科会の並走</td>
     </tr>
     <tr>
-      <td>スキル起点</td>
-      <td>「この能力を持つ人」で集める</td>
-      <td>NEC・Unilever Flex Experiences</td>
-      <td>プロジェクト組成・課題解決の効率化</td>
+      <td><strong>アイシン CONNECT</strong></td>
+      <td>◎ 0.1歩〜1歩の段階設計</td>
+      <td>○ 分科会・SWITCH接続</td>
+      <td>○ 越境・連携全般</td>
+      <td>◎ 有志→公認の二段構え</td>
+      <td>○ ラジオ毎週・ONE JAPAN外部接続</td>
     </tr>
     <tr>
-      <td>課題起点</td>
-      <td>「この課題に挑みたい人」で集める</td>
-      <td>KDDI社内副業・NASA Tournament Lab</td>
-      <td>成果創出・参加者のコミットメント確保</td>
+      <td><strong>ONE JAPAN</strong></td>
+      <td>○ 団体単位で加盟</td>
+      <td>◎ 企業横断のネットワーク</td>
+      <td>○ 大企業変革全般</td>
+      <td>○ 一般社団法人化</td>
+      <td>◎ 外部接続がコミュニティの鮮度を保つ</td>
+    </tr>
+    <tr>
+      <td><strong>富士通 FIC×大学院</strong></td>
+      <td>○ FIC公募＋有志派生</td>
+      <td>○ メンタリング・サポーター</td>
+      <td>○ 新規事業×リスキリング</td>
+      <td>◎ 公式と有志の並走</td>
+      <td>○ 研究室30超の自然発生</td>
+    </tr>
+    <tr>
+      <td><strong>トヨタ A-1</strong></td>
+      <td>○ 時間外・有志申告</td>
+      <td>○ チーム必須・メンタリング</td>
+      <td>◎ フリーテーマ・顧客課題重視</td>
+      <td>○ 有志事務局</td>
+      <td>○ 年次サイクルで構造化</td>
+    </tr>
+    <tr>
+      <td><strong>トヨタ BE creation</strong></td>
+      <td>○ 社内公募・グループ対象</td>
+      <td>◎ シェルパ伴走・E-biz支援</td>
+      <td>○ フリー＋テーマトラック</td>
+      <td>◎ 専任事務局・段階審査</td>
+      <td>○ 2025年に進化（トラック追加）</td>
+    </tr>
+    <tr>
+      <td><strong>パナソニック GCC</strong></td>
+      <td>○ 社員公募・説明会</td>
+      <td>◎ メンタリング・カタパリスト</td>
+      <td>○ 6分野軸</td>
+      <td>◎ 企業内アクセラレーター</td>
+      <td>○ 卒業生ネットワーク継続</td>
+    </tr>
+    <tr>
+      <td><strong>ソニー SAP</strong></td>
+      <td>◎ 四半期公募・上長承認自己責任</td>
+      <td>◎ 加速支援者プラットフォーム化</td>
+      <td>○ 既存事業外フリー</td>
+      <td>◎ 社長直轄・専念期間保証</td>
+      <td>◎ 10年以上・7製品化</td>
+    </tr>
+    <tr>
+      <td><strong>ホンダ IGNITION</strong></td>
+      <td>○ 社内公募</td>
+      <td>◎ 専門人材チーム伴走</td>
+      <td>○ 社会課題・顧客価値</td>
+      <td>◎ 撤退基準明文化・20%未満出資</td>
+      <td>○ 8年以上・複数事業化</td>
+    </tr>
+    <tr>
+      <td><strong>ユニリーバ Flex Exp.</strong></td>
+      <td>◎ AI推薦・常設市場</td>
+      <td>◎ スキル×機会のAIマッチング</td>
+      <td>○ 全職種・全プロジェクト</td>
+      <td>◎ HR「手を引く」設計</td>
+      <td>◎ 6万人・95%支持率</td>
+    </tr>
+    <tr>
+      <td><strong>シュナイダー OTM</strong></td>
+      <td>◎ 承認ゲート撤廃・20%時間枠</td>
+      <td>◎ ギグ×メンタリング×異動を統合</td>
+      <td>○ 全職種・全機会</td>
+      <td>◎ マネジャー役割転換</td>
+      <td>◎ 採用率89%</td>
+    </tr>
+    <tr>
+      <td><strong>エアバス IdeaSpace</strong></td>
+      <td>◎ SSO・摩擦最小化</td>
+      <td>◎ 課題キャンペーン×caretaker</td>
+      <td>◎ 課題＋予算のセット設計</td>
+      <td>◎ KPI・評価セッション・実装予算</td>
+      <td>◎ 5万人規模・年次成長</td>
     </tr>
   </tbody>
 </table>
-<div class="note">
-  <strong>示唆：</strong>長期継続を目指すコミュニティは「好き・関心起点」が強く、短期の成果を求める場合は「課題起点」が向く。組み合わせることも有効。
+
+<h2>7-2. 再現性の高い設計パターン</h2>
+
+<p>全事例を横断して浮かび上がる「再現性の高い設計パターン」を4点に整理する。</p>
+
+<div class="pattern-block">
+  <h4>パターン① 参加の段階化 ── 入口を複数持つ</h4>
+  <p>アイシンの「0.1歩〜1歩」、シュナイダーの「ギグ・メンタリング・異動」、ONE JAPANの「個人参加と団体加盟」など、参加の形を一種類に絞らず、関わり方の幅を広げることで参加層が拡大する。「全力でなければ参加できない」設計は参加率を下げる。</p>
 </div>
 
-<h2>7-2. マッチングの仕組みの比較</h2>
-<p class="wip">このセクションは執筆中です。</p>
+<div class="pattern-block">
+  <h4>パターン② 役割の分化 ── 全員に同じ動きを求めない</h4>
+  <p>日立 Team Sunrise の「挑戦者・応援者・つなぎ役」、InnoCentiveの「シーカー（課題オーナー）×ソルバー（解く人）」、エアバスの「スポンサー×参加者×caretaker」など、複数の役割が共存する設計が長期継続を支える。全員に企画・発信を求めると周辺メンバーが離脱しやすい。</p>
+</div>
+
+<div class="pattern-block">
+  <h4>パターン③ 「場」と「制度」の二層分離 ── つなぎの場と審査の場は別物</h4>
+  <p>本レポートを通じて最も繰り返し現れるパターン。コミュニティ（関係資本・心理的安全性）と事業化プログラム（資源配分・審査）を同一設計に詰め込むと両方が機能不全になる。富士通の「FIC（公式）× Fujitsu大学院（有志）」、トヨタの「カラフルスター×A-1×BE creation」が同一企業内での二層設計の好例だ。</p>
+</div>
+
+<div class="pattern-block">
+  <h4>パターン④ 外部との接続 ── 内向きを防ぐ回路</h4>
+  <p>ONE JAPANへの加盟（アイシン・富士通等）、NASA の社外NTL接続、シュナイダーの外部展示会での市場検証など、内部だけで閉じない設計が中長期のコミュニティの鮮度を保つ。「社内だけで完結する」と2〜3年で刺激が枯渇しやすい。</p>
+</div>
+
+<h2>7-3. 停滞の4パターンと設計上の予防策</h2>
+
+<p>事例横断で繰り返し現れる停滞のパターンと、設計段階で打てる予防策を整理する。</p>
+
+<div class="fail-block">
+  <h4>停滞A：目的の拡散・批判化（日立 Team Sunrise 5年目の暗礁が典型）</h4>
+  <p><strong>症状：</strong>立ち上げ期の「仲間を集める」だけでは求心力が保てなくなり、議論が社内批判・課題指摘に寄っていく。<br>
+  <strong>予防策：</strong>2〜3年目に「コミュニティの次フェーズのミッション」を言語化し直す機会（リブランディング）を意図的に設ける。「進化の宣言」として演出することで既存メンバーの継続意欲と新規参加者の関心を同時に引き出せる。</p>
+</div>
+
+<div class="fail-block">
+  <h4>停滞B：参加者の固定化・燃え尽き（多くのコミュニティの3〜5年目に発生）</h4>
+  <p><strong>症状：</strong>コアメンバーだけが回し続け、周辺メンバーは受け身になる。コアメンバーの燃え尽きと周辺メンバーの幽霊化が同時進行する。<br>
+  <strong>予防策：</strong>役割を分化し（挑戦者・応援者・つなぎ役）、全員に同じ熱量を求めない設計にする。本線×分科会の並走で、関わり方の選択肢を増やす。</p>
+</div>
+
+<div class="fail-block">
+  <h4>停滞C：雑談化・イベント化（「楽しかった」で終わるループ）</h4>
+  <p><strong>症状：</strong>盛り上がりはあるが成果や次のアクションが生まれない。参加者の期待値が下がり人が離れていく。<br>
+  <strong>予防策：</strong>全体イベントとは別に、少人数の分科会・テーマ別グループを並走させる。「課題＋次のアクション」をセットで設計する場を持つ（エアバスの課題キャンペーン設計が参照になる）。</p>
+</div>
+
+<div class="fail-block">
+  <h4>停滞D：事業化接続の空白（パナソニック GCC 卒業生事例が典型）</h4>
+  <p><strong>症状：</strong>プログラム内では形になったアイデアが、プログラム終了後に事業化へ接続できず「検討中止」になる。「ビジネスとしての広がりを描き切れない」「技術的困難をチームだけで解決しきれない」が主要因。<br>
+  <strong>予防策：</strong>「プログラムの出口」だけでなく「プログラム後のレール（継続検証・追加資源・専門家接続）」をあらかじめ設計する。撤退基準の明文化（ホンダ IGNITION の「顧客が存在しない」が参照）も心理的安全性を高める。</p>
+</div>
+
+<h2>7-4. 設計の核心 ── コミュニティ層と事業化層の接続</h2>
+
+<p>全事例を通じて最も一貫して見えてくる構造的示唆は、<strong>「コミュニティ層と事業化層は別物として設計しながら、接続経路を意図的に作る」</strong>という一点だ。</p>
+
 <table>
   <thead>
     <tr>
-      <th>マッチング方式</th>
-      <th>仕組み</th>
-      <th>代表事例</th>
-      <th>メリット / デメリット</th>
+      <th style="width:20%"></th>
+      <th>コミュニティ層</th>
+      <th>接続経路</th>
+      <th>事業化層</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>ゆるやか接続</td>
-      <td>プロフィール公開→自然発生的なつながり</td>
-      <td>カラフルスター・Bosch Connect</td>
-      <td>自由度高・強制感なし / 偶発性頼みで深い接続が生まれにくい</td>
+      <td><strong>目的</strong></td>
+      <td>関係資本の蓄積・心理的安全性・偶発的出会い</td>
+      <td>アイデアと人の移動を促す場・制度</td>
+      <td>資源配分・意思決定・事業化</td>
     </tr>
     <tr>
-      <td>課題提示型</td>
-      <td>課題を公開→手を挙げた人がマッチング</td>
-      <td>KDDI社内副業・NASA Tournament Lab</td>
-      <td>目的明確・成果出やすい / 参加ハードルが上がる</td>
+      <td><strong>設計の特徴</strong></td>
+      <td>ゆるやか・義務感なし・複数の関わり方</td>
+      <td>参加のハードルが低い試行の場（コンテスト・分科会等）</td>
+      <td>明確なKPI・審査・撤退基準</td>
     </tr>
     <tr>
-      <td>AI型</td>
-      <td>AIがスキル・関心・経験から候補を提案</td>
-      <td>Schneider Electric・Unilever</td>
-      <td>網羅性高・偶発的出会いも設計可能 / データ整備・プライバシーの課題</td>
+      <td><strong>国内代表事例</strong></td>
+      <td>カラフルスター・アイシン CONNECT・ONE JAPAN</td>
+      <td>トヨタ A-1・アイシン SWITCH</td>
+      <td>BE creation・ソニー SAP・ホンダ IGNITION</td>
+    </tr>
+    <tr>
+      <td><strong>海外代表事例</strong></td>
+      <td>Bosch Connect・NASA Spark</td>
+      <td>InnoCentive・エアバス IdeaSpace</td>
+      <td>シュナイダー OTM・ユニリーバ Flex Exp.</td>
     </tr>
   </tbody>
 </table>
 
-<h2>7-3. 会社公認化のパターンと最適タイミング</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>有志コミュニティが会社公認を得ることには、メリットとリスクの両面がある。事例から見えてくる「最適タイミング」の条件を整理する。</p>
-<table>
-  <thead>
-    <tr>
-      <th>公認化のパターン</th>
-      <th>特徴</th>
-      <th>リスク</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>早期公認型（立ち上げ直後）</td>
-      <td>会社リソースを最初から活用できる</td>
-      <td>有志のエネルギーが失われやすい・会社の評価軸に縛られる</td>
-    </tr>
-    <tr>
-      <td>実績後公認型（2〜3年後）</td>
-      <td>自律性を保ちながら公認のメリットを得る</td>
-      <td>公認前の期間にメンバーが疲弊するリスク</td>
-    </tr>
-    <tr>
-      <td>部分公認型</td>
-      <td>場所・広報のみ公認・運営は有志が主体</td>
-      <td>曖昧さによる混乱・責任の所在不明確</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2>7-4. 継続性を高める設計の共通点（全事例横断）</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>Ch.3〜Ch.6 の全事例を横断して見えてくる、継続性を高めるための設計の共通点を列挙する。</p>
-<ul>
-  <li><strong>世代交代の仕組み：</strong>創設者が意図的に「卒業」し、次世代リーダーが主体になれる設計がある</li>
-  <li><strong>小さな成果の可視化：</strong>大きな成果より、「参加してよかった」という小さな手応えを積み重ねられる</li>
-  <li><strong>参加の入口の多様性：</strong>一つの参加経路に依存せず、様々なきっかけで入れる設計がある</li>
-  <li><strong>活動の「軽さ」と「重さ」のバランス：</strong>負荷ゼロのゆるい参加と、本格的に関わる機会の両方が用意されている</li>
-  <li><strong>外部との接続：</strong>社内に閉じず、外部の視点・人・情報が定期的に入ってくる設計</li>
-</ul>
-
-<h2>7-5. 「本線＋分科会」設計の成功パターン</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<table>
-  <thead>
-    <tr>
-      <th>要素</th>
-      <th>本線（全体）</th>
-      <th>分科会（小グループ）</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>役割</td>
-      <td>アイデンティティ・文化の共有</td>
-      <td>深い対話・実験・課題解決</td>
-    </tr>
-    <tr>
-      <td>頻度</td>
-      <td>低頻度（年数回）</td>
-      <td>高頻度（月次〜隔週）</td>
-    </tr>
-    <tr>
-      <td>参加者数</td>
-      <td>大人数</td>
-      <td>少人数（5〜15人）</td>
-    </tr>
-    <tr>
-      <td>成功の鍵</td>
-      <td>参加者が「同じ船に乗っている」感を持てる</td>
-      <td>テーマへの当事者意識・フラットな関係</td>
-    </tr>
-    <tr>
-      <td>接続の設計</td>
-      <td colspan="2">本線⇔分科会の往来が意図的に設計されていること（孤立した分科会にしない）</td>
-    </tr>
-  </tbody>
-</table>
+<div class="highlight">
+  <strong>設計の鍵：</strong>接続経路がなければ、コミュニティは「楽しかっただけ」で終わり、事業化プログラムは「孤独な挑戦者の場」になる。コミュニティで出会った人・アイデアが事業化の場へ移動できる経路こそが、越境コミュニティを「成果に変わる場」にする仕組みの核心だ。
+</div>
 
 <p style="margin-top: 3rem; font-size: 0.88rem;">
-  <a href="ch6-overseas-open.html">← Ch.6 海外事例 II</a> ｜ <a href="ch8-questions.html">Ch.8 コンセプト設計のための問い →</a>
+  <a href="ch6-overseas-open.html">← Ch.6 海外事例 II</a> ｜ <a href="ch8-questions.html">Ch.8 設計チームへの問い →</a>
 </p>
 
 <p class="meta">調査・執筆：Rity（Claude Code） / 公開：zooming-knowledge-strata / 2026-04</p>
