@@ -15,20 +15,27 @@ td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
 tr:nth-child(even) td { background: #fafafa; }
 .note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.88rem; }
 .summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
-.toc { background: #f7f7f7; border: 1px solid #ddd; border-radius: 4px; padding: 12px 20px; margin: 1.4rem 0; font-size: 0.88rem; }
-.toc ol { margin: 0; padding-left: 1.4rem; }
-.toc li { margin: 4px 0; }
 .meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
 .nav { font-size: 0.85rem; margin-bottom: 2rem; color: #888; }
 .nav a { color: #0066cc; text-decoration: none; margin: 0 6px; }
-.wip { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; margin: 1.5rem 0; font-size: 0.9rem; color: #856404; }
-a { color: #0066cc; }
-ul, ol { padding-left: 1.4rem; }
-li { margin: 5px 0; }
 .chapter-summary { background: #f0f7ff; border: 2px solid #0066cc; border-radius: 6px; padding: 16px 20px; margin: 1.2rem 0 2rem 0; font-size: 0.92rem; }
 .chapter-summary ul { margin: 6px 0 0 0; padding-left: 1.2rem; }
 .chapter-summary li { margin: 4px 0; }
 .chapter-summary .label { font-weight: bold; color: #0055aa; font-size: 0.85rem; display: block; margin-bottom: 4px; }
+.pattern-box { border: 1px solid #ddd; border-radius: 4px; padding: 14px 16px; margin: 10px 0; font-size: 0.9rem; }
+.pattern-box h4 { margin: 0 0 6px 0; font-size: 0.92rem; }
+.pattern-a { border-left: 4px solid #e53935; }
+.pattern-b { border-left: 4px solid #fb8c00; }
+.pattern-c { border-left: 4px solid #8e24aa; }
+.timeline { margin: 1.2rem 0; }
+.tl-item { display: flex; gap: 1rem; margin: 6px 0; font-size: 0.9rem; align-items: flex-start; }
+.tl-year { min-width: 60px; font-weight: bold; color: #0066cc; padding-top: 2px; }
+.tl-content { flex: 1; border-left: 2px solid #b0c8f0; padding-left: 12px; }
+.tl-crisis { border-left-color: #e53935; }
+.tl-turn { border-left-color: #43a047; }
+a { color: #0066cc; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 5px 0; }
 </style>
 </head>
 <body>
@@ -39,96 +46,150 @@ li { margin: 5px 0; }
 </p>
 
 <h1>Ch.2 3年目に起きること ── 進化か、停滞か</h1>
-
-<div class="summary-box">
-  多くのコミュニティが3年前後に転換点を迎える。停滞のパターンと、それを乗り越えた事例の構造を読み解く。
-</div>
+<p style="color:#555; font-size:0.9rem;">つながりが、動きになる ── 越境コミュニティ 3年目以降の設計指針</p>
 
 <div class="chapter-summary">
   <span class="label">この章で分かること ── 急ぐ人はここだけでOK</span>
   <ul>
-    <li>3年目の停滞は「目的のぼやけ」「参加者の固定化」「雑談化・イベント化」の3パターンに集約される。</li>
-    <li>日立 Team Sunriseは5年目に暗礁に乗り上げたが、「挑戦者/応援者/つなぎ役」への役割分化で再定義し、19年継続・2,700人規模に成長した。</li>
-    <li>3年目の課題は「人数の拡大」より「関係の質の再設計」。本線を守りながら分科会で新しいつながりを生む「二層設計」が有効。</li>
+    <li>3年目以降の停滞は偶然ではなく、「目的の拡散」「参加者の固定化」「雑談化」という3つの構造的パターンで起きる。</li>
+    <li>日立 Team Sunrise は5年目に暗礁に乗り上げたが、役割の再定義とリブランディングで19年間継続している（参加者2,700人規模）。</li>
+    <li>再起動の鍵は「本線を守りながら分科会で実験する」構造と、「挑戦者・応援者・つなぎ役」への役割の分化にある。</li>
   </ul>
 </div>
 
 <h2>2-1. 停滞の3パターン</h2>
-<p class="wip">このセクションは執筆中です。</p>
+
+<p>3年目以降の越境コミュニティが直面する停滞には、構造的な共通パターンがある。これらは「運営者の努力が足りない」という話ではなく、規模と時間の経過によって必然的に現れる設計上の課題だ。</p>
+
+<div class="pattern-box pattern-a">
+  <h4>パターンA：目的の拡散・ぼやけ</h4>
+  <p>立ち上げ期は「仲間を集める」こと自体が目的として機能するが、3年が経つとそれだけでは求心力を保てなくなる。活動の議論が前向きな創造より「社内批判・課題指摘」に寄り始めると、参加者のエネルギーが出口を失い停滞する。日立 Team Sunrise が5年目に直面した「暗礁」も、このパターンの典型例として当事者が公表している。</p>
+</div>
+
+<div class="pattern-box pattern-b">
+  <h4>パターンB：参加者の固定化・二極化</h4>
+  <p>規模が大きくなるほど、声の大きいコアメンバーだけが運営を担い、その他の参加者は受け身になっていく。「中心メンバーの燃え尽き」と「周辺メンバーの幽霊化」が同時進行し、一体感が薄れる。現業との両立による疲弊が重なると、コアメンバーが離脱するリスクも高まる。</p>
+</div>
+
+<div class="pattern-box pattern-c">
+  <h4>パターンC：雑談化・イベント化</h4>
+  <p>盛り上がりはあるが、成果や次のアクションが生まれない状態。「楽しかった」で終わるイベントが繰り返されると、参加者の期待値が下がり、徐々に人が離れていく。コミュニティの存在意義が「交流の場」以上に育たないまま惰性で続くのが、このパターンの特徴だ。</p>
+</div>
+
+<div class="note">
+  <strong>観察：</strong>3つのパターンは独立して起きるのではなく、連鎖することが多い。「目的がぼやける（A）→ 運営が固定化する（B）→ イベントをこなすだけになる（C）」という順序で悪化するケースが代表的だ。逆に言えば、A（目的の再定義）に手を打てれば、B・Cの連鎖を断ち切れる。
+</div>
+
+<h2>2-2. 日立 Team Sunrise ── 19年継続の軌跡と「5年目の暗礁」</h2>
+
+<p>国内で最も長く継続している越境コミュニティの一つが、日立製作所の <a href="https://www.foresight.ext.hitachi.co.jp/_ct/17436137" target="_blank">Team Sunrise</a> だ。2025年時点でメルマガ登録3,600人・参加者2,700人規模に達しているが、その軌跡は順調一辺倒ではなかった。</p>
+
+<div class="timeline">
+  <div class="tl-item">
+    <div class="tl-year">2006年</div>
+    <div class="tl-content">有志による小さな勉強会としてスタート。数名が集まる非公式の場から始まった。</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">〜5年目</div>
+    <div class="tl-content tl-crisis">500人規模まで拡大。しかし活動の焦点が「社内課題の指摘・あら探し」に寄り始め、前向きな創造につながらない状態に陥る。<strong>「暗礁」フェーズ。</strong></div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">2016年</div>
+    <div class="tl-content tl-turn">名称変更・リブランディングを実施。「挑戦する自主性」と「応援する自主性」を分けて再定義し、コミュニティのポジションを「勉強会」から「社内イノベーション基盤」へ更新。</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-year">〜現在</div>
+    <div class="tl-content">テーマ別分科会・語学学習コミュニティなど複数の小さな接点が自然発生。可視化とマッチングの仕組みが「挑戦と応援のエンジン」として機能している。</div>
+  </div>
+</div>
+
+<p style="font-size:0.83rem; color:#888;">出典：<a href="https://www.foresight.ext.hitachi.co.jp/_ct/17436137" target="_blank">日立 foresight「Team Sunrise」</a></p>
+
+<p>Team Sunrise の再起動が示す最大の示唆は、<strong>「停滞は失敗ではなく、再設計のシグナル」</strong>という視点だ。5年目の暗礁を「コミュニティの終わり」とは捉えず、役割と目的を問い直す契機として使ったことが、その後の19年継続につながっている。</p>
+
+<h2>2-3. 再起動のための3つの設計</h2>
+
+<p>Team Sunrise をはじめとする国内の長期継続事例に共通する設計の要素を3点に整理する。</p>
+
+<h3>① 本線を守りながら、分科会で実験する</h3>
+
+<p>全体コミュニティ（本線）は心理的安全性と接点の維持を担い、テーマ別・少人数の分科会が実験・深掘りの場を担う。この二層構造を持つことで、本線が「こなす活動」に陥るリスクを分散できる。</p>
+
 <table>
   <thead>
     <tr>
-      <th>パターン</th>
-      <th>症状</th>
-      <th>よくある原因</th>
+      <th style="width:20%"></th>
+      <th>本線（メインコミュニティ）</th>
+      <th>分科会（サブグループ）</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>目的のぼやけ</td>
-      <td>「何のためにやっているのか」が共有されなくなる</td>
-      <td>立ち上げ期の熱量が伝わらない新規参加者の増加</td>
+      <td><strong>役割</strong></td>
+      <td>つながりの維持・新規参加者の受け皿</td>
+      <td>テーマ深掘り・実験・小さな成果創出</td>
     </tr>
     <tr>
-      <td>参加者固定化</td>
-      <td>同じ顔ぶれだけが集まるようになる</td>
-      <td>参加の入口が最初期と変わらず、新鮮な接点が生まれない</td>
+      <td><strong>参加スタイル</strong></td>
+      <td>ゆるやか・義務感なし</td>
+      <td>テーマへの関心で任意参加</td>
     </tr>
     <tr>
-      <td>雑談化</td>
-      <td>活動が交流だけになり、学び・変化・成果が感じられなくなる</td>
-      <td>「楽しさ」重視が続き、負荷のある活動が避けられるようになる</td>
+      <td><strong>評価軸</strong></td>
+      <td>参加人数・継続率・体験の質</td>
+      <td>学びのアウトプット・次のアクション</td>
     </tr>
   </tbody>
 </table>
 
-<h2>2-2. 規模が大きくなるほど「つながりの質」が薄れる理由</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>コミュニティの人数が増えると、以下のメカニズムでつながりの密度が下がりやすい。</p>
+<h3>② 「挑戦者・応援者・つなぎ役」に役割を分化する</h3>
+
+<p>Team Sunrise が再定義で採用したのが、参加者全員に同じ役割（アクティブな企画・発信）を求めない設計だ。「挑戦する自主性」と「応援する自主性」を対等に位置付けることで、関わり方の幅が広がり、周辺メンバーも無理なく参加し続けられる。</p>
+
 <ul>
-  <li>全員が顔と名前を知ることが物理的に困難になる</li>
-  <li>発言・貢献の機会が希薄化し、「受け身参加者」が増える</li>
-  <li>コアメンバーに運営負担が集中し、疲弊・燃え尽きが起きやすい</li>
-  <li>大人数に合わせた「最大公約数的」なテーマ設定が増え、深い議論が減る</li>
+  <li><strong>挑戦者：</strong>アイデアを持ち込む・発信する・プロジェクトを動かす</li>
+  <li><strong>応援者：</strong>他者の挑戦を支える・フィードバックを渡す・協力部署として動く</li>
+  <li><strong>つなぎ役：</strong>人と人・部署と部署をつなぐ・情報を流通させる</li>
 </ul>
+
+<h3>③ 可視化してマッチングする</h3>
+
+<p>アイデア・関心・得意を「見える化」することで、応援者・メンター・協力部署が自然に引き寄せられる仕組みを作る。これは特定ツールの導入というより、「誰が何に関心を持っているか」が分かる状態を作ることそのものだ。Team Sunrise では、この可視化とマッチングが「挑戦と応援のエンジン」として機能していると報告されている。</p>
+
+<h2>2-4. リブランディングのタイミングと方法</h2>
+
+<p>Team Sunrise が2016年に実施した「名称変更・再定義」は、コミュニティの進化フェーズを外部に宣言する行為でもあった。長期継続コミュニティの事例を横断すると、リブランディングが有効に機能するタイミングには共通の特徴がある。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>タイミングのシグナル</th>
+      <th>リブランディングで更新する内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>「何のためのコミュニティか」の問いが増える</td>
+      <td>ミッション・コンセプトの言語化・更新</td>
+    </tr>
+    <tr>
+      <td>イベントが惰性で回っている感覚がある</td>
+      <td>活動の構造（本線・分科会）の再設計</td>
+    </tr>
+    <tr>
+      <td>コアメンバーの世代交代が起きている</td>
+      <td>名称・ビジュアル・打ち出し方の刷新</td>
+    </tr>
+    <tr>
+      <td>会社からの期待が変化している</td>
+      <td>コミュニティ層と事業化層の役割の再整理</td>
+    </tr>
+  </tbody>
+</table>
+
 <div class="note">
-  <strong>ダンバー数の示唆：</strong>人間が安定した社会的関係を維持できる上限は約150人とされる（ダンバー数）。大規模コミュニティでは意図的なサブグループ設計が必要になる。
+  <strong>注意：</strong>リブランディングは「活動のリセット」ではなく「進化の宣言」として設計することが重要だ。これまでの活動や参加者の蓄積を否定せず、「次のフェーズへ移行する」という物語として伝えることで、既存メンバーの継続意欲と新規参加者の関心を同時に引き出せる。
 </div>
-
-<h2>2-3. 乗り越えた事例：日立 Team Sunrise（5年目の暗礁→再定義→19年継続）</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>日立製作所の有志コミュニティ「Team Sunrise」は、立ち上げ後5年目に活動の停滞と参加者の疲弊を経験した。この時期に、創設メンバーが活動の意義を再定義し、会社の事業戦略との接続を見直したことで、再び求心力を取り戻した。</p>
-<ul>
-  <li>停滞の契機：コアメンバーの異動・退職による空洞化</li>
-  <li>再定義の内容：「自分たちのやりたいこと」から「会社の変革に何を貢献できるか」へのフレーム転換</li>
-  <li>結果：その後19年以上継続（詳細はCh.3参照）</li>
-</ul>
-
-<h2>2-4. 「本線 × 分科会」設計の意味</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>規模が拡大したコミュニティが取りやすい構造が「本線（全体場）＋分科会（テーマ別小集団）」の二層設計である。</p>
-<ul>
-  <li><strong>本線：</strong>共通の理念・目的を確認する場。アイデンティティの維持機能。</li>
-  <li><strong>分科会：</strong>テーマ・興味・課題で集まる少人数の場。深い対話と実験が可能。</li>
-</ul>
-<p>この設計の鍵は「本線と分科会の往来が設計されていること」。分科会に閉じてしまうと、コミュニティ全体の一体感が失われる。</p>
-
-<h2>2-5. 成果と楽しさの両立循環モデル</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>継続するコミュニティに共通して見られる循環構造がある。</p>
-<ul>
-  <li>「楽しかった」→「また参加したい」→「少し負荷のある活動にも参加してみる」→「小さな成果が出る」→「楽しかった」</li>
-</ul>
-<p>この循環を意図的に設計することで、「楽しさだけ」「成果だけ」のどちらにも偏らない活動が維持できる。</p>
-
-<h2>2-6. 次フェーズに向けたリブランディング</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>3年目以降に活力を取り戻した事例の多くで、何らかの「名称・コンセプトの更新」が行われている。</p>
-<ul>
-  <li>新しい参加者が「自分たちのコミュニティ」と感じるための象徴的な刷新</li>
-  <li>外向けのメッセージを整理し直すことで、内部の目的意識も再整理される</li>
-  <li>リブランディングのタイミングが、新世代リーダー育成の契機にもなる</li>
-</ul>
 
 <p style="margin-top: 3rem; font-size: 0.88rem;">
   <a href="ch1-why.html">← Ch.1 大企業が抱えるサイロの構造と、越境の価値</a> ｜ <a href="ch3-domestic-community.html">Ch.3 国内事例 I →</a>
