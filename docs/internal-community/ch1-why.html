@@ -15,20 +15,29 @@ td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
 tr:nth-child(even) td { background: #fafafa; }
 .note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.88rem; }
 .summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
-.toc { background: #f7f7f7; border: 1px solid #ddd; border-radius: 4px; padding: 12px 20px; margin: 1.4rem 0; font-size: 0.88rem; }
-.toc ol { margin: 0; padding-left: 1.4rem; }
-.toc li { margin: 4px 0; }
 .meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
 .nav { font-size: 0.85rem; margin-bottom: 2rem; color: #888; }
 .nav a { color: #0066cc; text-decoration: none; margin: 0 6px; }
-.wip { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; margin: 1.5rem 0; font-size: 0.9rem; color: #856404; }
-a { color: #0066cc; }
-ul, ol { padding-left: 1.4rem; }
-li { margin: 5px 0; }
 .chapter-summary { background: #f0f7ff; border: 2px solid #0066cc; border-radius: 6px; padding: 16px 20px; margin: 1.2rem 0 2rem 0; font-size: 0.92rem; }
 .chapter-summary ul { margin: 6px 0 0 0; padding-left: 1.2rem; }
 .chapter-summary li { margin: 4px 0; }
 .chapter-summary .label { font-weight: bold; color: #0055aa; font-size: 0.85rem; display: block; margin-bottom: 4px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+.col-box { border: 1px solid #ddd; border-radius: 4px; padding: 14px 16px; font-size: 0.9rem; }
+.col-box h4 { margin: 0 0 8px 0; font-size: 0.92rem; color: #333; }
+.col-box ul { margin: 0; padding-left: 1.2rem; }
+.col-box li { margin: 4px 0; }
+.col-company { border-left: 4px solid #e05; }
+.col-personal { border-left: 4px solid #07c; }
+.layer-diagram { margin: 1.2rem 0; }
+.layer { padding: 14px 18px; margin: 4px 0; border-radius: 4px; font-size: 0.9rem; }
+.layer-1 { background: #e8f5e9; border-left: 4px solid #4caf50; }
+.layer-2 { background: #fff8e1; border-left: 4px solid #ffc107; }
+.layer-3 { background: #e3f2fd; border-left: 4px solid #2196f3; }
+.layer strong { display: block; margin-bottom: 2px; }
+a { color: #0066cc; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 5px 0; }
 </style>
 </head>
 <body>
@@ -39,10 +48,7 @@ li { margin: 5px 0; }
 </p>
 
 <h1>Ch.1 大企業が抱えるサイロの構造と、越境の価値</h1>
-
-<div class="summary-box">
-  大企業においてサイロ化はなぜ起き、何を失わせるのか。そして越境コミュニティはその損失に対してどう機能するのかを整理する。
-</div>
+<p style="color:#555; font-size:0.9rem;">つながりが、動きになる ── 越境コミュニティ 3年目以降の設計指針</p>
 
 <div class="chapter-summary">
   <span class="label">この章で分かること ── 急ぐ人はここだけでOK</span>
@@ -54,70 +60,166 @@ li { margin: 5px 0; }
 </div>
 
 <h2>1-1. サイロ化が生む「見えない損失」</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>大企業においてサイロ化（部門・事業ごとの孤立）が進むと、以下のような「見えにくい損失」が蓄積する。</p>
-<ul>
-  <li><strong>知識の重複：</strong>隣の部門ですでに解決した問題を、別の部門がゼロから再解決する</li>
-  <li><strong>人材の埋没：</strong>その部門文脈では評価されにくいスキル・関心を持つ人が活躍できない</li>
-  <li><strong>変化への鈍さ：</strong>異なる視点が入らないため、思い込みが強化されイノベーションが起きにくい</li>
-  <li><strong>離職・モチベーション低下：</strong>「この会社では自分のやりたいことができない」という閉塞感の蓄積</li>
-</ul>
+
+<p>大企業におけるサイロ化（部門・事業ごとの孤立）は、財務諸表には現れない損失を生み続ける。トヨタ自動車の越境プラットフォーム「カラフルスター」が設計の前提として整理した課題の構造が、この問題を端的に示している。</p>
+
+<p>課題は「会社側」と「個人側」の二層で起きている。</p>
+
+<div class="two-col">
+  <div class="col-box col-company">
+    <h4>会社側の課題</h4>
+    <ul>
+      <li>部署間で取り組みや人が見えず、協働できない</li>
+      <li>個人のスキルや個性を把握しにくい</li>
+      <li>異なる視点が入らず、イノベーションが起きにくい</li>
+    </ul>
+  </div>
+  <div class="col-box col-personal">
+    <h4>個人側の課題</h4>
+    <ul>
+      <li>他部門との心理的な壁を感じている</li>
+      <li>個性を表現しにくく、孤独感がある</li>
+      <li>将来のロールモデルが社内に見えない</li>
+    </ul>
+  </div>
+</div>
+
+<p style="font-size:0.83rem; color:#888;">出典：<a href="https://www.kabanet.org/news_doc/hai/HAI_2511.pdf" target="_blank">トヨタ自動車労働組合 広報誌「はい！」2025年11月号（PDF）</a>（カラフルスターの設計思想より）</p>
+
+<p>この二層構造が重要なのは、会社側の問題だけを解こうとすると「効率化ツール」になってしまい、個人側の問題だけを解こうとすると「仲良しサークル」になってしまうからだ。越境コミュニティは、この両方に同時に働きかけられる数少ない装置である。</p>
 
 <h2>1-2. 越境コミュニティが生み出す価値の3層</h2>
-<p class="wip">このセクションは執筆中です。</p>
+
+<p>越境コミュニティが機能したとき、価値は3つの層で積み上がる。この3層は順番に発展するものではなく、同時進行しながら互いを強化する。</p>
+
+<div class="layer-diagram">
+  <div class="layer layer-1">
+    <strong>層1：心理的安全性の醸成</strong>
+    部署の上下関係から切り離された場で「ここでは本音が言える」という感覚が育つ。これが他の2層の基盤になる。
+  </div>
+  <div class="layer layer-2">
+    <strong>層2：刺激・視野拡張</strong>
+    普段出会わない職種・バックグラウンドの人との接触が、自分の思い込みを外し、発想の幅を広げる。外部有識者や経営層との対話はこの効果をさらに高める。
+  </div>
+  <div class="layer layer-3">
+    <strong>層3：行動変容・共創</strong>
+    刺激を受けた人が「動き出す」フェーズ。困りごとの解決、小さなプロジェクトの立ち上げ、社内外の連携が生まれ始める。
+  </div>
+</div>
+
 <table>
   <thead>
     <tr>
-      <th>層</th>
-      <th>価値の種類</th>
-      <th>具体例</th>
+      <th>価値の層</th>
+      <th>個人への効果</th>
+      <th>組織への効果</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>個人</td>
-      <td>視野拡張・スキル発見・モチベーション回復</td>
-      <td>「自分の強みが別の文脈で評価された」</td>
+      <td><strong>心理的安全性</strong></td>
+      <td>本音が言える・失敗を恐れず試せる</td>
+      <td>情報共有が活発になる・問題が早期に表面化する</td>
     </tr>
     <tr>
-      <td>チーム・部門</td>
-      <td>異分野との接触による発想転換・課題解決の加速</td>
-      <td>「他部門の人の一言で解決策が見えた」</td>
+      <td><strong>刺激・視野拡張</strong></td>
+      <td>強みの再発見・キャリアの広がり</td>
+      <td>異分野知識の流入・固定観念の打破</td>
     </tr>
     <tr>
-      <td>組織・会社</td>
-      <td>人材流動の促進・イノベーション創出・離職率低下</td>
-      <td>「越境経験者がリーダー層に増えてきた」</td>
+      <td><strong>行動変容・共創</strong></td>
+      <td>挑戦意欲の向上・自律的な行動</td>
+      <td>困りごとの解決・新しい取り組みの芽の発生</td>
     </tr>
   </tbody>
 </table>
 
-<h2>1-3. 会社公認コミュニティの強みと課題</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>有志型コミュニティに対し、会社公認型には以下の強みと課題がある。</p>
-<h3>強み</h3>
-<ul>
-  <li>業務時間内の活動が認められやすい</li>
-  <li>会社リソース（場所・予算・広報）を使える</li>
-  <li>参加のハードルが下がる（「有志でやっている」という負担感がない）</li>
-</ul>
-<h3>課題</h3>
-<ul>
-  <li>「会社に管理されている感」が出ると、自由な発言・実験が阻害される</li>
-  <li>評価・成果報告のプレッシャーが活動の質を変える可能性がある</li>
-  <li>有志のエネルギーが外部依存に変わり、自律性が失われるリスク</li>
-</ul>
+<div class="note">
+  <strong>重要な観察：</strong>国内外の事例を横断すると、「刺激は受けたが行動につながらなかった」パターンが多く見られる。層3（行動変容）に至るには、層1・2だけでは不十分で、「動き出した人を支える出口設計」が別途必要になる。この点は <a href="ch7-comparison.html">Ch.7（設計要素の横断比較）</a> で詳しく扱う。
+</div>
+
+<h2>1-3. 会社公認コミュニティの強みと注意点</h2>
+
+<p>越境コミュニティには「有志型（自然発生）」と「会社公認型」があり、それぞれに特性がある。公認型は多くの強みを持つが、設計上の注意点もある。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:20%">観点</th>
+      <th>会社公認型の強み</th>
+      <th>注意すべき点</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>参加しやすさ</strong></td>
+      <td>業務時間内の参加が認められやすく、「やらされ感」がなければ参加ハードルが下がる</td>
+      <td>「なんとなく参加した人」が増えると、熱量の低下を招く</td>
+    </tr>
+    <tr>
+      <td><strong>リソース</strong></td>
+      <td>場所・広報・予算を会社リソースとして使えるため、継続性が高まる</td>
+      <td>予算に依存すると、予算削減で活動が止まるリスクがある</td>
+    </tr>
+    <tr>
+      <td><strong>発言の自由度</strong></td>
+      <td>「公式の場」であることで、上層部へのフィードバック経路になりうる</td>
+      <td>「会社に管理されている感」が出ると、本音の議論が萎縮する</td>
+    </tr>
+    <tr>
+      <td><strong>継続性</strong></td>
+      <td>制度化されているため、メンバー交代後も活動が引き継がれやすい</td>
+      <td>有志のエネルギーが薄れ、「こなす」活動になるリスクがある</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>国内事例を見ると、<strong>最も持続性が高いのは「有志で火をつけ、公認化で燃焼を安定させる」二段構え</strong>だ（アイシン CONNECT、富士通 Fujitsu大学院など）。最初から公認型で設計する場合も、「有志の熱量を制度が支える」という順序感を意識した設計が重要になる。</p>
 
 <h2>1-4. 「コミュニティ層」と「事業化層」は別物として設計する</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>越境コミュニティを設計する際に混同しやすいのが、「つながり・学びの場」と「事業・製品を生む場」を同一視することである。</p>
-<ul>
-  <li><strong>コミュニティ層：</strong>人と人がゆるやかにつながり、視野を広げ、信頼を育てる場。成果を求めすぎない。</li>
-  <li><strong>事業化層：</strong>コミュニティから生まれた種を、事業・プロジェクトとして育てる場。明確な目標・評価軸が必要。</li>
-</ul>
+
+<p>越境コミュニティの設計で最も混同しやすいのが、<strong>「つながり・学びの場」と「事業・製品を生む場」を同一のものとして扱うこと</strong>だ。</p>
+
+<p>複数の研究・事例が共通して示すのは、この2つは目的が異なるため、最適な設計も異なるということだ。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:20%"></th>
+      <th>コミュニティ層</th>
+      <th>事業化層</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>目的</strong></td>
+      <td>関係資本の蓄積・心理的安全性・偶発的出会い</td>
+      <td>資源配分・意思決定・事業/製品の実現</td>
+    </tr>
+    <tr>
+      <td><strong>参加のあり方</strong></td>
+      <td>ゆるやか・任意・複数の関わり方を許容</td>
+      <td>明確なコミット・審査・役割分担が必要</td>
+    </tr>
+    <tr>
+      <td><strong>評価軸</strong></td>
+      <td>成果を求めすぎない・体験の質を重視</td>
+      <td>明確なKPI・進捗・撤退基準が必要</td>
+    </tr>
+    <tr>
+      <td><strong>代表事例</strong></td>
+      <td>日立 Team Sunrise、ONE JAPAN、アイシン CONNECT</td>
+      <td>ソニー SAP、パナソニック GCC、ホンダ IGNITION</td>
+    </tr>
+  </tbody>
+</table>
+
 <div class="note">
-  <strong>設計上のポイント：</strong>両層を別のシステムとして設計し、「コミュニティで出会った人が、事業化の場に移動できる」接続経路を用意することが重要。
+  <strong>設計の鍵：</strong>2つの層を別システムとして設計しながら、「コミュニティで出会った人・アイデアが、事業化の場へ移動できる接続経路」を用意すること。この経路こそが、越境コミュニティを「楽しかっただけ」で終わらせない仕組みになる。<br>
+  <small>参考：<a href="https://rp.kddi-research.jp/download/report/RA2009017" target="_blank">社内SNS・コミュニティ施策に関する研究（KDDI研究所）</a> / <a href="https://www.jstage.jst.go.jp/article/iappmproc/2015.Autumn/0/2015.Autumn_232/_pdf/-char/ja" target="_blank">プラットフォームとしての社内コミュニティ設計に関する考察（J-STAGE）</a></small>
 </div>
+
+<p>この「二層構造」の概念は、このレポート全体を通じて繰り返し登場する。Ch.3以降の事例を読む際も、「この活動はコミュニティ層か、事業化層か、あるいは両方か」という視点を持ちながら読むと、設計の示唆が得やすい。</p>
 
 <p style="margin-top: 3rem; font-size: 0.88rem;">
   <a href="ch0-about.html">← Ch.0 このレポートについて</a> ｜ <a href="ch2-year3.html">Ch.2 3年目に起きること →</a>
