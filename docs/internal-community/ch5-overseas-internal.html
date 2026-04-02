@@ -14,21 +14,25 @@ th { background: #f0f4f8; text-align: left; padding: 8px 12px; border: 1px solid
 td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
 tr:nth-child(even) td { background: #fafafa; }
 .note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.88rem; }
-.summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
-.toc { background: #f7f7f7; border: 1px solid #ddd; border-radius: 4px; padding: 12px 20px; margin: 1.4rem 0; font-size: 0.88rem; }
-.toc ol { margin: 0; padding-left: 1.4rem; }
-.toc li { margin: 4px 0; }
 .meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
 .nav { font-size: 0.85rem; margin-bottom: 2rem; color: #888; }
 .nav a { color: #0066cc; text-decoration: none; margin: 0 6px; }
-.wip { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; margin: 1.5rem 0; font-size: 0.9rem; color: #856404; }
-a { color: #0066cc; }
-ul, ol { padding-left: 1.4rem; }
-li { margin: 5px 0; }
 .chapter-summary { background: #f0f7ff; border: 2px solid #0066cc; border-radius: 6px; padding: 16px 20px; margin: 1.2rem 0 2rem 0; font-size: 0.92rem; }
 .chapter-summary ul { margin: 6px 0 0 0; padding-left: 1.2rem; }
 .chapter-summary li { margin: 4px 0; }
 .chapter-summary .label { font-weight: bold; color: #0055aa; font-size: 0.85rem; display: block; margin-bottom: 4px; }
+.case-card { border: 1px solid #ddd; border-radius: 6px; padding: 18px 20px; margin: 1.4rem 0; }
+.case-card h3 { margin: 0 0 10px 0; font-size: 1rem; color: #0055aa; border: none; padding: 0; }
+.case-meta { font-size: 0.82rem; color: #888; margin-bottom: 10px; }
+.case-tag { display: inline-block; background: #e8f0fe; color: #1a56c4; border-radius: 3px; padding: 1px 7px; font-size: 0.78rem; margin-right: 4px; }
+.case-tag-global { background: #f3e5f5; color: #6a1b9a; }
+.case-tag-ai { background: #e0f2f1; color: #004d40; }
+.highlight { background: #fffde7; border-left: 3px solid #f9a825; padding: 8px 12px; margin: 8px 0; font-size: 0.88rem; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+.col-box { border: 1px solid #ddd; border-radius: 4px; padding: 12px 14px; font-size: 0.88rem; }
+a { color: #0066cc; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 5px 0; }
 </style>
 </head>
 <body>
@@ -39,104 +43,185 @@ li { margin: 5px 0; }
 </p>
 
 <h1>Ch.5 海外事例 I ── 社内プラットフォームの先端設計</h1>
-
-<div class="summary-box">
-  グローバル企業が実装した社内タレントマーケット・人材流動プラットフォームの先端事例。規模・速度・設計思想のいずれも、日本の現状と大きな差がある。
-</div>
+<p style="color:#555; font-size:0.9rem;">つながりが、動きになる ── 越境コミュニティ 3年目以降の設計指針</p>
 
 <div class="chapter-summary">
   <span class="label">この章で分かること ── 急ぐ人はここだけでOK</span>
   <ul>
-    <li>Unilever「Flex Experiences」は100か国・6万人展開。困りごとを「役割・期間・必要スキル・期待成果」の募集要項として表現し、応募の摩擦を極小化。</li>
-    <li>Schneider Electric「OTM」は導入2か月で社員60%登録・89%採用率。異動・ギグ・メンタリング・学習を同一画面で統合する設計は日本未普及。</li>
-    <li>海外事例に共通する教訓：マネジャーの協力（人材供出）が参加率の前提。設計段階でこのボトルネックへの対策を組み込む必要がある。</li>
+    <li>海外大企業の先進事例は「内部タレント・マーケットプレイス（スキルと機会をAIでマッチング）」と「内部クラウドソーシング（課題を投稿し関心者が集まる）」の2系統に整理できる。</li>
+    <li>シュナイダーエレクトリック OTM は全社員の89%が活用。「マネジャー承認ゲートの撤廃」と「20%の時間枠」が高採用率の鍵だった。</li>
+    <li>エアバス IdeaSpace は「課題＋予算をセットでキャンペーン化」する設計で、アイデア提案が施策で終わらず実装へ接続される仕組みを持つ。</li>
   </ul>
 </div>
 
-<h2>5-1. Unilever「Flex Experiences」── 100か国・6万人の常設タレントマーケット</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>ユニリーバが全世界で運用する社内タレントマーケットプレイス「Flex Experiences」は、100か国以上・6万人以上の社員が登録し、スキル・経験・希望を可視化した上で、社内プロジェクトへの参加機会をマッチングする。</p>
-<ul>
-  <li>規模：グローバル全社員対象（常設・常時稼働）</li>
-  <li>マッチング方式：AIがプロフィールとプロジェクト要件を照合し、候補者を提案</li>
-  <li>参加形式：プロジェクト単位（期間数週間〜数か月）の短期参加が多く、本業を維持しながら参加</li>
-  <li>効果：タレント発見コストの削減・社員の越境経験・部門間の協力関係構築</li>
-</ul>
-<div class="note">
-  <strong>日本との差：</strong>「常設・常時稼働」という設計は、日本の多くの社内副業制度が「公募期間限定」である点と大きく異なる。
+<h2>5-1. 海外事例の2系統</h2>
+
+<p>国内事例（Ch.3・4）が「コミュニティ」と「事業化プログラム」を主軸として発展してきたのに対し、海外の大企業ではより精緻化された2つの設計系統が確認できる。</p>
+
+<div class="two-col">
+  <div class="col-box">
+    <strong>① 内部タレント・マーケットプレイス型</strong><br>
+    社員がスキル・志向・学びたいことをプロフィール化し、事業側がプロジェクト・ポジションを投稿。AIが推薦し、社員が自発応募してチームが成立する「二面市場」設計。<br>
+    <em>代表：ユニリーバ Flex Experiences、シュナイダーエレクトリック OTM</em>
+  </div>
+  <div class="col-box">
+    <strong>② 内部クラウドソーシング型</strong><br>
+    課題オーナー（スポンサー）が「解きたい課題」をキャンペーンとして投稿し、社員がアイデア投稿・議論・協働で成熟させる。課題・評価・実装予算をセットで設計する。<br>
+    <em>代表：エアバス IdeaSpace、ボッシュ Bosch Connect</em>
+  </div>
 </div>
 
-<h2>5-2. Schneider Electric「Open Talent Market」── 2か月で60%登録・89%採用率</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>シュナイダーエレクトリックが導入したAI駆動の社内タレントマーケット。導入後2か月で全社員の約60%が自発的に登録し、マッチングから実際の採用・プロジェクト参加への転換率は89%に達したと報告されている。</p>
-<ul>
-  <li>AI機能：スキル自動抽出・学習コンテンツのレコメンデーション・メンター候補の提案</li>
-  <li>設計思想：「会社が人を配置する」から「人が機会を選ぶ」へのパラダイム転換</li>
-  <li>副次効果：離職率低下・エンゲージメント向上・社内での垂直・水平移動の増加</li>
-</ul>
+<div class="note">
+  <strong>国内との最大の差異：</strong>海外事例の共通点は「困りごと（プロジェクト・課題）」が常設の場として可視化され、社員が自己選択で参加できる設計になっていること。日本の社内公募制度が「年1回・異動が前提」に偏りがちなのとは対照的に、短期・ギグ型・学習目的の参加まで同一プラットフォームで受け入れている。
+</div>
 
-<h2>5-3. Bosch「Connect」── Enterprise 2.0型社内共創基盤</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>ボッシュが運用する社内ソーシャルプラットフォーム「Bosch Connect」は、従業員同士の知識共有・コミュニティ形成・共同作業を支援する。Enterprise 2.0（社内SNS×コラボレーション）の代表的実装例とされている。</p>
-<ul>
-  <li>機能：社内ブログ・フォーラム・グループ・Wiki・ファイル共有</li>
-  <li>特徴：トップダウンの情報発信より、現場からの知識共有を優先</li>
-  <li>コミュニティ設計：自然発生的なコミュニティ形成を支援し、マネジメントが介入しすぎない</li>
-</ul>
+<h2>5-2. ユニリーバ Flex Experiences ── AI推薦×6万人規模の社内市場</h2>
 
-<h2>5-4. 3社比較：何が「日本未普及」か</h2>
-<p class="wip">このセクションは執筆中です。</p>
+<div class="case-card">
+  <h3>ユニリーバ（Unilever）Flex Experiences</h3>
+  <div class="case-meta">
+    <span class="case-tag case-tag-global">消費財・グローバル</span>
+    <span class="case-tag case-tag-ai">AI推薦</span>
+    <span class="case-tag">2019年〜</span>
+    <span class="case-tag">100か国超・6万人超</span>
+  </div>
+
+  <p>2019年にローンチした社内タレント・マーケットプレイス。AI技術企業Gloatと共同開発し、社員をプロジェクト機会とAIでマッチングする。100か国超・6万人超に展開し、年次報告書では「10万時間超の新しいキャリア経験と学習をアンロック」と記録されている。</p>
+
+  <ul>
+    <li><strong>プロフィール設計：</strong>現職のスキルだけでなく「学びたいこと・将来の志向（未来）」まで登録。推薦の精度とつながりの質が上がる。</li>
+    <li><strong>課題の可視化：</strong>事業側が「新規プロジェクト」等の機会を投稿し、必要な役割（データサイエンティスト・PM・UX等）を明示。異職種が集まりやすい設計。</li>
+    <li><strong>COVID-19対応の実績：</strong>需要が低い部門から高い部門へ3,000人超を迅速に再配置。組織全体の生産性が41%向上したと報告されている。</li>
+    <li><strong>ユーザー支持率：</strong>95%のエンドースメント率。段階的ロールアウト（HR部門→IT部門→全社）でトラブルを最小化した。</li>
+  </ul>
+
+  <div class="highlight">
+    <strong>設計の鍵：</strong>「スキルで人を探す／スキルで機会に応募する」という行動が企業規模で常設化されていること。「異動」という大きな決断ではなく、「プロジェクト参加」という小さな越境を繰り返す設計が、高参加率の背景にある。
+  </div>
+
+  <p style="font-size:0.83rem; color:#888;">出典：<a href="https://www.i4cp.com/productivity-blog/putting-skills-on-display-in-unilevers-internal-talent-marketplace" target="_blank">Unilever's Internal Talent Marketplace（i4cp）</a></p>
+</div>
+
+<h2>5-3. シュナイダーエレクトリック Open Talent Market ── 採用率89%の設計原則</h2>
+
+<div class="case-card">
+  <h3>シュナイダーエレクトリック（Schneider Electric）Open Talent Market（OTM）</h3>
+  <div class="case-meta">
+    <span class="case-tag case-tag-global">産業・エネルギー</span>
+    <span class="case-tag case-tag-ai">AI推薦</span>
+    <span class="case-tag">2020年〜</span>
+    <span class="case-tag">採用率89%</span>
+  </div>
+
+  <p>2020年3月にグローバル展開した社内タレント・マーケット。ローンチ後1ヶ月で全社員の60%が登録し、現在は89%が活用している。単なる求人マッチングではなく、フルタイム異動・短期ギグ・メンタリング・学習提案を同一プラットフォームで統合している点が独自だ。</p>
+
+  <ul>
+    <li><strong>マネジャー承認ゲートの撤廃：</strong>従来の「3年在籍しないと異動不可」ルールを廃止。マネジャーが「人材を囲い込む」から「キャリア開発を支援する」役割に転換した。</li>
+    <li><strong>20%の時間枠：</strong>ギグ参加に20%の業務時間を公式に確保するガイドラインを設定。「本業との両立」が制度的に担保されている。</li>
+    <li><strong>HRは「手を引く」：</strong>CHROが「It's not for HR to push（HRが押しつけるものではない）」と明言し、社員・マネジャーが自律的に動く設計を貫いた。</li>
+    <li><strong>2週間でグローバル展開：</strong>COVID-19対応として緊急展開し、全デバイス対応（PCを使わない現場職員も含む）を実現。</li>
+  </ul>
+
+  <div class="highlight">
+    <strong>日本組織への示唆：</strong>OTMの高採用率の最大の要因は「承認ゲートの撤廃」と「時間の公式確保」だ。参加意欲があっても「上司の承認が取れない」「業務時間を確保できない」という二大障壁を制度で取り除いたことが、89%という数字の背景にある。
+  </div>
+
+  <p style="font-size:0.83rem; color:#888;">出典：<a href="https://www.modernexecutivesolutions.com/articles/how-schneider-electric-built-an-internal-talent-market-nearly-all-its-employees-use" target="_blank">How Schneider Electric Built an Internal Talent Market（Modern Executive Solutions）</a></p>
+</div>
+
+<h2>5-4. ボッシュ Bosch Connect ── 社内SNSを「共創基盤」として設計する</h2>
+
+<div class="case-card">
+  <h3>ボッシュ（Robert Bosch GmbH）Bosch Connect</h3>
+  <div class="case-meta">
+    <span class="case-tag case-tag-global">自動車部品・エンジニアリング</span>
+    <span class="case-tag">Enterprise 2.0型</span>
+    <span class="case-tag">2012年〜26パイロット</span>
+  </div>
+
+  <p>自動車部品を含むエンジニアリング・製造企業ボッシュが導入した社内共創プラットフォーム。2012年の年次報告書時点で26のパイロットに1万人が参加。単なる社内SNSではなく「専門家探索・アイデア成熟・継続改善」を機能の中核に据えた設計が特徴だ。</p>
+
+  <ul>
+    <li><strong>利用目的（調査データ）：</strong>利用者の80%が「情報の収集・統合・共有」、66%が「専門家探索・新アイデア発見・支援獲得」、52%が「継続改善」に活用。「つながる」ではなく「問題を解く」ために使われている。</li>
+    <li><strong>機能設計：</strong>コミュニティ・プロフィール・フォーラム・Wikiを統合し、「連絡ツール」ではなく「知識と人をつなぐ基盤」として位置づけ。</li>
+    <li><strong>アイデアの追跡：</strong>新アイデアを「投稿→議論→発展→追跡」できる設計意図が確認されており、提案が流れっぱなしにならない仕組みを内包する。</li>
+    <li><strong>非利用の障壁：</strong>「使う時間がない」「使い方が分からない」が非利用の主因として調査で出現。時間設計とオンボーディングが採用率の鍵。</li>
+  </ul>
+
+  <div class="highlight">
+    <strong>製造業向けの示唆：</strong>ボッシュは日本の自動車部品製造業に近い業種構造を持つ。「社内SNS≠連絡ツール」という再定義——専門家探索・アイデア追跡・継続改善の場として機能させること——が、ボッシュの設計から学べる最大のポイントだ。
+  </div>
+
+  <p style="font-size:0.83rem; color:#888;">出典：Bosch Annual Report 2012（PDF）/ 学術調査「Exploring the Impact of Internal Social Media Usage on Employee Engagement」（ResearchGate）</p>
+</div>
+
+<h2>5-5. エアバス IdeaSpace ── 「課題＋予算」をキャンペーン化する</h2>
+
+<div class="case-card">
+  <h3>エアバス（Airbus）IdeaSpace</h3>
+  <div class="case-meta">
+    <span class="case-tag case-tag-global">航空宇宙・製造</span>
+    <span class="case-tag">内部クラウドソーシング型</span>
+    <span class="case-tag">2010年〜5万人規模</span>
+  </div>
+
+  <p>2010年に立ち上げたエアバスの社内アイデア管理・協働プラットフォーム。開始当初の50ユーザーから商用部門全体へ拡大し、約50,000ユーザーがアクセス可能な規模になった。「スポンサー（課題オーナー）が解くべき課題を定義し、社員のアイデアで成熟させる」内部クラウドソーシング型の設計だ。</p>
+
+  <ul>
+    <li><strong>課題キャンペーン設計：</strong>経営課題を「解くべき問い＋実装予算」としてセットでキャンペーン化。アイデアが「提案で終わり」にならない仕組みを前提に作る。</li>
+    <li><strong>参加摩擦の最小化：</strong>SSO（シングルサインオン）でログイン障壁を除去。モバイル対応と検索最適化でアクセスを極小コストに設計。</li>
+    <li><strong>コミュニティマネジメント：</strong>各チャンネルにcaretaker（世話役）を配置し、アイデアの整理・育成・評価を担う。物理スペース（プロトスペース）も併設し、デジタルとリアルを接続。</li>
+    <li><strong>評価の仕組み：</strong>スコアカード・KPI・評価セッションを導入し、「どのアイデアがなぜ採択されたか」が可視化される。</li>
+  </ul>
+
+  <div class="highlight">
+    <strong>設計の鍵：</strong>「課題設定→評価→実装（予算含む）」を一体で設計している点。この3点がセットでなければ、アイデア管理ツールは「お気持ち提案箱」になりやすい。IdeaSpace はこれを制度として組み込んだことで、社員の参加動機を「意見を言う場」から「課題を解く場」へ転換している。
+  </div>
+
+  <p style="font-size:0.83rem; color:#888;">出典：<a href="https://www.hypeinnovation.com/hubfs/content/case-studies/airbus-case-study-en.pdf" target="_blank">Airbus IdeaSpace ケーススタディ（HYPE Innovation、PDF）</a></p>
+</div>
+
+<h2>5-6. 横断比較 ── 2系統の設計の違い</h2>
+
 <table>
   <thead>
     <tr>
-      <th>観点</th>
-      <th>Unilever</th>
-      <th>Schneider Electric</th>
-      <th>Bosch</th>
-      <th>日本の現状</th>
+      <th style="width:20%"></th>
+      <th>タレント・マーケットプレイス型<br><small>ユニリーバ・シュナイダー</small></th>
+      <th>内部クラウドソーシング型<br><small>エアバス・ボッシュ</small></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>常設性</td>
-      <td>常設・常時</td>
-      <td>常設・常時</td>
-      <td>常設・常時</td>
-      <td>公募期間型が多い</td>
+      <td><strong>起点</strong></td>
+      <td>社員側：「自分のスキルを活かせる場を探す」</td>
+      <td>課題側：「この問題を解いてくれる人を集める」</td>
     </tr>
     <tr>
-      <td>AI活用</td>
-      <td>マッチングAI</td>
-      <td>スキル抽出AI</td>
-      <td>部分的</td>
-      <td>試験導入段階</td>
+      <td><strong>マッチングの主役</strong></td>
+      <td>AI推薦（スキル×機会の自動接続）</td>
+      <td>キャンペーン設計（課題の可視化と参加の場）</td>
     </tr>
     <tr>
-      <td>参加の自発性</td>
-      <td>社員が選ぶ</td>
-      <td>社員が選ぶ</td>
-      <td>コミュニティ自発</td>
-      <td>人事主導型が多い</td>
+      <td><strong>参加のスタイル</strong></td>
+      <td>個人が自発応募（ギグ・異動・メンタリング）</td>
+      <td>チームで課題に集まる（アイデア投稿・議論）</td>
     </tr>
     <tr>
-      <td>対象範囲</td>
-      <td>全社・全世界</td>
-      <td>全社・全世界</td>
-      <td>全社・全世界</td>
-      <td>特定部門・試験運用が多い</td>
+      <td><strong>成功の鍵</strong></td>
+      <td>承認ゲートの撤廃・時間の確保・マネジャーの役割転換</td>
+      <td>課題＋予算のセット設計・caretaker配置・評価の透明化</td>
+    </tr>
+    <tr>
+      <td><strong>日本組織の導入難度</strong></td>
+      <td>高（「異動＝大きな決断」文化との摩擦）</td>
+      <td>中（提案制度の延長として設計しやすいが、予算接続が課題）</td>
     </tr>
   </tbody>
 </table>
 
-<h2>5-5. 日本への輸入可能性の評価</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<ul>
-  <li><strong>高：</strong>「人が機会を選ぶ」思想・プロフィールの豊かさ（スキル＋関心＋志向）・分科会的小グループ設計</li>
-  <li><strong>中：</strong>AI自動マッチング（データ整備・プライバシー課題の先行解決が必要）</li>
-  <li><strong>低（現時点）：</strong>全社常設・大規模運用（制度整備・変革リーダーシップが前提）</li>
-</ul>
 <div class="note">
-  <strong>インサイト：</strong>「設計思想」は輸入可能。「規模と速度」は段階的に近づける。どちらを先に取り入れるかを選ぶことが、次フェーズ設計の最初の問いになる。
+  <strong>Ch.6 への接続：</strong>本章は「社内」を対象としたプラットフォーム設計を扱った。次の <a href="ch6-overseas-open.html">Ch.6</a> では、NASA・OpenIDEO・MIT Solve などの「社外・オープンな課題解決プラットフォーム」を扱い、組織の境界を越えた共創設計の示唆を整理する。
 </div>
 
 <p style="margin-top: 3rem; font-size: 0.88rem;">
