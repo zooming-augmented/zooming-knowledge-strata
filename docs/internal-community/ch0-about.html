@@ -21,7 +21,10 @@ tr:nth-child(even) td { background: #fafafa; }
 .meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
 .nav { font-size: 0.85rem; margin-bottom: 2rem; color: #888; }
 .nav a { color: #0066cc; text-decoration: none; margin: 0 6px; }
-.wip { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; margin: 1.5rem 0; font-size: 0.9rem; color: #856404; }
+.chapter-summary { background: #f0f7ff; border: 2px solid #0066cc; border-radius: 6px; padding: 16px 20px; margin: 1.2rem 0 2rem 0; font-size: 0.92rem; }
+.chapter-summary ul { margin: 6px 0 0 0; padding-left: 1.2rem; }
+.chapter-summary li { margin: 4px 0; }
+.chapter-summary .label { font-weight: bold; color: #0055aa; font-size: 0.85rem; display: block; margin-bottom: 4px; }
 a { color: #0066cc; }
 ul, ol { padding-left: 1.4rem; }
 li { margin: 5px 0; }
@@ -35,70 +38,123 @@ li { margin: 5px 0; }
 </p>
 
 <h1>Ch.0 このレポートについて</h1>
+<p style="color:#555; font-size:0.9rem;">つながりが、動きになる ── 越境コミュニティ 3年目以降の設計指針</p>
 
-<div class="summary-box">
-  本章では、このレポートの調査目的・範囲・方法・読み方を説明する。事例を読み始める前に一読することを推奨する。
+<div class="chapter-summary">
+  <span class="label">この章で分かること ── 急ぐ人はここだけでOK</span>
+  <ul>
+    <li>このレポートは、越境コミュニティの次フェーズ設計のためのインプット集。公開情報のみで構成されており、特定企業の内部情報は含まない。</li>
+    <li>情報の信頼度は ✅確認済 / ⚠️推定 / ❌未確認 の3段階で明示している。</li>
+    <li>読み方は3ルート（概要15分 / 順番に深掘り / テーマ逆引き）を用意している。</li>
+  </ul>
 </div>
 
 <h2>調査の目的</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>本レポートは、社内の越境コミュニティが3年目以降のフェーズに移行する際の設計指針を検討するためのインプット集として作成された。国内外の先行事例を幅広く収集・整理し、コンセプト設計に必要な知識と問いを提供することを目的とする。</p>
+
+<p>本レポートは、越境コミュニティが3年目以降のフェーズへ移行する際のコンセプト設計を検討するためのインプット集として作成された。国内外の先行事例を幅広く収集・整理し、設計に必要な知識と問いを提供することを目的とする。</p>
+
 <ul>
-  <li>現状のコミュニティ設計の強みと課題を外部事例と比較する</li>
   <li>3年目以降に起きやすい停滞のパターンと、それを乗り越えた事例を学ぶ</li>
-  <li>次フェーズのコンセプト設計に向けた問いを明確化する</li>
+  <li>「好き・得意・関心を起点に人をつなぐプラットフォーム」の設計事例を収集する</li>
+  <li>国内外の差異を把握し、海外で広がっているが日本ではまだ珍しい仕組みを輸入候補として整理する</li>
+  <li>次フェーズのコンセプト設計チームへの問いを提供する</li>
 </ul>
 
 <h2>調査範囲と方法</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<p>以下の範囲で情報を収集した。</p>
-<ul>
-  <li><strong>国内事例：</strong>大企業における有志コミュニティ、社内アクセラレーター、人材マッチングプラットフォーム</li>
-  <li><strong>海外事例：</strong>グローバル企業の社内タレントマーケット、オープンイノベーションプラットフォーム</li>
-  <li><strong>情報源：</strong>公開プレスリリース、研究論文、ビジネス誌記事、企業公式サイト、書籍</li>
-  <li><strong>調査期間：</strong>2026年3月</li>
-  <li><strong>除外情報：</strong>特定企業の非公開情報、調査対象企業の内部資料</li>
-</ul>
 
-<h2>情報の信頼度凡例</h2>
-<p class="wip">このセクションは執筆中です。</p>
 <table>
   <thead>
     <tr>
-      <th>マーク</th>
-      <th>意味</th>
+      <th>区分</th>
+      <th>内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>国内事例（約80%）</strong></td>
+      <td>大企業における越境有志コミュニティ、社内アクセラレーター、人材マッチングプラットフォーム。製造業・自動車関連を中心に収集。</td>
+    </tr>
+    <tr>
+      <td><strong>海外事例（約20%）</strong></td>
+      <td>グローバル企業の社内タレントマーケットプレイス、オープンイノベーションプラットフォーム。日本で未普及だが広がっている仕組みを優先。</td>
+    </tr>
+    <tr>
+      <td><strong>情報源</strong></td>
+      <td>公開プレスリリース、企業公式サイト・ブログ、ビジネス誌・研究機関レポート、労組広報誌、政府刊行物（経産省等）</td>
+    </tr>
+    <tr>
+      <td><strong>調査実施</strong></td>
+      <td>2026年3月（WebSearch・Perplexity・ChatGPT Deep Research を組み合わせて実施）</td>
+    </tr>
+    <tr>
+      <td><strong>除外情報</strong></td>
+      <td>特定企業の非公開情報、社外からアクセスできない社内資料</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>情報の信頼度凡例</h2>
+
+<p>各章の記述には、以下のマークで情報の確かさを示している。マークのない記述は、複数の情報源から総合的に判断した整理・分析である。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:15%">マーク</th>
+      <th style="width:35%">意味</th>
       <th>例</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>✅ 確認済</td>
-      <td>公式発表・論文・信頼性の高い報道で裏付けられた情報</td>
-      <td>企業プレスリリース、査読論文</td>
+      <td>✅ <strong>確認済</strong></td>
+      <td>公式発表・一次資料・信頼性の高い報道で裏付けられた情報</td>
+      <td>企業プレスリリース、公式年次報告書、労組広報誌の当事者記述</td>
     </tr>
     <tr>
-      <td>⚠️ 推定</td>
-      <td>複数情報源から推定されるが、公式確認はとれていない情報</td>
-      <td>業界紙の推測記事、関係者インタビューの間接情報</td>
+      <td>⚠️ <strong>推定</strong></td>
+      <td>複数の情報源から推定できるが、公式確認は取れていない情報</td>
+      <td>業界紙の推測記事、関係者インタビューからの間接情報、合理的推論</td>
     </tr>
     <tr>
-      <td>❌ 未確認</td>
-      <td>情報として存在するが、信頼性の確認が取れていない</td>
-      <td>SNS上の情報、出典不明の数値</td>
+      <td>❌ <strong>未確認</strong></td>
+      <td>存在は示唆されるが、信頼性の確認が取れていない情報</td>
+      <td>公開されていない定量データ、確証のない数値</td>
     </tr>
   </tbody>
 </table>
 
 <h2>読み方ガイド</h2>
-<p class="wip">このセクションは執筆中です。</p>
-<h3>読み方A：事例集として</h3>
-<p>Ch.3〜Ch.6 を中心に読み進める。各事例に気になるポイントをメモしながら読むと、後のコンセプト設計に活かしやすい。特に「継続性の鍵」「設計の工夫」に注目する。</p>
 
-<h3>読み方B：設計の問いへの答えを探す</h3>
-<p>Ch.8 の問い一覧を先に読み、自分たちのコンセプトに関係する問いを選ぶ。その問いに対応する事例をCh.3〜Ch.7 から逆引きすると、議論のたたき台が作りやすい。</p>
+<table>
+  <thead>
+    <tr>
+      <th style="width:28%">読み方</th>
+      <th>ルート</th>
+      <th style="width:18%">目安時間</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>⚡ 概要を掴む</strong></td>
+      <td><a href="overview.html">概要ページ</a>（5つの知見・TOP5事例） → <a href="ch8-questions.html">Ch.8（設計への問い）</a></td>
+      <td>15〜20分</td>
+    </tr>
+    <tr>
+      <td><strong>📖 順番に深掘りする</strong></td>
+      <td>Ch.0 → Ch.1 → … → Ch.8（各章の冒頭サマリーだけでも可）</td>
+      <td>2〜3時間</td>
+    </tr>
+    <tr>
+      <td><strong>🔍 テーマで逆引き</strong></td>
+      <td>国内事例 → <a href="ch3-domestic-community.html">Ch.3</a>・<a href="ch4-domestic-platform.html">Ch.4</a>　海外事例 → <a href="ch5-overseas-internal.html">Ch.5</a>・<a href="ch6-overseas-open.html">Ch.6</a>　3年目の課題 → <a href="ch2-year3.html">Ch.2</a>　設計の問い → <a href="ch8-questions.html">Ch.8</a></td>
+      <td>30分〜</td>
+    </tr>
+  </tbody>
+</table>
 
 <div class="note">
-  <strong>注意：</strong>本レポートは意思決定のための唯一の根拠ではなく、あくまで設計思考のためのインプット集として位置付けられている。実際の設計判断は、自社の文化・フェーズ・リソースを踏まえて行うこと。
+  <strong>注記：</strong>本レポートは意思決定のための唯一の根拠ではなく、設計思考のためのインプット集として位置付けられている。実際の設計判断は、自組織の文化・フェーズ・リソースを踏まえて行うこと。
 </div>
 
 <p style="margin-top: 3rem; font-size: 0.88rem;">
