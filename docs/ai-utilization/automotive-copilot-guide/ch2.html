@@ -157,6 +157,82 @@ li { margin: 5px 0; }
 
 <p>次の章では、この分類を前提に「どう承認を取り、どう展開するか」の具体的なステップを示す。</p>
 
+<h2>分散リポジトリのままで「論理的一元管理」を実現する</h2>
+
+<p>Level分類に従うと、情報は必然的に複数の場所に分散する。</p>
+<ul>
+  <li>Level 1〜2 → SaaS（GHEC）</li>
+  <li>Level 3 → オンプレ / PLM</li>
+  <li>要求・試験仕様 → ALMツール（将来）</li>
+</ul>
+<p><strong>「分散したら、ナレッジが一元管理されないのでは？」</strong> — これは正当な懸念だが、MCP（Model Context Protocol）を使うと、物理的に分散していても <strong>AIから見ると論理的に繋がった一つのナレッジ基盤</strong> として見える設計が実現できる。</p>
+
+<h3>MCP（Model Context Protocol）とは</h3>
+
+<p>Anthropicが提案し、OpenAI・Google・Microsoftも支持する標準プロトコル。<strong>AIエージェントが外部のデータソース（リポジトリ・ドキュメント・DBなど）をツールとして呼び出すための共通仕様。</strong>2026年4月時点でFortune 500の数百社以上が本番稼働中（月間SDKダウンロード数9,700万回超）。<a href="https://github.com/github/github-mcp-server" target="_blank">GitHub公式のMCP Server</a>は2025年4月からパブリックプレビュー。</p>
+
+<h3>物理的に分散 → 論理的には繋がっている</h3>
+
+<table>
+  <tr>
+    <th style="width:20%">層</th>
+    <th>構成</th>
+  </tr>
+  <tr>
+    <td><strong>物理層</strong><br>（分散している）</td>
+    <td>
+      SaaS（GHEC）：BSW/CDD実装・テストコード・内部ツール<br>
+      オンプレ：機能設計書・客先仕様・APP実装<br>
+      ALMツール（将来）：要求・試験仕様・トレース情報
+    </td>
+  </tr>
+  <tr>
+    <td><strong>接続層</strong><br>（MCPで繋ぐ）</td>
+    <td>各リポジトリにMCPサーバーを設置。AIエージェントがツール呼び出しで横断参照できる状態を作る</td>
+  </tr>
+  <tr>
+    <td><strong>論理層</strong><br>（AIには一つに見える）</td>
+    <td>
+      AIエージェントの問い合わせに対して：<br>
+      ・SaaS側 → コード・PR・Issueを検索・参照<br>
+      ・オンプレ側 → 設計書・仕様を参照（<strong>要約・属性・参照リンクのみ返す</strong>。本体は社内に残す）<br>
+      ・ALMツール側 → 要求ID・試験IDを参照（OSLC / REST APIで接続）
+    </td>
+  </tr>
+</table>
+
+<p class="note">
+  <strong>重要：オンプレのLevel 3情報はMCPでも本体を外に出さない。</strong><br>
+  MCPサーバーはオンプレ側に設置し、AIが参照できるのは「要約・属性・参照リンク」のみ。機能設計書や客先仕様のファイル本体はSaaSに送出しない設計にする。これによりLevel 3情報のセキュリティを保ちながら、AIが「存在と概要」を把握できる状態を作れる。
+</p>
+
+<h3>段階的に広げられる設計</h3>
+
+<p>MCPベースの論理一元管理は、物理構造を変えずに接続範囲だけを拡張できる。</p>
+
+<table>
+  <tr>
+    <th style="width:28%">フェーズ</th>
+    <th>接続範囲</th>
+    <th style="width:30%">AIが参照できるもの</th>
+  </tr>
+  <tr>
+    <td><strong>今すぐ（フェーズ1）</strong></td>
+    <td>GHECのみ</td>
+    <td>コード・PR・Issue・ADR</td>
+  </tr>
+  <tr>
+    <td><strong>中期（フェーズ2〜3）</strong></td>
+    <td>GHEC + ALMツール（OSLC/REST API）</td>
+    <td>上記 + 要求ID・試験ID・トレース情報</td>
+  </tr>
+  <tr>
+    <td><strong>長期（最終形）</strong></td>
+    <td>上記 + オンプレ（MCPサーバー設置）</td>
+    <td>上記 + 設計書・仕様の概要（本体は社内保持）</td>
+  </tr>
+</table>
+
 <div class="pager">
   <a href="ch1.html">← 第1章 なぜ今か</a>
   <a href="ch3.html">次：第3章 どう始めるか →</a>
