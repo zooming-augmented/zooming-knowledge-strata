@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ch2 何を守るか ── 情報感度の3段階分類</title>
+<style>
+body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
+h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
+h2 { font-size: 1.15rem; color: #222; margin-top: 2.8rem; border-left: 4px solid #0066cc; padding-left: 10px; }
+h3 { font-size: 0.97rem; color: #444; margin-top: 1.6rem; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.88rem; }
+th { background: #f0f4f8; text-align: left; padding: 8px 12px; border: 1px solid #ccc; }
+td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
+tr:nth-child(even) td { background: #fafafa; }
+.note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.88rem; }
+.summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
+.level1 { background: #e8f5e9; }
+.level2 { background: #fff8e1; }
+.level3 { background: #fce4ec; }
+.meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
+.nav { font-size: 0.85rem; margin-bottom: 2rem; color: #888; }
+.nav a { color: #0066cc; text-decoration: none; margin: 0 6px; }
+.pager { display: flex; justify-content: space-between; margin-top: 3rem; font-size: 0.88rem; }
+.pager a { color: #0066cc; text-decoration: none; }
+a { color: #0066cc; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 5px 0; }
+</style>
+</head>
+<body>
+
+<p class="nav">
+  <a href="index.html">← ガイド目次</a> |
+  <a href="ch1.html">← 第1章</a> |
+  <a href="../../index.html">zooming-knowledge-strata</a>
+</p>
+
+<h1>第2章 何を守るか</h1>
+<p style="color:#555; font-size:0.95rem; margin-top:0.2rem;">情報感度の3段階分類</p>
+
+<div class="summary-box">
+  <strong>この章のポイント：</strong>
+  <ul style="margin:0.4rem 0 0 0;">
+    <li>「全部SaaS」でも「全部オンプレ」でもない。情報の感度に応じた使い分けが必要</li>
+    <li>分類の基準は「技術的な機密度」ではなく、<strong>「流出した時のビジネスへのインパクト」</strong></li>
+    <li>この分類が、SaaS（Copilot）で何をどこまで使えるかを決める</li>
+  </ul>
+</div>
+
+<h2>情報の3段階分類（リスクベース）</h2>
+
+<table>
+  <tr>
+    <th style="width:8%">Level</th>
+    <th style="width:28%">情報の例</th>
+    <th style="width:24%">流出インパクト</th>
+    <th style="width:18%">配置先</th>
+    <th>AIコーディング支援</th>
+  </tr>
+  <tr class="level1">
+    <td><strong>Level 1</strong><br>（低）</td>
+    <td>業務改善スクリプト・テストコード・内部ツール</td>
+    <td>低：汎用技術・固有性が低い</td>
+    <td>SaaS</td>
+    <td>有効（制限なし）</td>
+  </tr>
+  <tr class="level2">
+    <td><strong>Level 2</strong><br>（中）</td>
+    <td>BSW / CDD実装・MBDモデル</td>
+    <td>中：HWと組になって価値が出る。ノウハウとして競合情報になりうる</td>
+    <td>SaaS + Content Exclusion（除外設定）</td>
+    <td>有効（除外設定必須）</td>
+  </tr>
+  <tr class="level3">
+    <td><strong>Level 3</strong><br>（高）</td>
+    <td>機能設計書・客先仕様・コアロジック・APP実装</td>
+    <td>高：自社で閉じるべき付加価値が競合に渡る</td>
+    <td>オンプレ / プライベートクラウド</td>
+    <td>無効（直接参照させない）</td>
+  </tr>
+  <tr class="level3">
+    <td><strong>Level 3</strong><br>（最高）</td>
+    <td>客先固有仕様・OEM規格・メカ設計・エレキ設計</td>
+    <td>最高：契約違反リスク。専用ツールのバイナリ形式のためSaaSの利点も薄い</td>
+    <td>オンプレ / プライベートクラウド</td>
+    <td>無効（SaaSの主戦場外）</td>
+  </tr>
+</table>
+
+<p class="note">
+  <strong>AUTOSAR補足：</strong>車載ECUのSW標準アーキテクチャ。<br>
+  ・<strong>APP層</strong>：車両制御アルゴリズム・機能実装（MBDで開発されることが多い）→ Level 3<br>
+  ・<strong>BSW（Basic Software）</strong>：OS・通信スタック・診断等の基盤SW（COTS製品が多い）→ Level 2<br>
+  ・<strong>CDD（Complex Device Driver）</strong>：BSWでカバーされないHW固有の制御ドライバ → Level 2<br>
+  ・<strong>RTE（Runtime Environment）</strong>：APP層とBSW層を繋ぐ通信ミドルウェア → Level 2〜3
+</p>
+
+<h2>成果物タイプ別の配置原則</h2>
+
+<p>車載SW開発では、コードだけでなく要求・試験・モデルなど多様な成果物がある。それぞれ「最も適した正本システム」が異なる。</p>
+
+<table>
+  <tr>
+    <th style="width:36%">成果物タイプ</th>
+    <th style="width:26%">推奨配置先</th>
+    <th>方針</th>
+  </tr>
+  <tr>
+    <td>ハンドコード（BSW/CDD実装・内部ツール等）</td>
+    <td>GitHub（GHEC）</td>
+    <td>実装・差分・CI/CDの中心。Copilotの効果が最も出やすい</td>
+  </tr>
+  <tr>
+    <td>実装近傍の設計メモ / ADR</td>
+    <td>GitHub（GHEC）</td>
+    <td>コード近傍で保守することでAIが参照しやすくなる</td>
+  </tr>
+  <tr>
+    <td>テストコード / CIスクリプト</td>
+    <td>GitHub（GHEC）</td>
+    <td>実装と一体運用</td>
+  </tr>
+  <tr>
+    <td>Simulink / MBD モデル正本</td>
+    <td>MBD基盤 / ALM参照</td>
+    <td><code>.slx</code>はバイナリ形式のため専用diff/merge必須。生成コード・補助スクリプトはGitHubで管理可</td>
+  </tr>
+  <tr>
+    <td>客先要求 / SW要件 / 試験仕様</td>
+    <td>ALMツール（将来）</td>
+    <td>正式要求・監査の正本。GitHubに置かないことを推奨（詳細は<a href="ch4.html">第4章</a>）</td>
+  </tr>
+  <tr>
+    <td>機能設計書・客先仕様（Level 3）</td>
+    <td>オンプレ / PLM</td>
+    <td>AIへの直接参照不可。要約のみ開示する設計が必要</td>
+  </tr>
+  <tr>
+    <td>周辺文書 / 業務ノウハウ</td>
+    <td>SharePoint / PLM</td>
+    <td>原本維持。将来的に横断エージェントで参照可能にする</td>
+  </tr>
+</table>
+
+<h2>この分類で何が決まるか</h2>
+
+<p><strong>Copilotで今すぐ始められるのは、Level 1〜2の範囲。</strong></p>
+
+<ul>
+  <li>Level 1：制限なしで使い始められる。業務改善スクリプト・テストコード・内部ツールから着手するのが最もリスクが低い</li>
+  <li>Level 2（BSW/CDD）：Content Exclusion設定を正しく行えば、製品コードでもCopilotを活用できる。車載SW開発において最も効果が出やすい領域</li>
+  <li>Level 3以上：GitHubへの格納・Copilotの直接参照は行わない。PLM・オンプレで管理し続ける</li>
+</ul>
+
+<p>次の章では、この分類を前提に「どう承認を取り、どう展開するか」の具体的なステップを示す。</p>
+
+<div class="pager">
+  <a href="ch1.html">← 第1章 なぜ今か</a>
+  <a href="ch3.html">次：第3章 どう始めるか →</a>
+</div>
+
+<p class="meta">作成：2026-04 · zooming-knowledge-strata · 公開情報のみ使用</p>
+</body>
+</html>

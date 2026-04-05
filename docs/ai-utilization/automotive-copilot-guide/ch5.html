@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ch5 持続させる ── ガバナンス設計とAI利用境界</title>
+<style>
+body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
+h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
+h2 { font-size: 1.15rem; color: #222; margin-top: 2.8rem; border-left: 4px solid #0066cc; padding-left: 10px; }
+h3 { font-size: 0.97rem; color: #444; margin-top: 1.6rem; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.85rem; }
+th { background: #f0f4f8; text-align: left; padding: 8px 12px; border: 1px solid #ccc; }
+td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
+tr:nth-child(even) td { background: #fafafa; }
+.note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.88rem; }
+.summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
+.ref-box { background: #f7f7f7; border: 1px solid #ddd; border-radius: 4px; padding: 14px 20px; margin: 2rem 0; font-size: 0.9rem; }
+.meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
+.nav { font-size: 0.85rem; margin-bottom: 2rem; color: #888; }
+.nav a { color: #0066cc; text-decoration: none; margin: 0 6px; }
+.pager { display: flex; justify-content: space-between; margin-top: 3rem; font-size: 0.88rem; }
+.pager a { color: #0066cc; text-decoration: none; }
+a { color: #0066cc; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 5px 0; }
+.good { color: #2e7d32; font-weight: bold; }
+.mid { color: #e65100; }
+.bad { color: #b71c1c; }
+hr { border: none; border-top: 1px solid #ddd; margin: 3rem 0; }
+</style>
+</head>
+<body>
+
+<p class="nav">
+  <a href="index.html">← ガイド目次</a> |
+  <a href="ch4.html">← 第4章</a> |
+  <a href="../../index.html">zooming-knowledge-strata</a>
+</p>
+
+<h1>第5章 持続させる</h1>
+<p style="color:#555; font-size:0.95rem; margin-top:0.2rem;">ガバナンス設計とAI利用境界</p>
+
+<div class="summary-box">
+  <strong>この章のポイント：</strong>
+  <ul style="margin:0.4rem 0 0 0;">
+    <li>ガバナンスの中核は「AIそのもの」ではなく、<strong>IDによる明示的な紐づけ</strong></li>
+    <li>人とAIの役割分担を明文化することで、正式成果物の品質を守る</li>
+    <li>巻末に主要AIコーディングツールの比較表を掲載</li>
+  </ul>
+</div>
+
+<h2>ID設計：横断管理の中核</h2>
+
+<p>「AIが横断的に参照できる」状態を作るには、まずIDで情報を紐づける必要がある。AIはその上で検索・要約・関連提示を行う補助層として位置づける。</p>
+
+<h3>最低限管理すべきID</h3>
+
+<table>
+  <tr>
+    <th style="width:28%">ID種別</th>
+    <th>用途</th>
+    <th style="width:28%">管理場所</th>
+  </tr>
+  <tr>
+    <td>requirement ID</td>
+    <td>要求トレース。要求と実装・試験を紐づける</td>
+    <td>ALMツール（将来）/ PR・Issue に明記</td>
+  </tr>
+  <tr>
+    <td>test ID</td>
+    <td>試験仕様・合否の追跡</td>
+    <td>ALMツール（将来）</td>
+  </tr>
+  <tr>
+    <td>component / module ID</td>
+    <td>部品単位の変更管理</td>
+    <td>PR / Issue / Commit に明記</td>
+  </tr>
+  <tr>
+    <td>defect ID</td>
+    <td>不具合追跡</td>
+    <td>GitHub Issue / ALMツール</td>
+  </tr>
+  <tr>
+    <td>GitHub Issue / PR / Commit ID</td>
+    <td>実装変更の根拠</td>
+    <td>GitHub（GHEC）</td>
+  </tr>
+</table>
+
+<h3>基本ルール</h3>
+
+<ul>
+  <li>PR / Issue / Commit には、可能な範囲でrequirement IDやcomponent IDを明記する</li>
+  <li>要求〜試験〜実装〜変更履歴の間は、IDまたは明示リンクで追跡可能にする</li>
+  <li>AIの出力を利用する場合も、最終的には正本IDへの参照を人間が確認できる形にする</li>
+</ul>
+
+<h2>AI利用境界：任せること / 任せないこと</h2>
+
+<table>
+  <tr>
+    <th style="width:48%">AIの活用対象（積極的に使う）</th>
+    <th>AIに委ねない対象（人が行う）</th>
+  </tr>
+  <tr>
+    <td>関連文書の検索・要約</td>
+    <td>正式要求の承認</td>
+  </tr>
+  <tr>
+    <td>設計・コードレビュー補助</td>
+    <td>最終的な安全判断</td>
+  </tr>
+  <tr>
+    <td>テスト観点候補の洗い出し</td>
+    <td>正式試験の合否判定</td>
+  </tr>
+  <tr>
+    <td>変更影響範囲の参考提示</td>
+    <td>監査証跡の最終確定</td>
+  </tr>
+  <tr>
+    <td>複数システムをまたぐ参照補助</td>
+    <td>契約・顧客合意上の最終根拠の確定</td>
+  </tr>
+</table>
+
+<h3>正式成果物へ反映する条件</h3>
+
+<ol>
+  <li>人間によるレビュー記録を残す</li>
+  <li>正本IDへの紐づけを確認する</li>
+  <li>必要に応じて変更理由・採用理由を明示する</li>
+</ol>
+
+<hr>
+
+<h2>参考：AIコーディングツール比較</h2>
+
+<p style="font-size:0.9rem; color:#555;">本ガイドはGitHub Copilotを中心に構成しているが、参考情報として主要なAIコーディングツールを比較する。詳細なCopilot vs Claude Codeの比較は<a href="../enterprise-ai-coding-env.html">企業向けAIコーディング環境 比較ガイド</a>を参照。</p>
+
+<table>
+  <tr>
+    <th style="width:14%">ツール</th>
+    <th style="width:10%">提供元</th>
+    <th style="width:14%">モデル</th>
+    <th style="width:10%">形態</th>
+    <th style="width:14%">クラウド /<br>オンプレ</th>
+    <th style="width:10%">C/C++<br>対応</th>
+    <th style="width:10%">価格感</th>
+    <th>特徴</th>
+  </tr>
+  <tr>
+    <td><strong>GitHub Copilot</strong></td>
+    <td>Microsoft /<br>GitHub</td>
+    <td>GPT-4o・Claude等</td>
+    <td>IDE拡張</td>
+    <td>SaaS<br>（GHEC）</td>
+    <td class="good">◎</td>
+    <td>$19〜/月/人</td>
+    <td>本ガイドのメイン対象。エコシステム最成熟。TISAX AL2取得済み</td>
+  </tr>
+  <tr>
+    <td><strong>Claude Code</strong></td>
+    <td>Anthropic</td>
+    <td>Claude Sonnet /<br>Opus</td>
+    <td>CLI・IDE拡張</td>
+    <td>SaaS</td>
+    <td class="good">◎</td>
+    <td>$20〜/月<br>（API従量）</td>
+    <td>ターミナル中心のエージェント型。コードベース横断の推論が得意。Copilotと組み合わせて使う事例も増えている</td>
+  </tr>
+  <tr>
+    <td><strong>Amazon Kiro</strong></td>
+    <td>AWS</td>
+    <td>Claude Sonnet<br>3.7 / 4</td>
+    <td>独自IDE</td>
+    <td>SaaS<br>（AWS）</td>
+    <td class="mid">○</td>
+    <td>無料〜$40/月/人</td>
+    <td>Spec駆動開発・MCP統合が特徴。仕様→設計→実装を一貫して扱う。2025年11月 GA。要求管理との親和性が高い可能性あり</td>
+  </tr>
+  <tr>
+    <td><strong>Cursor</strong></td>
+    <td>Anysphere</td>
+    <td>Claude / GPT-4o等</td>
+    <td>独自IDE</td>
+    <td>SaaS</td>
+    <td class="mid">○</td>
+    <td>$20/月/人</td>
+    <td>エージェント型操作が強い。個人利用・スタートアップ向き。企業ガバナンスの整備はこれから</td>
+  </tr>
+  <tr>
+    <td><strong>Continue.dev</strong></td>
+    <td>Continue</td>
+    <td>任意LLM<br>（設定可能）</td>
+    <td>IDE拡張</td>
+    <td class="good">オンプレ可</td>
+    <td class="mid">○</td>
+    <td>無料（OSS）</td>
+    <td>外部通信ゼロが実現可能。Level 3領域のフォールバック候補。精度はLLMモデル依存</td>
+  </tr>
+  <tr>
+    <td><strong>Tabnine</strong></td>
+    <td>Tabnine</td>
+    <td>独自・<br>オンプレ対応</td>
+    <td>IDE拡張</td>
+    <td class="good">オンプレ可</td>
+    <td class="mid">○</td>
+    <td>$12〜/月/人</td>
+    <td>完全オンプレ運用が可能な数少ない選択肢。Level 3領域への適用を検討する場合の候補</td>
+  </tr>
+  <tr>
+    <td><strong>Amazon<br>CodeWhisperer</strong></td>
+    <td>AWS</td>
+    <td>Amazon独自</td>
+    <td>IDE拡張</td>
+    <td>SaaS<br>（AWS）</td>
+    <td class="mid">○</td>
+    <td>無料〜$19/月</td>
+    <td>AWS環境に親和性高い。Amazon Kiroへの統合移行が進んでいる</td>
+  </tr>
+</table>
+
+<p class="note">
+  <strong>車載SW開発での選定観点：</strong>MISRA C/C++・組み込みC/C++の実績が豊富なのはGitHub Copilot（Woven by Toyota、Mercedes-Benzの事例あり）。オンプレ完結が必須の領域にはContinue.dev / Tabnineが現実的な選択肢。Amazon KiroのSpec駆動開発は要求管理との連携に将来性があるが、車載SW開発での実績はこれから。
+</p>
+
+<div class="ref-box">
+  <strong>関連資料</strong><br>
+  <a href="../enterprise-ai-coding-env.html">企業向けAIコーディング環境 比較ガイド</a> ── Claude Code / GitHub Copilot のセキュリティ・機能を詳細に比較しています。
+</div>
+
+<div class="pager">
+  <a href="ch4.html">← 第4章 次のステップ</a>
+  <a href="index.html">ガイド目次へ →</a>
+</div>
+
+<p class="meta">作成：2026-04 · zooming-knowledge-strata · 公開情報のみ使用</p>
+</body>
+</html>

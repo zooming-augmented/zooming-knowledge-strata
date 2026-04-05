@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>車載SW開発チームのためのGitHub Copilot導入ガイド</title>
+<style>
+body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
+h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
+h2 { font-size: 1.15rem; color: #222; margin-top: 2.8rem; border-left: 4px solid #0066cc; padding-left: 10px; }
+h3 { font-size: 0.97rem; color: #444; margin-top: 1.6rem; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.88rem; }
+th { background: #f0f4f8; text-align: left; padding: 8px 12px; border: 1px solid #ccc; }
+td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
+tr:nth-child(even) td { background: #fafafa; }
+.summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
+.toc { background: #f7f7f7; border: 1px solid #ddd; border-radius: 4px; padding: 12px 20px; margin: 1.4rem 0; font-size: 0.88rem; }
+.toc ol { margin: 0; padding-left: 1.4rem; }
+.toc li { margin: 6px 0; }
+.meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
+.nav { font-size: 0.85rem; margin-bottom: 2rem; color: #888; }
+.nav a { color: #0066cc; text-decoration: none; margin: 0 6px; }
+a { color: #0066cc; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 5px 0; }
+</style>
+</head>
+<body>
+
+<p class="nav">
+  <a href="../../index.html">zooming-knowledge-strata</a> |
+  <a href="../enterprise-ai-coding-env.html">企業向けAIコーディング環境 比較ガイド</a>
+</p>
+
+<h1>車載SW開発チームのためのGitHub Copilot導入ガイド</h1>
+<p style="color:#555; font-size:0.95rem; margin-top:0.2rem;">情報セキュリティを守りながら、小さく始めてAIエージェント時代に備える</p>
+
+<div class="summary-box">
+  <p><strong>このガイドの対象読者：</strong>GitHub CopilotもCodebeamerも未導入の車載SW開発組織で、Copilotを小さく・安全に始めたいエンジニア・リーダー向け。</p>
+  <p><strong>前提：</strong>GHECの外は一般のPLM/ALMでつないでいる組織を想定。特定のツール導入を推奨するものではなく、判断のための情報を提供する。</p>
+  <p style="margin-bottom:0;"><strong>情報源：</strong>公開情報のみ（プレスリリース・公式ドキュメント・事例記事）。作成：2026-04。</p>
+</div>
+
+<h2>目次</h2>
+<div class="toc">
+  <ol>
+    <li><a href="ch1.html">なぜ今か ── 車載SW開発に何が変わるか</a><br>
+      <span style="color:#888; font-size:0.82rem;">AIエージェントが前提になる時代に、現場で何が起きるか。先行事例と変化の構造。</span>
+    </li>
+    <li><a href="ch2.html">何を守るか ── 情報感度の3段階分類</a><br>
+      <span style="color:#888; font-size:0.82rem;">SaaSに乗せてよい情報と乗せてはいけない情報の区別。Level 1〜3の分類と配置原則。</span>
+    </li>
+    <li><a href="ch3.html">どう始めるか ── Copilot導入ステップ</a><br>
+      <span style="color:#888; font-size:0.82rem;">承認取得からPoC・展開まで。判断フローとチェックリスト。</span>
+    </li>
+    <li><a href="ch4.html">次のステップ ── ALM/PLM選択肢の比較</a><br>
+      <span style="color:#888; font-size:0.82rem;">GitHubの外と繋ぐ。要求・試験・トレーサビリティを担うALM/PLMの選択肢一覧。</span>
+    </li>
+    <li><a href="ch5.html">持続させる ── ガバナンス設計とAI利用境界</a><br>
+      <span style="color:#888; font-size:0.82rem;">ID設計・人とAIの役割分担・AIコーディングツール比較。</span>
+    </li>
+  </ol>
+</div>
+
+<h2>読み方</h2>
+<table>
+  <tr>
+    <th style="width:30%">読み方</th>
+    <th>ルート</th>
+    <th style="width:18%">目安時間</th>
+  </tr>
+  <tr>
+    <td><strong>まず全体像を掴む</strong></td>
+    <td><a href="ch1.html">ch1（なぜ今か）</a> → <a href="ch2.html">ch2（情報分類）</a></td>
+    <td>15〜20分</td>
+  </tr>
+  <tr>
+    <td><strong>導入を検討している</strong></td>
+    <td><a href="ch3.html">ch3（導入ステップ）</a> を中心に</td>
+    <td>20〜30分</td>
+  </tr>
+  <tr>
+    <td><strong>ALM/PLM選定も同時に進めたい</strong></td>
+    <td><a href="ch4.html">ch4（ALM/PLM比較）</a> を参照</td>
+    <td>15分</td>
+  </tr>
+  <tr>
+    <td><strong>ガバナンス・ツール比較を確認したい</strong></td>
+    <td><a href="ch5.html">ch5（ガバナンス・ツール比較）</a></td>
+    <td>15分</td>
+  </tr>
+</table>
+
+<h2>関連資料</h2>
+<ul>
+  <li><a href="../enterprise-ai-coding-env.html">企業向けAIコーディング環境 比較ガイド</a> ── Claude Code / GitHub Copilot のセキュリティ・機能比較（詳細版）</li>
+</ul>
+
+<p class="meta">作成：2026-04 · zooming-knowledge-strata · 公開情報のみ使用</p>
+</body>
+</html>

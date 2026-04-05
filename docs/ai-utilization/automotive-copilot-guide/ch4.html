@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ch4 次のステップ ── ALM/PLM選択肢の比較</title>
+<style>
+body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
+h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
+h2 { font-size: 1.15rem; color: #222; margin-top: 2.8rem; border-left: 4px solid #0066cc; padding-left: 10px; }
+h3 { font-size: 0.97rem; color: #444; margin-top: 1.6rem; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.85rem; }
+th { background: #f0f4f8; text-align: left; padding: 8px 12px; border: 1px solid #ccc; }
+td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
+tr:nth-child(even) td { background: #fafafa; }
+.note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.88rem; }
+.summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
+.meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
+.nav { font-size: 0.85rem; margin-bottom: 2rem; color: #888; }
+.nav a { color: #0066cc; text-decoration: none; margin: 0 6px; }
+.pager { display: flex; justify-content: space-between; margin-top: 3rem; font-size: 0.88rem; }
+.pager a { color: #0066cc; text-decoration: none; }
+a { color: #0066cc; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 5px 0; }
+.good { color: #2e7d32; font-weight: bold; }
+.mid { color: #e65100; }
+.bad { color: #b71c1c; }
+</style>
+</head>
+<body>
+
+<p class="nav">
+  <a href="index.html">← ガイド目次</a> |
+  <a href="ch3.html">← 第3章</a> |
+  <a href="../../index.html">zooming-knowledge-strata</a>
+</p>
+
+<h1>第4章 次のステップ</h1>
+<p style="color:#555; font-size:0.95rem; margin-top:0.2rem;">ALM/PLM選択肢の比較</p>
+
+<div class="summary-box">
+  <strong>この章のポイント：</strong>
+  <ul style="margin:0.4rem 0 0 0;">
+    <li>GitHub（GHEC）はコード実装の中心。要求・試験・トレーサビリティの正本は別のシステムが担う</li>
+    <li>ALM（Application Lifecycle Management）/ PLM（Product Lifecycle Management）の選択は、ASPICE対応・クラウド可否・コストで大きく異なる</li>
+    <li>今すぐ選定しなくてよい。ただし「GitHubに寄せない」原則は今から守る</li>
+  </ul>
+</div>
+
+<h2>なぜGitHub以外のシステムが必要になるか</h2>
+
+<p>車載SW開発では、コード以外にも多くの成果物がある。</p>
+
+<table>
+  <tr>
+    <th style="width:30%">管理対象</th>
+    <th style="width:30%">GitHubで管理できるか</th>
+    <th>推奨する正本システム</th>
+  </tr>
+  <tr>
+    <td>ハンドコード・テストコード・CI</td>
+    <td class="good">◎ 向いている</td>
+    <td>GitHub（GHEC）</td>
+  </tr>
+  <tr>
+    <td>客先要求 / SW要件 / 試験仕様</td>
+    <td class="bad">✗ 向いていない（監査・トレース設計が必要）</td>
+    <td>ALMツール</td>
+  </tr>
+  <tr>
+    <td>要求〜試験〜実装のトレーサビリティ</td>
+    <td class="mid">△ 可能だが運用コストが高い</td>
+    <td>ALMツール</td>
+  </tr>
+  <tr>
+    <td>設計変更・部品表・CAD管理</td>
+    <td class="bad">✗ 対象外</td>
+    <td>PLMツール</td>
+  </tr>
+  <tr>
+    <td>機能設計書・客先仕様（Level 3）</td>
+    <td class="bad">✗ 格納しない</td>
+    <td>オンプレ / PLM</td>
+  </tr>
+</table>
+
+<h2>ALMツール比較</h2>
+
+<p>要求管理・試験管理・トレーサビリティを中心に扱うALMツールの主要選択肢。</p>
+
+<table>
+  <tr>
+    <th style="width:14%">ツール</th>
+    <th style="width:10%">ベンダー</th>
+    <th style="width:10%">車載特化</th>
+    <th style="width:10%">ASPICE対応</th>
+    <th style="width:18%">クラウド / オンプレ</th>
+    <th style="width:10%">価格感</th>
+    <th>特徴</th>
+  </tr>
+  <tr>
+    <td><strong>Codebeamer</strong></td>
+    <td>PTC</td>
+    <td class="good">◎</td>
+    <td class="good">◎</td>
+    <td>両対応<br><span style="font-size:0.82rem;">クラウド（SaaS）・オンプレ</span></td>
+    <td class="bad">高</td>
+    <td>BMW Groupが要求管理標準として採用（2026年）。OSLC / REST API / Swagger API を保有。車載ALMの有力候補</td>
+  </tr>
+  <tr>
+    <td><strong>Polarion ALM</strong></td>
+    <td>Siemens</td>
+    <td class="good">◎</td>
+    <td class="good">◎</td>
+    <td>両対応<br><span style="font-size:0.82rem;">クラウド・オンプレ</span></td>
+    <td class="bad">高</td>
+    <td>ASPICE / ISO 26262の実績豊富。Siemens SAPとの統合あり。Tier1への導入事例多数</td>
+  </tr>
+  <tr>
+    <td><strong>IBM DOORS Next (ELM)</strong></td>
+    <td>IBM</td>
+    <td class="good">◎</td>
+    <td class="good">◎</td>
+    <td>両対応<br><span style="font-size:0.82rem;">クラウド・オンプレ</span></td>
+    <td class="bad">高</td>
+    <td>要求管理の老舗。航空・防衛にも実績。OSLCでの外部連携対応。既存導入組織からの移行コストが高い</td>
+  </tr>
+  <tr>
+    <td><strong>JAMA Connect</strong></td>
+    <td>Jama Software</td>
+    <td class="mid">○</td>
+    <td class="mid">○</td>
+    <td>クラウド中心<br><span style="font-size:0.82rem;">オンプレも対応</span></td>
+    <td class="mid">中〜高</td>
+    <td>UIが現代的で習得コストが低い。中小チームへの導入事例が多い。医療・航空・車載に対応</td>
+  </tr>
+  <tr>
+    <td><strong>Jira + Xray / Zephyr</strong></td>
+    <td>Atlassian系</td>
+    <td class="bad">△</td>
+    <td class="bad">△</td>
+    <td>両対応<br><span style="font-size:0.82rem;">Cloud / Data Center</span></td>
+    <td class="good">低〜中</td>
+    <td>既存Jira活用で最軽量スタート。ASPICE監査には追加整備が必要。要求管理の専用設計ではないため規模拡大時に限界がある</td>
+  </tr>
+</table>
+
+<h2>PLMツール（参考）</h2>
+
+<p>設計変更・部品表・CAD管理など製品ライフサイクル全体を扱うPLMツール。SW開発単体での選定対象ではなく、組織全体で既に導入されているケースが多い。</p>
+
+<table>
+  <tr>
+    <th style="width:14%">ツール</th>
+    <th style="width:10%">ベンダー</th>
+    <th style="width:10%">主用途</th>
+    <th style="width:18%">クラウド / オンプレ</th>
+    <th style="width:10%">価格感</th>
+    <th>特徴</th>
+  </tr>
+  <tr>
+    <td><strong>Windchill</strong></td>
+    <td>PTC</td>
+    <td>PLM本流</td>
+    <td>オンプレ中心<br><span style="font-size:0.82rem;">クラウド版あり</span></td>
+    <td class="bad">高</td>
+    <td>設計変更・部品表・ドキュメント管理が主用途。Codebeamerとベンダーが同じため連携設計がしやすい</td>
+  </tr>
+  <tr>
+    <td><strong>Teamcenter</strong></td>
+    <td>Siemens</td>
+    <td>PLM本流</td>
+    <td>オンプレ中心<br><span style="font-size:0.82rem;">クラウド版あり</span></td>
+    <td class="bad">高</td>
+    <td>大手Tier1・完成車メーカーに広く導入済み。Polarion ALMとベンダーが同じため連携設計がしやすい</td>
+  </tr>
+</table>
+
+<h2>選定時の判断軸</h2>
+
+<table>
+  <tr>
+    <th style="width:30%">判断軸</th>
+    <th>確認内容</th>
+  </tr>
+  <tr>
+    <td>ASPICE / 機能安全対応</td>
+    <td>SWE.1〜SWE.6の各プロセスで求められる要求管理・試験管理・変更管理を標準機能で満たせるか</td>
+  </tr>
+  <tr>
+    <td>クラウド可否</td>
+    <td>自組織の情報セキュリティポリシー上、クラウドSaaSでの要求管理が許可されるか（Level 3情報を扱う可能性に注意）</td>
+  </tr>
+  <tr>
+    <td>GitHubとの連携</td>
+    <td>OSLC / REST API / WebHookでGitHubのPR・Issue・commit IDと紐づけられるか</td>
+  </tr>
+  <tr>
+    <td>既存PLMとの関係</td>
+    <td>組織に既存のPLM（Windchill / Teamcenter等）がある場合、同一ベンダーのALMを選ぶと連携コストが下がる</td>
+  </tr>
+  <tr>
+    <td>導入コストとフェーズ</td>
+    <td>ALM導入はネットワーク・認証・権限設計・運用責任者の確立が必要。Copilot導入後のフェーズ2〜3として計画するのが現実的</td>
+  </tr>
+</table>
+
+<p class="note">ALM/PLMの選定は、情報セキュリティ部門・品質保証部門・調達部門を巻き込む必要がある。Copilot導入（フェーズ1）とは独立したプロジェクトとして走らせることを推奨。</p>
+
+<div class="pager">
+  <a href="ch3.html">← 第3章 どう始めるか</a>
+  <a href="ch5.html">次：第5章 持続させる →</a>
+</div>
+
+<p class="meta">作成：2026-04 · zooming-knowledge-strata · 公開情報のみ使用</p>
+</body>
+</html>

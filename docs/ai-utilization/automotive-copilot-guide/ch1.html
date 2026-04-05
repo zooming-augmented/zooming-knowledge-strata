@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ch1 なぜ今か ── 車載SW開発に何が変わるか</title>
+<style>
+body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
+h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
+h2 { font-size: 1.15rem; color: #222; margin-top: 2.8rem; border-left: 4px solid #0066cc; padding-left: 10px; }
+h3 { font-size: 0.97rem; color: #444; margin-top: 1.6rem; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.88rem; }
+th { background: #f0f4f8; text-align: left; padding: 8px 12px; border: 1px solid #ccc; }
+td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
+tr:nth-child(even) td { background: #fafafa; }
+.note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.88rem; }
+.summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
+.meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
+.nav { font-size: 0.85rem; margin-bottom: 2rem; color: #888; }
+.nav a { color: #0066cc; text-decoration: none; margin: 0 6px; }
+.pager { display: flex; justify-content: space-between; margin-top: 3rem; font-size: 0.88rem; }
+.pager a { color: #0066cc; text-decoration: none; }
+a { color: #0066cc; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 5px 0; }
+pre { background: #f5f5f5; border: 1px solid #ddd; border-radius: 4px; padding: 14px 16px; font-size: 0.85rem; overflow-x: auto; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<p class="nav">
+  <a href="index.html">← ガイド目次</a> |
+  <a href="../../index.html">zooming-knowledge-strata</a>
+</p>
+
+<h1>第1章 なぜ今か</h1>
+<p style="color:#555; font-size:0.95rem; margin-top:0.2rem;">車載SW開発に何が変わるか</p>
+
+<div class="summary-box">
+  <strong>この章のポイント：</strong>
+  <ul style="margin:0.4rem 0 0 0;">
+    <li>AIエージェントが前提になる時代、「ナレッジが繋がっている組織」と「繋がっていない組織」の差が開発速度・品質・コストに直結する</li>
+    <li>車載SW開発固有のシナリオで、具体的に何が変わるかを示す</li>
+    <li>すでに先行事例が出ている。待つ理由は少ない</li>
+  </ul>
+</div>
+
+<h2>現在と目指す姿</h2>
+
+<pre>
+【現在】
+
+開発者 ──→ 設計書・コード・過去事例を「自分で」探して読む
+              ↑ 在り処を知っている人に聞くことも多い
+              ↑ ナレッジが人に依存している
+
+【目指す姿】
+
+AIエージェント ──→ リポジトリ・設計書・過去事例を「横断して」参照
+                      ↑ 開発者は「確認・判断」に集中できる
+                      ↑ ナレッジが仕組みに依存している
+</pre>
+
+<h2>車載SW開発の現場で具体的に変わること</h2>
+
+<table>
+  <tr>
+    <th style="width:22%">シナリオ</th>
+    <th style="width:38%">現在</th>
+    <th>目指す姿</th>
+  </tr>
+  <tr>
+    <td>MISRA違反の修正</td>
+    <td>エンジニアが規約を参照し手動修正</td>
+    <td>AIが過去の修正事例を参照し最適修正案を提示</td>
+  </tr>
+  <tr>
+    <td>不具合の再発防止</td>
+    <td>過去事例を知る人が気づいて止める</td>
+    <td>類似コードを書いた瞬間にAIが過去不具合を警告</td>
+  </tr>
+  <tr>
+    <td>CDDカスタマイズ<sup>※1</sup></td>
+    <td>CDD仕様書を手元に開きながら実装</td>
+    <td>AIがCDD仕様・変更履歴を参照した上でコード生成</td>
+  </tr>
+  <tr>
+    <td>設計判断の引き継ぎ</td>
+    <td>担当者交代時にナレッジが失われる</td>
+    <td>過去の判断経緯がコードと紐づいていてAIが説明できる</td>
+  </tr>
+  <tr>
+    <td>新人のオンボーディング</td>
+    <td>先輩エンジニアへの依存が高い</td>
+    <td>AIが類似事例・規約・設計意図を即時に教える</td>
+  </tr>
+  <tr>
+    <td>要求・試験のトレース</td>
+    <td>手動での紐づけ管理・属人化</td>
+    <td>AIが要求ID〜実装〜試験結果を横断して参照・提示</td>
+  </tr>
+</table>
+
+<p class="note"><sup>※1</sup> CDD（Complex Device Driver）：BSWでカバーされないHW固有の制御をBSW外で実装するドライバ。AUTOSAR構成の中でハンドコードが多く残る領域。</p>
+
+<h2>先行事例</h2>
+
+<table>
+  <tr>
+    <th style="width:20%">企業</th>
+    <th style="width:14%">導入時期</th>
+    <th style="width:26%">活用領域</th>
+    <th style="width:24%">成果</th>
+    <th>参照</th>
+  </tr>
+  <tr>
+    <td>Woven by Toyota</td>
+    <td>2024年〜</td>
+    <td>MISRA C/C++違反の自動修正（AIパイプライン）</td>
+    <td>MISRA違反を80%自動修正。数億円規模のコスト削減試算</td>
+    <td><a href="https://woven.toyota/jp/our-latest/ai-zero-accident-misra" target="_blank">Woven公式ブログ</a> / <a href="https://www.microsoft.com/ja-jp/customers/story/23667-woven-by-toyota-co-ltd-azure" target="_blank">Microsoft事例</a></td>
+  </tr>
+  <tr>
+    <td>メルセデス・ベンツ</td>
+    <td>2023年〜</td>
+    <td>GitHub Copilot 全社5,000名展開（C/C++・ドキュメント）</td>
+    <td>200万行超のコードを受け入れ</td>
+    <td><a href="https://github.com/customer-stories/mercedes-benz" target="_blank">GitHub Customer Stories</a></td>
+  </tr>
+  <tr>
+    <td>デンソー</td>
+    <td>2022年〜</td>
+    <td>AIナレッジ基盤（暗黙知の形式知化・RAG）</td>
+    <td>暗黙知を検索可能化。ロボット制御関数の短期開発</td>
+    <td><a href="https://dcross.impress.co.jp/docs/usecase/004448.html" target="_blank">Digital X</a> / <a href="https://www.microsoft.com/ja-jp/customers/story/1747602982232951567-denso-azure-container-apps-automotive-ja-japan" target="_blank">Microsoft事例</a></td>
+  </tr>
+  <tr>
+    <td>オムロン（FA）</td>
+    <td>2021年〜</td>
+    <td>SharePointベースのグローバルKM（AE/FE向け）</td>
+    <td>拠点間ナレッジアクセス数2.8倍、事例活用数3.0倍</td>
+    <td><a href="https://www.omron.com/jp/ja/technology/omrontechnics/2022/20221028-akamatsu.html" target="_blank">OMRON TECHNICS</a></td>
+  </tr>
+  <tr>
+    <td>BMW Group</td>
+    <td>2026年〜</td>
+    <td>ALMツールによる要求管理標準化・デジタルエンジニアリング推進</td>
+    <td>自動車業界向けALMの標準採用事例</td>
+    <td><a href="https://www.prnewswire.com/news-releases/ptcs-codebeamer-adopted-by-bmw-group-to-standardize-requirements-management-and-advance-digital-engineering-302730583.html" target="_blank">PTC プレスリリース</a></td>
+  </tr>
+</table>
+
+<h2>なぜ「今」なのか</h2>
+
+<p>先行事例が2021〜2024年に集中しているのは、AIモデルの精度がC/C++のような低レイヤー言語でも実用水準に達したタイミングと一致する。ツールの成熟・事例の蓄積・業界標準への組み込みが同時進行している。</p>
+
+<ul>
+  <li><strong>精度が実用水準に達した</strong>：MISRA C/C++・組み込み特有のパターンに対してもAIが有効な提案を出せる段階になった</li>
+  <li><strong>セキュリティ要件が整備された</strong>：TISAX AL2認証（GitHub Enterprise Cloud取得済み）など、車載業界のセキュリティ要件を満たす根拠が用意されつつある</li>
+  <li><strong>Shadow AI（野良AI）のリスクが現実化している</strong>：組織が承認ルートを作らなければ、エンジニアが個人的にAIを使い始める。ガバナンスなき状態が最もリスクが高い</li>
+</ul>
+
+<div class="pager">
+  <span></span>
+  <a href="ch2.html">次：第2章 何を守るか →</a>
+</div>
+
+<p class="meta">作成：2026-04 · zooming-knowledge-strata · 公開情報のみ使用</p>
+</body>
+</html>

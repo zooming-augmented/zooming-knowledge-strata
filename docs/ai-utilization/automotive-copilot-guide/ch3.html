@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ch3 どう始めるか ── Copilot導入ステップ</title>
+<style>
+body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
+h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
+h2 { font-size: 1.15rem; color: #222; margin-top: 2.8rem; border-left: 4px solid #0066cc; padding-left: 10px; }
+h3 { font-size: 1.0rem; color: #333; margin-top: 2rem; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.88rem; }
+th { background: #f0f4f8; text-align: left; padding: 8px 12px; border: 1px solid #ccc; }
+td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
+tr:nth-child(even) td { background: #fafafa; }
+.note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.88rem; }
+.summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
+.step-box { border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
+.step-box h3 { border: none; margin-top: 0; color: #0055aa; }
+.why { background: #f0f4f8; border-radius: 4px; padding: 6px 12px; margin: 0.6rem 0; font-size: 0.88rem; color: #444; }
+.checklist { list-style: none; padding-left: 0.4rem; margin: 0.8rem 0; }
+.checklist li { margin: 6px 0; padding-left: 0.2rem; }
+.checklist li::before { content: "☐ "; color: #0066cc; font-weight: bold; }
+.ng-list { list-style: none; padding-left: 0.4rem; }
+.ng-list li::before { content: "✗ "; color: #cc0000; font-weight: bold; }
+.ng-list li { margin: 6px 0; }
+.warn-box { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 16px; margin: 1rem 0; font-size: 0.9rem; color: #856404; }
+.meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
+.nav { font-size: 0.85rem; margin-bottom: 2rem; color: #888; }
+.nav a { color: #0066cc; text-decoration: none; margin: 0 6px; }
+.pager { display: flex; justify-content: space-between; margin-top: 3rem; font-size: 0.88rem; }
+.pager a { color: #0066cc; text-decoration: none; }
+a { color: #0066cc; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 5px 0; }
+</style>
+</head>
+<body>
+
+<p class="nav">
+  <a href="index.html">← ガイド目次</a> |
+  <a href="ch2.html">← 第2章</a> |
+  <a href="../../index.html">zooming-knowledge-strata</a>
+</p>
+
+<h1>第3章 どう始めるか</h1>
+<p style="color:#555; font-size:0.95rem; margin-top:0.2rem;">Copilot導入ステップ</p>
+
+<div class="summary-box">
+  <strong>この章のポイント：</strong>
+  <ul style="margin:0.4rem 0 0 0;">
+    <li>承認取得 → リポジトリ整備 → 試験導入 → 展開の4ステップで進める</li>
+    <li>各ステップに「なぜやるか」を明示。判断の根拠を持って動く</li>
+    <li><strong>やらないこと</strong>を先に決めることが、将来の再設計コストを下げる</li>
+  </ul>
+</div>
+
+<h2>導入前の判断フロー</h2>
+
+<p>着手前に以下の3点を確認する。これが揃わないと、後のステップが滞る。</p>
+
+<table>
+  <tr>
+    <th style="width:36%">確認項目</th>
+    <th>確認内容</th>
+    <th style="width:18%">参照</th>
+  </tr>
+  <tr>
+    <td>自組織の情報感度マップ</td>
+    <td>Level 1〜3の境界線は組織・プロジェクトによって異なる。先に確認しておく</td>
+    <td><a href="ch2.html">第2章</a></td>
+  </tr>
+  <tr>
+    <td>SaaS利用の社内承認ルート</td>
+    <td>情報セキュリティ部門・法務・調達のどこが承認窓口か確認する</td>
+    <td>—</td>
+  </tr>
+  <tr>
+    <td>Level 1〜2の対象リポジトリ</td>
+    <td>まず使うリポジトリを絞る。最初から全社展開しない</td>
+    <td>—</td>
+  </tr>
+</table>
+
+<h2>Step 1｜セキュリティ承認</h2>
+
+<div class="step-box">
+  <h3>Step 1</h3>
+  <p class="why"><strong>なぜやるか：</strong>承認なしで使い始めると「Shadow AI（野良AI）」になる。承認ルートを作ることが最も有効な抑止策であり、現場を守る根拠にもなる。</p>
+  <ul class="checklist">
+    <li>情報セキュリティ部門への GHE Cloud 利用申請</li>
+    <li>TISAX AL2認証を根拠資料として添付（GHE Cloudは2024年10月に取得済み）</li>
+    <li>DPA（データ処理契約）の内容確認・締結</li>
+    <li>Content Exclusion対象パスのリストアップ（Level 3相当のディレクトリ）</li>
+    <li>AI活用ポリシー（仮版）の策定・周知</li>
+    <li>Shadow AI対策の周知（承認済みルートの案内）</li>
+    <li>Audit Log設定（設定変更・アクセス履歴の記録）</li>
+  </ul>
+</div>
+
+<p class="note">
+  <strong>TISAX AL2とは：</strong>自動車業界向け情報セキュリティ評価メカニズム（VDA策定）のAssurance Level 2。OEM / Tier1との取引要件になるケースがある。GHE CloudはMicrosoftがTISAX AL2認証を取得済みであるため、これを根拠として社内承認の材料に使える。
+</p>
+
+<h2>Step 2｜リポジトリ整備</h2>
+
+<div class="step-box">
+  <h3>Step 2</h3>
+  <p class="why"><strong>なぜやるか：</strong>Copilotの回答精度はコンテキスト次第。リポジトリに「AIが読むべき情報」を整備するほど、提案の質が上がる。最初に少し投資するだけで、以後の体験が大きく変わる。</p>
+  <ul class="checklist">
+    <li><code>.github/copilot-instructions.md</code> の作成（コーディング規約・MISRA適用範囲・設計方針を記述）</li>
+    <li>ADR（Architecture Decision Record）の整備：過去の設計判断をコード近傍にテキストで残す</li>
+    <li>PR / Issue へのcomponent IDの記載ルール策定</li>
+    <li>Content Exclusion設定の実施（Level 3相当のパスを除外設定）</li>
+    <li>README・コードコメントの整備（AIが読める形にする）</li>
+  </ul>
+</div>
+
+<h2>Step 3｜試験導入（PoC）</h2>
+
+<div class="step-box">
+  <h3>Step 3</h3>
+  <p class="why"><strong>なぜやるか：</strong>現場に「これがないと困る」という実感を作ることが最重要。全社展開の前に、小さく実証することで、組織内の合意形成が格段に楽になる。</p>
+  <ul class="checklist">
+    <li>BSW/CDDチームへの先行展開（Level 2：最も効果が出やすい）</li>
+    <li>業務改善スクリプト・内部ツールへの適用（Level 1：最もリスクが低い）</li>
+    <li>効果測定の基準を事前に決める（例：コードレビュー指摘数、実装時間、MISRA違反検出数）</li>
+    <li>現場エンジニアからのフィードバック収集（週次・隔週で）</li>
+    <li>PoC結果をまとめ、展開判断の材料にする</li>
+  </ul>
+</div>
+
+<h2>Step 4｜展開</h2>
+
+<div class="step-box">
+  <h3>Step 4</h3>
+  <p class="why"><strong>なぜやるか：</strong>客先仕様を扱うプロジェクトへの展開前に、客先への説明・合意取得が必要。これを飛ばすと、後から契約上の問題になりうる。</p>
+  <ul class="checklist">
+    <li>客先への説明・書面合意取得（TISAX AL2認証 / DPAを材料に）</li>
+    <li>Level 1〜2の対象リポジトリへ順次展開</li>
+    <li>AI活用ポリシーを正式化（仮版からアップデート）</li>
+    <li>Audit Logの定期確認体制を確立</li>
+    <li>展開対象外（Level 3）の周知を継続する</li>
+  </ul>
+</div>
+
+<h2>意図的にやらないこと</h2>
+
+<div class="warn-box">
+  以下は「やらない」と先に決めることで、将来のALM/PLM導入や再設計時のサンクコストを最小化できる。
+</div>
+
+<ul class="ng-list">
+  <li>GitHubに要求・試験仕様の正本を作ること</li>
+  <li>GitHub内に巨大な独自ナレッジベースを構築すること</li>
+  <li>将来ALM/PLMに置くべき情報を無理にGitHubへ寄せること</li>
+  <li>監査・承認ワークフローをGitHub独自運用で代替すること</li>
+</ul>
+
+<h2>ロードマップ概観</h2>
+
+<table>
+  <tr>
+    <th style="width:20%">時期</th>
+    <th>主なアクション</th>
+  </tr>
+  <tr>
+    <td>〜1ヶ月</td>
+    <td>Step 1〜2：承認取得・リポジトリ整備・Content Exclusion設定</td>
+  </tr>
+  <tr>
+    <td>1〜2ヶ月</td>
+    <td>Step 3：BSW/CDD + 内部ツールで PoC。効果を現場レベルで実証</td>
+  </tr>
+  <tr>
+    <td>2〜4ヶ月</td>
+    <td>Step 4：客先合意取得 → Level 1〜2全体へ展開。ポリシー正式化</td>
+  </tr>
+  <tr>
+    <td>4ヶ月〜</td>
+    <td>ALM/PLM連携の検討開始（詳細は<a href="ch4.html">第4章</a>）</td>
+  </tr>
+</table>
+
+<div class="pager">
+  <a href="ch2.html">← 第2章 何を守るか</a>
+  <a href="ch4.html">次：第4章 次のステップ →</a>
+</div>
+
+<p class="meta">作成：2026-04 · zooming-knowledge-strata · 公開情報のみ使用</p>
+</body>
+</html>
