@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ch6 深堀 ── GHEC+Copilot 開発活動・ALM統合・構成比較</title>
+<style>
+body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
+h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
+h2 { font-size: 1.15rem; color: #222; margin-top: 2.8rem; border-left: 4px solid #0066cc; padding-left: 10px; }
+h3 { font-size: 0.97rem; color: #444; margin-top: 1.6rem; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.85rem; }
+th { background: #f0f4f8; text-align: left; padding: 8px 12px; border: 1px solid #ccc; }
+td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
+tr:nth-child(even) td { background: #fafafa; }
+.note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.88rem; }
+.summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
+.ref-box { background: #f7f7f7; border: 1px solid #ddd; border-radius: 4px; padding: 14px 20px; margin: 2rem 0; font-size: 0.9rem; }
+.meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
+.nav { font-size: 0.85rem; margin-bottom: 2rem; color: #888; }
+.nav a { color: #0066cc; text-decoration: none; margin: 0 6px; }
+.pager { display: flex; justify-content: space-between; margin-top: 3rem; font-size: 0.88rem; }
+.pager a { color: #0066cc; text-decoration: none; }
+a { color: #0066cc; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 5px 0; }
+hr { border: none; border-top: 1px solid #ddd; margin: 3rem 0; }
+pre { background: #f4f4f4; border: 1px solid #ddd; border-radius: 4px; padding: 14px 16px; font-size: 0.82rem; overflow-x: auto; line-height: 1.5; }
+code { font-family: monospace; font-size: 0.88rem; background: #f4f4f4; padding: 1px 4px; border-radius: 2px; }
+.star { color: #f5a623; }
+</style>
+</head>
+<body>
+
+<p class="nav">
+  <a href="index.html">← ガイド目次</a> |
+  <a href="ch5.html">← 第5章</a> |
+  <a href="../../index.html">zooming-knowledge-strata</a>
+</p>
+
+<h1>第6章 深堀</h1>
+<p style="color:#555; font-size:0.95rem; margin-top:0.2rem;">GHEC + Copilot の開発活動・ALM統合・構成比較</p>
+
+<div class="summary-box">
+  <strong>この章のポイント：</strong>
+  <ul style="margin:0.4rem 0 0 0;">
+    <li>ALM（Codebeamer等）＋ GHEC の前提構成で <strong>Copilot が担える開発活動を網羅整理</strong></li>
+    <li>BMW・Woven by Toyota・Mercedes-Benz など <strong>OEM事例の実態と公開情報の限界</strong> を整理</li>
+    <li>GHEC + Copilot を軸に <strong>11構成の比較マトリクスと星取表</strong></li>
+    <li>選定フローチャートで <strong>自組織に合う構成を判断</strong></li>
+  </ul>
+</div>
+
+<div class="note">
+  <strong>前提アーキテクチャ（本章の参照軸）：</strong><br>
+  本章は以下の3層構成を想定している。詳細はガイド第4章を参照。<br><br>
+  <code>[PLM]</code> システム要求・BOM・CAD/メカ/エレキ設計<br>
+  　　↕ OSLC / REST API<br>
+  <code>[ALM: Codebeamer等]</code> SW要求 → SWアーキテクチャ → 統合テスト・ASPICE証跡<br>
+  　　↕ REST API / Webhook / commit message連携<br>
+  <code>[VCS: GHEC]</code> SW部品単位：設計書・コード・単体テスト・PR・CI/CD<br>
+  　　↑ ここにGitHub Copilot等のAIを活用
+</div>
+
+<hr>
+
+<h2>Part 1｜GHEC + Copilot で実行・効率化できる開発活動</h2>
+
+<h3>1.1 設計書作成・管理</h3>
+<table>
+  <tr><th style="width:28%">活動</th><th>機能</th><th style="width:16%">成熟度</th><th style="width:30%">制約・注意点</th></tr>
+  <tr><td>Markdown設計書の自動生成</td><td>Copilot Chat / Agent でMermaid図・技術ドキュメント生成</td><td>Preview〜GA</td><td>生成内容の正確性は人手確認必須。MISRA準拠の保証はない</td></tr>
+  <tr><td>仕様変更時の設計書更新提案</td><td>Agentモードで「変更があれば設計書も更新」と指示</td><td>Preview</td><td>参考提案。最終確認は設計者が実施</td></tr>
+  <tr><td>設計書とコードの整合性チェック</td><td>CIツールや手動レビューと組み合わせ</td><td>—</td><td>Copilot単体の自動チェックは限定的</td></tr>
+</table>
+
+<h3>1.2 コーディング支援</h3>
+<table>
+  <tr><th style="width:28%">活動</th><th>機能</th><th style="width:16%">成熟度</th><th style="width:30%">制約・注意点</th></tr>
+  <tr><td>インライン補完（C/C++）</td><td>VS Code / JetBrains等のIDE拡張</td><td><strong>GA</strong></td><td>MISRA/社内規約準拠は静的解析ツールで別途チェック要</td></tr>
+  <tr><td>Copilot Chat（コード説明・提案）</td><td>IDE内またはGitHub Web</td><td><strong>GA</strong></td><td>正確性は文脈に依存。人手確認必須</td></tr>
+  <tr><td>Coding Agent（自律タスク処理）</td><td>リポジトリ解析・実装〜テスト〜エラー修正</td><td><strong>GA</strong></td><td>プロンプト設計が重要。安全性確保にレビュー必須</td></tr>
+  <tr><td>リポジトリ全体コンテキスト活用</td><td>Copilot Spacesで設計書・コードを横断参照</td><td><strong>GA</strong></td><td>64Kトークンウィンドウ制約。バイナリ非対応</td></tr>
+</table>
+
+<h3>1.3 コードレビュー・品質チェック</h3>
+<table>
+  <tr><th style="width:28%">活動</th><th>機能</th><th style="width:16%">成熟度</th><th style="width:30%">制約・注意点</th></tr>
+  <tr><td>Copilot PR Review</td><td>PRに自動コメント・改善提案。適用可能な修正案をワンクリック反映</td><td>Preview〜GA</td><td>カスタム指示設定で規約スタイルの強制可能</td></tr>
+  <tr><td>MISRA/AUTOSAR規約チェック</td><td>GitHub CodeQLのAUTOSAR C++/MISRA C/C++クエリ</td><td><strong>GA</strong></td><td>CodeQLはISO 26262ツール認定取得済。クエリ外ルールはカバーされない</td></tr>
+  <tr><td>セキュリティ脆弱性検出</td><td>GHAS: Code Scanning / Secret Scanning / Dependabot</td><td><strong>GA</strong></td><td>プライベートリポジトリは有償ライセンス必要</td></tr>
+  <tr><td>静的解析ツール（PRQA/Polyspace等）連携</td><td>GitHub Actions経由でCIに組み込み・結果をGitHubに反映</td><td>設定要</td><td>Copilot直接連携はなし。CI経由で結果を参照</td></tr>
+</table>
+
+<h3>1.4 テスト支援</h3>
+<table>
+  <tr><th style="width:28%">活動</th><th>機能</th><th style="width:16%">成熟度</th><th style="width:30%">制約・注意点</th></tr>
+  <tr><td>単体テスト自動生成</td><td>Copilot Chatで関数・クラスのテストコード生成</td><td><strong>GA</strong></td><td>生成テストの期待値検証は必須</td></tr>
+  <tr><td>テストカバレッジ分析</td><td>GitHub Actions + Codecov等との組み合わせ</td><td>設定要</td><td>Copilotの自動提案機能はなし。カバレッジレポートを参照して追加</td></tr>
+  <tr><td>CI失敗時のAI解析</td><td>CIログをCopilot Chatに投入し原因推論</td><td><strong>GA</strong></td><td>推測含む。最終判断は開発者</td></tr>
+</table>
+
+<h3>1.5 トレーサビリティ管理（ALM-VCS間）</h3>
+<table>
+  <tr><th style="width:28%">活動</th><th>機能</th><th style="width:16%">成熟度</th><th style="width:30%">制約・注意点</th></tr>
+  <tr><td>コミットメッセージ規約チェック</td><td>GitHub ActionsでRefs: #REQ-XXX形式を強制チェック</td><td><strong>GA</strong></td><td>ルール遵守は自動検査が必要。Copilotは補助的にメッセージ提案</td></tr>
+  <tr><td>PRテンプレートによる要求リンク</td><td><code>.github/PULL_REQUEST_TEMPLATE.md</code>にALM要求ID入力欄を設置</td><td><strong>GA</strong></td><td>GitHub側の強制機能はなし。運用ルールとの組み合わせ</td></tr>
+  <tr><td>Codebeamer ↔ GHEC リンク管理</td><td>REST API + Webhook: commit/PR/branchをCodebeamerに同期</td><td><strong>GA</strong></td><td><code>Codebeamer X #1234</code>形式をcommit messageに埋め込む</td></tr>
+  <tr><td>CopilotによるトレースリンクAI提案</td><td>Copilot Chatに「このコードが関連する要件は？」と質問</td><td>研究的利用</td><td>誤提案リスクあり。参考情報として扱う</td></tr>
+</table>
+
+<p><strong>Codebeamer ↔ GHEC 連携の実装パターン（<a href="https://support.ptc.com/help/codebeamer/r3.0/en/codebeamer/user_guide/ug_connecting_a_repository_from_github.html" target="_blank">公開ドキュメントより</a>）：</strong></p>
+<ol>
+  <li>要求・変更・テスト・監査証跡 = Codebeamer（正本）</li>
+  <li>コード・PR・CI = GHEC（正本）</li>
+  <li>commit messageに要求IDを埋め込み（<code>Codebeamer X #要求ID Comment</code>）</li>
+  <li>Webhook / REST APIでCodebeamerへ同期</li>
+  <li>CodebeamerからGitHub側実装痕跡を辿るトレーサビリティが成立</li>
+  <li>OSLC = CodebeamerとPLM（Windchill等）の接続に使用（GitHubとの接続には不使用）</li>
+</ol>
+
+<h3>1.6 知識管理・ナレッジ再利用</h3>
+<table>
+  <tr><th style="width:28%">活動</th><th>機能</th><th style="width:16%">成熟度</th><th style="width:30%">制約・注意点</th></tr>
+  <tr><td>Copilot Spaces（旧Knowledge Base）</td><td>複数リポジトリ横断でMarkdown設計書・仕様書等を集約しCopilot参照</td><td><strong>GA</strong></td><td>KB機能は2025年8月廃止→Copilot Spacesへ移行</td></tr>
+  <tr><td>Issue/PR/Discussion活用</td><td>設計意図・過去議論の検索・再利用</td><td><strong>GA</strong></td><td>GitHub検索 + Copilot Chat（リポジトリ探索）で参照可能</td></tr>
+  <tr><td>過去バグ・修正パターン再利用</td><td>Issue/commit履歴からパターン参照</td><td>設定要</td><td>プロジェクト固有の知識共有ルール設計が重要</td></tr>
+</table>
+
+<h3>1.7 ドキュメント自動生成</h3>
+<table>
+  <tr><th style="width:28%">活動</th><th>機能</th><th style="width:16%">成熟度</th><th style="width:30%">制約・注意点</th></tr>
+  <tr><td>API/I/F仕様書生成</td><td>Copilot Agentが仕様データからYAML等を生成</td><td>Preview</td><td>テンプレート設計と生成結果の手動確認が必要</td></tr>
+  <tr><td>リリースノート自動生成</td><td>GitHub自動リリースノート機能 / Conventional Commits連動</td><td><strong>GA</strong></td><td>タグ付けとの連携でCHANGELOG.md自動更新可能</td></tr>
+  <tr><td>コードコメント・API仕様生成</td><td>Copilot Chatでコードコメント・docstring生成</td><td><strong>GA</strong></td><td>安全クリティカルなコードへの適用は人手確認必須</td></tr>
+</table>
+
+<h3>1.8 セキュリティ・コンプライアンス</h3>
+<table>
+  <tr><th style="width:28%">活動</th><th>機能</th><th style="width:16%">成熟度</th><th style="width:30%">制約・注意点</th></tr>
+  <tr><td>GitHub Advanced Security (GHAS)</td><td>CodeQL（脆弱性）/ Secret Scanning / Dependabot</td><td><strong>GA</strong></td><td>プライベートリポジトリは有償</td></tr>
+  <tr><td>SBOM生成</td><td>「Export SBOM」でNTIA準拠SPDX形式をワンクリック出力</td><td><strong>GA</strong></td><td>全クラウドリポジトリで無償提供</td></tr>
+  <tr><td>ライセンスコンプライアンス</td><td>依存関係グラフ + REUSE等のCIチェック</td><td>設定要</td><td>Copilot直接機能はなし</td></tr>
+  <tr><td>ISO 26262 / ASPICE対応</td><td>CodeQL ISO 26262ツール認定取得済</td><td><strong>GA</strong></td><td>認定ツールとしての使用は条件あり</td></tr>
+</table>
+
+<h3>1.9 CI/CDパイプライン</h3>
+<table>
+  <tr><th style="width:28%">活動</th><th>機能</th><th style="width:16%">成熟度</th><th style="width:30%">制約・注意点</th></tr>
+  <tr><td>CI/CD自動化</td><td>GitHub Actionsでビルド・テスト・静的解析・デプロイ</td><td><strong>GA</strong></td><td>Codebeamer Actions連携でALMワークフローからトリガー可能</td></tr>
+  <tr><td>AIによるパイプライン提案</td><td>Copilot CLI / Agentに「Actionsワークフロー作成」を依頼</td><td>Preview</td><td>生成結果は手動修正・セキュリティチェック必須</td></tr>
+  <tr><td>リリース承認ワークフロー</td><td>GitHub Environments + CODEOWNERS + 手動承認ステップ</td><td><strong>GA</strong></td><td>ALM側承認と連動するWebhook設計が必要</td></tr>
+</table>
+
+<h3>1.10 AI統治の原則</h3>
+<p>どの構成でも以下を遵守すること（詳細は<a href="ch5.html">第5章</a>参照）：</p>
+<table>
+  <tr><th>AIが担う領域（自動化可）</th><th>人間が保持する責務（AI代替不可）</th></tr>
+  <tr>
+    <td>関連ドキュメント検索・要約 / 設計・コードレビュー支援 / テストケースシナリオ抽出 / 変更影響分析参照 / マルチシステム横断参照</td>
+    <td>正式な要求承認 / 安全クリティカルな判断 / 公式テスト合否判定 / 監査証跡の確定 / 契約・顧客承認</td>
+  </tr>
+</table>
+
+<hr>
+
+<h2>Part 2｜OEM事例（実態と公開情報の限界）</h2>
+
+<h3>2.1 BMW Group + PTC Codebeamer</h3>
+<table>
+  <tr><th style="width:22%">項目</th><th>内容</th></tr>
+  <tr><td>採用内容</td><td>機械・電気・ソフトウェアを横断する統合データモデルへ移行。要求管理の標準化</td></tr>
+  <tr><td>目的</td><td>より強いトレーサビリティとデジタル連続性（digital continuity）の確立</td></tr>
+  <tr><td>AI活用</td><td>Codebeamer AI（要求品質向上・テストケース生成・変更影響分析）の推進を公表</td></tr>
+  <tr><td>GHEC接続詳細</td><td><strong>非公開</strong>（REST/Webhook連携が最も合理的なパターンと推定）</td></tr>
+  <tr><td>参照</td><td><a href="https://www.prnewswire.com/news-releases/ptcs-codebeamer-adopted-by-bmw-group-to-standardize-requirements-management-and-advance-digital-engineering-302730583.html" target="_blank">PTC プレスリリース（2026/04）</a></td></tr>
+</table>
+
+<h3>2.2 Woven by Toyota + Azure OpenAI + GitHub Enterprise</h3>
+<table>
+  <tr><th style="width:22%">項目</th><th>内容</th></tr>
+  <tr><td>採用内容</td><td>GitHub Enterprise + Azure OpenAI Service + AutoGen（マルチエージェント）でMISRA違反を自動修正</td></tr>
+  <tr><td>AI構成</td><td>Coder / Reviewer / Evaluatorの3エージェント構成（o3-mini + AutoGen）</td></tr>
+  <tr><td>成果</td><td>コード生成成功率97.1%、MISRA自動修正81.5%</td></tr>
+  <tr><td>ALM連携</td><td>公開情報ではALM詳細は未確認</td></tr>
+  <tr><td>参照</td><td><a href="https://www.microsoft.com/ja-jp/customers/story/23667-woven-by-toyota-co-ltd-azure" target="_blank">Microsoft事例（日本語）</a></td></tr>
+</table>
+
+<h3>2.3 Mercedes-Benz + GitHub Enterprise + Copilot</h3>
+<table>
+  <tr><th style="width:22%">項目</th><th>内容</th></tr>
+  <tr><td>採用規模</td><td>GitHub Enterprise（約115,000リポジトリ・約4,300組織・55,000+ seats）</td></tr>
+  <tr><td>Copilot活用</td><td>5,000名超が利用。2M行以上のコード受け入れ。コード説明・ドキュメント生成に活用</td></tr>
+  <tr><td>C/C++詳細</td><td>公開事例では限定的（MISRA/ISO 26262への具体的適用詳細は未公開）</td></tr>
+  <tr><td>ALM連携</td><td>公開情報では未確認</td></tr>
+  <tr><td>参照</td><td><a href="https://github.com/customer-stories/mercedes-benz" target="_blank">GitHub Customer Story</a></td></tr>
+</table>
+
+<h3>2.4 eSystems MTG（Tier1）+ Codebeamer + Git</h3>
+<table>
+  <tr><th style="width:22%">項目</th><th>内容</th></tr>
+  <tr><td>採用内容</td><td>Codebeamer + Git でgapless traceabilityを実現</td></tr>
+  <tr><td>成果</td><td>SW成果物→テストケース→テスト結果→commit まで掘り下げ可能なトレーサビリティ</td></tr>
+  <tr><td>AI活用</td><td>未前面（ALM統合による構造化トレースが主眼）</td></tr>
+  <tr><td>参照</td><td><a href="https://www.ptc.com/en/case-studies/codebeamer-esystems-software-development" target="_blank">PTC事例</a></td></tr>
+</table>
+
+<hr>
+
+<h2>Part 3｜VCS × AIエージェント 構成比較</h2>
+
+<h3>3.1 構成マトリクス</h3>
+<table>
+  <tr>
+    <th style="width:5%">記号</th>
+    <th style="width:30%">構成</th>
+    <th style="width:12%">VCS</th>
+    <th style="width:12%">AI</th>
+    <th style="width:10%">デプロイ</th>
+    <th style="width:10%">要求〜PR追跡</th>
+    <th style="width:10%">閉域対応</th>
+    <th style="width:11%">導入難易度</th>
+  </tr>
+  <tr><td><strong>A</strong></td><td>GHEC + Copilot Enterprise</td><td>GHEC</td><td>Copilot Enterprise</td><td>SaaS</td><td>高</td><td>中</td><td><strong>低</strong></td></tr>
+  <tr><td><strong>B</strong></td><td>GHEC + Copilot + Claude Code</td><td>GHEC</td><td>Copilot + Claude Code</td><td>SaaS+CLI</td><td>高</td><td>中</td><td>中</td></tr>
+  <tr><td><strong>C</strong></td><td>GHEC + Amazon Kiro</td><td>GHEC</td><td>Kiro</td><td>SaaS（専用IDE）</td><td>中</td><td>低〜中</td><td>中</td></tr>
+  <tr><td><strong>D1</strong></td><td>GHEC + Continue.dev</td><td>GHEC</td><td>Continue（任意LLM）</td><td>SaaS+CLI</td><td>高</td><td>高</td><td>中</td></tr>
+  <tr><td><strong>D2</strong></td><td>GHEC + Tabnine</td><td>GHEC/GHES</td><td>Tabnine</td><td>SaaS/オンプレ</td><td>中</td><td>高</td><td>中</td></tr>
+  <tr><td><strong>E</strong></td><td>GitLab Ultimate + Duo Enterprise</td><td>GitLab</td><td>GitLab Duo</td><td>SaaS/Self-Managed</td><td>高</td><td>高</td><td>中〜高</td></tr>
+  <tr><td><strong>F1</strong></td><td>Azure Repos + Copilot</td><td>Azure Repos</td><td>Copilot</td><td>SaaS</td><td>中</td><td>中</td><td>低〜中</td></tr>
+  <tr><td><strong>F2</strong></td><td>GitHub Repos + Azure Boards + Copilot</td><td>GHEC</td><td>Copilot</td><td>SaaS</td><td>中〜高</td><td>中</td><td>中</td></tr>
+  <tr><td><strong>G</strong></td><td>GHEC + Cursor Enterprise</td><td>GHEC</td><td>Cursor</td><td>SaaS（専用IDE）</td><td>中</td><td>中</td><td>中</td></tr>
+  <tr><td><strong>H</strong></td><td>GHES + Continue + Self-hosted LLM</td><td>GHES</td><td>Continue+社内LLM</td><td>Self-Managed</td><td>高</td><td>非常に高</td><td>高</td></tr>
+  <tr><td><strong>I</strong></td><td>GitLab Self-Managed + Duo Self-Hosted</td><td>GitLab SM</td><td>Duo Self-Hosted</td><td>Self-Managed</td><td>高</td><td>非常に高</td><td>高</td></tr>
+</table>
+
+<h3>3.2 構成A（推奨）の詳細：GHEC + Copilot Enterprise</h3>
+
+<p><strong>強み：</strong></p>
+<ul>
+  <li>GHECがTISAX AL2認定取得済み（2024年10月）→ 自動車業界のセキュリティ要件をクリア
+    （<a href="https://github.blog/changelog/2024-10-01-announcing-tisax-for-github/" target="_blank">GitHub Changelog</a>）</li>
+  <li>Copilot Business/EnterpriseがISO 27001認証スコープに含まれる</li>
+  <li>Mercedes-Benz・Woven by Toyota等OEM採用実績が最も豊富</li>
+  <li>Copilot Spacesによるリポジトリ横断ナレッジ活用（GA）</li>
+  <li>CodeQL（MISRA/AUTOSAR C++クエリ）ISO 26262ツール認定取得済み</li>
+  <li>SBOM生成（SPDX形式）が無償提供</li>
+  <li>Codebeamer ↔ GHEC連携：REST API + Webhookで実績ある接続パターンが存在</li>
+</ul>
+
+<p><strong>弱み：</strong></p>
+<ul>
+  <li>AI推論はSaaS依存（モデルを社内に閉じられない）</li>
+  <li>Coding AgentはPreviewが多く、安全クリティカルな用途は人手確認が必須</li>
+  <li>C/C++のMISRA完全自動準拠は保証されない（静的解析ツールとの組み合わせ必須）</li>
+</ul>
+
+<p><strong>車載開発での適合性：</strong> <span class="star">★★★★★</span>（最も実績のある構成）</p>
+
+<h3>3.3 構成B：GHEC + Copilot + Claude Code</h3>
+<p>AにClaude Code（Anthropic製CLI/IDEエージェント）を追加する構成。</p>
+<ul>
+  <li>Claude Codeの強み：コードベース横断推論、ターミナル中心のagentic作業、PR/CI連携</li>
+  <li>ユースケース：大規模リファクタリング、複数リポジトリ横断影響分析、設計書とコードの整合チェック</li>
+  <li>費用：Claude APIの従量課金が追加（$20+/月相当）</li>
+  <li>注意：CLI中心のため、開発者ワークフローへの統合方法の設計が必要</li>
+</ul>
+<p><strong>車載開発での適合性：</strong> <span class="star">★★★★</span>☆（強力だが運用設計コストが追加）</p>
+
+<h3>3.4 構成E（競合）：GitLab Ultimate + Duo Enterprise</h3>
+<p>GitHub Copilotとの比較（2026年時点）：</p>
+<ul>
+  <li>Duo Enterpriseは$39/ユーザ/月で、脆弱性自動解決・根本原因分析・カスタムエージェントが含まれる</li>
+  <li>GitLab Ultimateを既に使っていればAI機能がサブスクリプションに含まれる（追加費用なし）</li>
+  <li>セキュリティスキャン・コンプライアンスがGitLab内で完結（外部ツール不要）</li>
+  <li>自己管理型（Self-Managed）ではAI Gateway経由でコード・プロンプトを社内に閉じられる → <strong>閉域優位</strong></li>
+  <li>弱点：C/C++特化の車載実績はCopilot比で少ない。Codebeamer公式連携の詳細は限定的</li>
+</ul>
+<p>参照：<a href="https://ottra.io/blog/gitlab-duo-vs-github-copilot-the-ultimate-ai-coding-assistant-comparison-2025" target="_blank">GitLab Duo vs GitHub Copilot比較（OTTRA 2025）</a></p>
+<p><strong>車載開発での適合性：</strong> <span class="star">★★★★</span>☆（閉域・セキュリティ重視ならE/I構成が有力）</p>
+
+<h3>3.5 構成C：Amazon Kiro（将来候補）</h3>
+<p>Spec-Driven Development（仕様書→コード生成）を特徴とするAgentic IDE。VS Code fork。</p>
+<ul>
+  <li>C/C++対応確認済み。2025年11月GA</li>
+  <li>ALM要求仕様とのフィット感が高い可能性（仕様書からコードへの直接変換）</li>
+  <li>ただし車載・製造業の採用実績はほぼなし</li>
+  <li>SaaS接続前提（ファイアウォール/allowlist設定は可能）</li>
+</ul>
+<p>参照：<a href="https://www.infoq.com/news/2025/08/aws-kiro-spec-driven-agent/" target="_blank">Amazon Kiro詳細解説（InfoQ）</a></p>
+<p><strong>車載開発での適合性：</strong> <span class="star">★★★</span>☆☆（PoC候補として注視。実績積み上げ待ち）</p>
+
+<hr>
+
+<h2>Part 4｜星取表（サマリ）</h2>
+
+<table>
+  <tr>
+    <th style="width:4%">#</th>
+    <th>評価軸</th>
+    <th style="width:13%; text-align:center;">A<br>GHEC+Copilot</th>
+    <th style="width:13%; text-align:center;">B<br>+Claude Code</th>
+    <th style="width:10%; text-align:center;">C<br>Kiro</th>
+    <th style="width:11%; text-align:center;">D1<br>Continue</th>
+    <th style="width:13%; text-align:center;">E<br>GitLab+Duo</th>
+    <th style="width:12%; text-align:center;">H/I<br>閉域構成</th>
+  </tr>
+  <tr><td colspan="8" style="background:#f0f4f8; font-weight:bold; font-size:0.82rem;">AIコーディング支援</td></tr>
+  <tr><td>1</td><td>インライン補完（C/C++精度）</td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td></tr>
+  <tr><td>2</td><td>AI Chat機能</td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td></tr>
+  <tr><td>3</td><td>Coding Agent（自律タスク）</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td></tr>
+  <tr><td>4</td><td>PR自動レビュー</td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td></tr>
+  <tr><td>5</td><td>仕様書→コード生成</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★</span>☆☆☆</td></tr>
+  <tr><td colspan="8" style="background:#f0f4f8; font-weight:bold; font-size:0.82rem;">ALM統合</td></tr>
+  <tr><td>6</td><td>Codebeamer連携（公式）</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★</span>☆☆☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★</span>☆☆☆</td></tr>
+  <tr><td>7</td><td>要求ID↔コードのトレース</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★</span>☆</td></tr>
+  <tr><td>8</td><td>MCP対応（AI横断参照）</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td></tr>
+  <tr><td colspan="8" style="background:#f0f4f8; font-weight:bold; font-size:0.82rem;">テスト・品質・セキュリティ</td></tr>
+  <tr><td>9</td><td>単体テスト自動生成</td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td></tr>
+  <tr><td>10</td><td>MISRA/CodeQL静的解析連携</td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td></tr>
+  <tr><td>11</td><td>SBOM生成</td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td></tr>
+  <tr><td colspan="8" style="background:#f0f4f8; font-weight:bold; font-size:0.82rem;">ナレッジ・CI/CD・エンタープライズ</td></tr>
+  <tr><td>12</td><td>ナレッジRAG（Spaces等）</td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td></tr>
+  <tr><td>13</td><td>クロスリポジトリ参照</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td></tr>
+  <tr><td>14</td><td>CI/CD自動化</td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★</span>☆</td></tr>
+  <tr><td>15</td><td>TISAX/ISO認証</td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★★</span>☆</td></tr>
+  <tr><td>16</td><td>オンプレミス/閉域対応</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★</span>☆☆☆</td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★★</span></td></tr>
+  <tr><td>17</td><td>OEM/Tier1 車載採用実績</td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★</span>☆☆☆</td><td style="text-align:center;"><span class="star">★★</span>☆☆☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★</span>☆☆☆</td></tr>
+  <tr><td>18</td><td>導入容易性</td><td style="text-align:center;"><span class="star">★★★★★</span></td><td style="text-align:center;"><span class="star">★★★★</span>☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★★</span>☆☆</td><td style="text-align:center;"><span class="star">★★</span>☆☆☆</td></tr>
+</table>
+
+<hr>
+
+<h2>Part 5｜結論と推奨</h2>
+
+<h3>5.1 推奨構成と理由</h3>
+
+<div class="summary-box">
+  <strong>推奨：構成A（GHEC + Copilot Enterprise）から開始</strong>
+  <ol style="margin:0.6rem 0 0 0;">
+    <li>TISAX AL2認定取得済み → 自動車業界のセキュリティ要件に直接対応</li>
+    <li>Mercedes-Benz・Woven by Toyota等のOEM実績が最も豊富</li>
+    <li>Codebeamer ↔ GHEC連携はREST/Webhookで確立されたパターンが存在</li>
+    <li>CodeQL（MISRA/AUTOSAR C++クエリ）がISO 26262ツール認定取得済み</li>
+    <li>導入難易度が最も低く、段階的拡張が容易</li>
+  </ol>
+</div>
+
+<h3>5.2 フェーズ展開案</h3>
+<pre>Phase 1: GHEC + Copilot Enterprise（構成A）
+  → SW部品単位のコード・テスト・PRの管理とAIコーディング支援を開始
+  → Codebeamer ↔ GHEC Webhook連携でトレーサビリティを構築
+  → Copilot Spacesで設計書ナレッジを蓄積
+
+Phase 2: Claude Code追加（構成B）
+  → 大規模リファクタリング・複数リポジトリ横断分析が必要になった段階で追加
+  → MCP接続でCopilot（GHEC）とALM（Codebeamer）を論理的に統合
+
+Phase 3: PoC（構成C / E / H検討）
+  → 閉域要件が強まった場合にGitLab Self-Managed + Duo（構成I）を評価
+  → 仕様書駆動開発に注力したい場合にKiro（構成C）をPoC</pre>
+
+<h3>5.3 選定フローチャート</h3>
+<pre>外部通信禁止（完全閉域）？
+  └ YES → 構成H（GHES + Continue）または構成I（GitLab + Duo Self-Hosted）
+  └ NO
+      ├ GitLab既存ユーザ → 構成E（GitLab Duo）も評価対象
+      ├ Azure既存ユーザ → 構成F1/F2（Azure DevOps + Copilot）も選択肢
+      ├ 仕様書駆動開発を重視 → 構成C（Kiro）のPoC実施
+      └ OEM実績・TISAX・導入容易性を重視
+            ├ コードベース横断推論も必要 → 構成B（Copilot + Claude Code）
+            └ まず標準的に始める → 構成A（Copilot）★最推奨</pre>
+
+<hr>
+
+<h2>参考URL一覧</h2>
+
+<div class="ref-box">
+<p><strong>BMW / Codebeamer</strong></p>
+<ul>
+  <li><a href="https://www.prnewswire.com/news-releases/ptcs-codebeamer-adopted-by-bmw-group-to-standardize-requirements-management-and-advance-digital-engineering-302730583.html" target="_blank">PTC プレスリリース（BMW採用）</a></li>
+  <li><a href="https://www.ptc.com/en/news/2024/11/bmw-group-adopts-ptc-codebeamer-for-requirements-management-and-digital-engineering" target="_blank">PTC公式発表</a></li>
+  <li><a href="https://www.ptc.com/en/news/2026/01/ptc-releases-codebeamer-ai" target="_blank">Codebeamer AI</a></li>
+  <li><a href="https://support.ptc.com/help/codebeamer/r3.0/en/codebeamer/user_guide/ug_connecting_a_repository_from_github.html" target="_blank">Codebeamer GitHub連携ドキュメント</a></li>
+  <li><a href="https://support.ptc.com/help/codebeamer/r3.0/en/codebeamer/user_guide/ug_github_webhooks.html" target="_blank">Codebeamer Webhook設定</a></li>
+</ul>
+
+<p><strong>OEM事例</strong></p>
+<ul>
+  <li><a href="https://www.microsoft.com/ja-jp/customers/story/23667-woven-by-toyota-co-ltd-azure" target="_blank">Woven by Toyota（Microsoft事例）</a></li>
+  <li><a href="https://github.com/customer-stories/mercedes-benz" target="_blank">Mercedes-Benz（GitHub Customer Story）</a></li>
+  <li><a href="https://www.ptc.com/en/case-studies/codebeamer-esystems-software-development" target="_blank">eSystems MTG（PTC事例）</a></li>
+</ul>
+
+<p><strong>GitHub / Copilot セキュリティ</strong></p>
+<ul>
+  <li><a href="https://github.blog/changelog/2024-10-01-announcing-tisax-for-github/" target="_blank">TISAX for GitHub（2024/10）</a></li>
+  <li><a href="https://github.blog/changelog/2024-06-03-github-copilot-compliance-soc-2-type-1-report-and-iso-iec-270012013-certification-scope/" target="_blank">GitHub Copilot SOC2 / ISO 27001</a></li>
+  <li><a href="https://techcommunity.microsoft.com/blog/azuredevcommunityblog/demystifying-github-copilot-security-controls-easing-concerns-for-organizational/4468193" target="_blank">Copilot セキュリティ解説（Microsoft Tech Community）</a></li>
+</ul>
+
+<p><strong>競合比較</strong></p>
+<ul>
+  <li><a href="https://ottra.io/blog/gitlab-duo-vs-github-copilot-the-ultimate-ai-coding-assistant-comparison-2025" target="_blank">GitLab Duo vs GitHub Copilot（OTTRA 2025）</a></li>
+  <li><a href="https://www.infoq.com/news/2025/08/aws-kiro-spec-driven-agent/" target="_blank">Amazon Kiro詳細解説（InfoQ）</a></li>
+  <li><a href="https://kiro.dev/docs/" target="_blank">Kiro公式ドキュメント</a></li>
+  <li><a href="https://docs.continue.dev/" target="_blank">Continue.dev公式ドキュメント</a></li>
+  <li><a href="https://docs.tabnine.com/" target="_blank">Tabnine公式ドキュメント</a></li>
+  <li><a href="https://docs.gitlab.com/administration/gitlab_duo_self_hosted/" target="_blank">GitLab Duo Self-Hosted</a></li>
+</ul>
+</div>
+
+<div class="pager">
+  <a href="ch5.html">← 第5章 ガバナンス設計</a>
+  <a href="index.html">目次へ →</a>
+</div>
+
+<p class="meta">作成：2026-04 · zooming-knowledge-strata · 公開情報のみ使用</p>
+</body>
+</html>
