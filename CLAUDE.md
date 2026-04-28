@@ -72,8 +72,24 @@ zooming-knowledge-strata/
 │   └── integrity-flow/    # 社会との接続・発信
 ├── guides/                # 環境構築・参加ガイド（将来）
 ├── tools/                 # ツール・テンプレート公開（将来）
-└── docs/                  # 既存の知の地層
+└── docs/                  # GitHub Pages 公開コンテンツ
+    ├── index.html                              ← トップページ
+    ├── ai-utilization/
+    │   ├── ai-augmented-human.html             ← AI-augmented human 定義・分類
+    │   ├── enterprise-ai-coding-env.html       ← 【スタイル参照】企業AIコーディング環境比較
+    │   ├── automotive-copilot-guide/
+    │   │   ├── index.html
+    │   │   └── ch1〜ch6.html
+    │   └── 3-Tier_AI_Governance.pdf
+    └── internal-community/
+        ├── index.html
+        ├── overview.html
+        └── ch0-about〜ch8-questions.html
 ```
+
+### スタイルガイド
+新規 HTML 作成時は `docs/ai-utilization/enterprise-ai-coding-env.html` の `<head>` スタイルを継承する。  
+詳細な公開フロー（draft → 壁打ち → publish）は `thePath2Legacy/resources/skills/github-pages-publishing.md` を参照。
 
 ---
 
