@@ -75,7 +75,9 @@ zooming-knowledge-strata/
 └── docs/                  # GitHub Pages 公開コンテンツ
     ├── index.html                              ← トップページ
     ├── ai-utilization/
-    │   ├── ai-augmented-human.html             ← AI-augmented human 定義・分類
+    │   ├── midlife-ai-report/                  ← ミッドライフ × AI の現状（4章構成）
+    │   │   ├── index.html
+    │   │   └── ch1〜ch4.html
     │   ├── enterprise-ai-coding-env.html       ← 【スタイル参照】企業AIコーディング環境比較
     │   ├── automotive-copilot-guide/
     │   │   ├── index.html

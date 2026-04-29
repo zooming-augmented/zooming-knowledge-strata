@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第1章：AIと人間の関係性 — ミッドライフ × AI</title>
+  <style>
+    body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
+    h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
+    h2 { font-size: 1.15rem; color: #222; margin-top: 2.8rem; border-left: 4px solid #0066cc; padding-left: 10px; }
+    h3 { font-size: 0.97rem; color: #444; margin-top: 1.6rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.88rem; }
+    th { background: #f0f4f8; text-align: left; padding: 8px 12px; border: 1px solid #ccc; }
+    td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
+    tr:nth-child(even) td { background: #fafafa; }
+    .note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.88rem; }
+    .summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
+    .level-box { background: #f7fdf7; border: 1px solid #b0d8b0; border-radius: 6px; padding: 14px 18px; margin: 0.7rem 0; }
+    .level-num { display: inline-block; background: #0066cc; color: white; border-radius: 50%; width: 24px; height: 24px; text-align: center; line-height: 24px; font-size: 0.8rem; font-weight: bold; margin-right: 8px; }
+    .ref { font-size: 0.82rem; color: #666; margin-top: 0.3rem; }
+    .meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
+    .breadcrumb { font-size: 0.85rem; margin-bottom: 2rem; color: #888; }
+    .nav-pages { display: flex; justify-content: space-between; margin-top: 2.5rem; font-size: 0.9rem; }
+    a { color: #0066cc; }
+    ul, ol { padding-left: 1.4rem; }
+    li { margin: 5px 0; }
+    .tag-human { display: inline-block; background: #fff0e0; color: #a05000; border-radius: 3px; padding: 2px 7px; font-size: 0.78rem; font-weight: bold; margin-right: 4px; }
+    .tag-ai { display: inline-block; background: #e0eeff; color: #004db3; border-radius: 3px; padding: 2px 7px; font-size: 0.78rem; font-weight: bold; margin-right: 4px; }
+  </style>
+</head>
+<body>
+
+<p class="breadcrumb">
+  <a href="../../index.html" style="color: #0066cc; text-decoration: none;">← zooming-knowledge-strata</a>
+  　／　<a href="index.html" style="color: #0066cc; text-decoration: none;">ミッドライフ × AI の現状</a>
+</p>
+
+<h1>第1章：AIと人間の関係性</h1>
+<p style="color:#666; font-style:italic; margin-top:0.3rem;">何がどう変わろうとしているか — 学術・業界の整理</p>
+
+<div class="summary-box">
+  <strong>この章のポイント</strong>
+  <ul>
+    <li>「AI-augmented human（AIによって能力を拡張された人間）」という考え方は、学術・産業界で体系化が進んでいる</li>
+    <li>AIに「置き換えられる」のではなく、AIと組むことで「より自分らしく機能する」関係性が論点の中心</li>
+    <li>協働スタイルは用途・状況・信頼度によって使い分けるものであり、一つの正解はない</li>
+  </ul>
+</div>
+
+<!-- ========== Section 1 ========== -->
+<h2>1. AI-augmented human とは</h2>
+
+<p>「AI-augmented human（AIによって能力を拡張された人間）」とは、AIシステムとの継続的な協働を通じて、<strong>単独では届かなかった思考・判断・行動の質に到達できるようになった人間</strong>のことを指す。</p>
+
+<p>重要なのは「置き換え（replacement）」ではなく「拡張（augmentation）」という点。AIが人間の仕事を奪うのではなく、人間がAIを使うことで<em>より自分らしく、より深く</em>機能することが目的となる。</p>
+
+<table>
+  <tr>
+    <th>概念</th>
+    <th>内容</th>
+  </tr>
+  <tr>
+    <td><strong>Augmentation（拡張）</strong></td>
+    <td>人間の認知・判断・行動の範囲をAIが広げる。人間が主体のまま、能力の上限が引き上がる</td>
+  </tr>
+  <tr>
+    <td><strong>Replacement（置き換え）</strong></td>
+    <td>AIが人間のタスクを代行・代替する。人間の関与が減る方向</td>
+  </tr>
+</table>
+
+<div class="note">
+  <strong>「Missing Middle」の考え方（Accenture / Wilson &amp; Daugherty, HBR 2018）</strong><br>
+  「AIが人間を置き換えるか、人間がAIを道具として使うか」という二項対立の間に、<strong>人間とAIが互いに補完し合う中間領域</strong>がある。この Missing Middle こそが AI-augmented human が活躍する場所。人間はAIを訓練・説明・監督し、AIは人間の能力を拡張する。
+</div>
+
+<!-- ========== Section 2 ========== -->
+<h2>2. 協働スタイルの分類</h2>
+
+<h3>2-1. 日常利用の距離感モデル（Papachristos et al. 2021）</h3>
+
+<p>非専門家が日常タスクでAIをどう位置づけるかを分類した研究。個人の日常利用に最も近いフレームワーク。</p>
+
+<table>
+  <tr>
+    <th>スタイル</th>
+    <th>AIへの信頼度</th>
+    <th>人間の役割</th>
+    <th>典型的な使い方</th>
+  </tr>
+  <tr>
+    <td><strong>Mirror（鏡）</strong></td>
+    <td>低〜中</td>
+    <td>自分の判断を維持しつつ、AIで確認する</td>
+    <td>「私の考えで抜けていることはある？」</td>
+  </tr>
+  <tr>
+    <td><strong>Assistant（助手）</strong></td>
+    <td>中</td>
+    <td>AIの助言を参考にしながら自分で決める</td>
+    <td>「この選択肢で迷っている。整理してほしい」</td>
+  </tr>
+  <tr>
+    <td><strong>Guide（案内役）</strong></td>
+    <td>中〜高</td>
+    <td>AIの提案にかなり従う。最終確認のみ人間</td>
+    <td>「おすすめの方法で進めて、確認させて」</td>
+  </tr>
+  <tr>
+    <td><strong>Oracle（委任）</strong></td>
+    <td>高</td>
+    <td>AIをほぼ全面的に信頼して委任する</td>
+    <td>「任せる。AIの判断に従う」</td>
+  </tr>
+</table>
+<p class="ref">出典：Papachristos et al., "How do People Perceive the Role of AI in Human-AI Collaboration to Solve Everyday Tasks?", 2021</p>
+
+<h3>2-2. 知識労働・創作での協働スタイル（BCG × MIT Sloan / HBS, 2023–2025）</h3>
+
+<p>生成AI時代の知識労働・個人クリエイターに特に使いやすい分類。</p>
+
+<table>
+  <tr>
+    <th>スタイル</th>
+    <th>特徴</th>
+    <th>人間の役割</th>
+    <th>AIの役割</th>
+  </tr>
+  <tr>
+    <td><strong>Centaur（ケンタウロス）</strong></td>
+    <td>人間とAIでタスクを明確に分担する</td>
+    <td>全体方針・判断・価値観の決定</td>
+    <td>担当パートの実行・生成</td>
+  </tr>
+  <tr>
+    <td><strong>Cyborg（サイボーグ）</strong></td>
+    <td>人間とAIが作業プロセスに密に融合する</td>
+    <td>目的・方向・審美眼の維持</td>
+    <td>思考・発想の拡張・壁打ち</td>
+  </tr>
+  <tr>
+    <td><strong>Self-Automator（自動化委任）</strong></td>
+    <td>目的・手順ともにAIに委ねる</td>
+    <td>初期設定・例外対応・監督</td>
+    <td>ワークフロー全体の実行</td>
+  </tr>
+</table>
+<p class="ref">出典：Dell'Acqua et al. / BCG・Harvard・MIT Sloan, 2023；HBS Working Paper "Cyborgs, Centaurs and Self-Automators", 2025</p>
+
+<div class="note">
+  <strong>Cyborg と Centaur の使い分け</strong><br>
+  Centaur は「どこをAIに任せるか」を事前に決めて分業する。Cyborg は作業の流れの中でAIと一体化しながら進む。どちらが良いというわけではなく、タスクの性質・自分のスキル・時間によって使い分けるのが現実的。
+</div>
+
+<!-- ========== Section 3 ========== -->
+<h2>3. 個人利用の5段階モデル</h2>
+
+<p>学術フレームワーク（Papachristos, Gomez, GOLF等）を個人の日常利用に引き寄せた実践的な整理。「信頼をどう深めるか」の地図として使える。</p>
+
+<div class="level-box">
+  <p style="margin:0.3rem 0;"><span class="level-num">1</span><strong>検索・整理の助手</strong> — AIを「使える検索」として使い始める段階</p>
+  <p style="margin:0.3rem 0; font-size:0.88rem; color:#555; padding-left:32px;"><span class="tag-ai">AI</span> 情報収集・要約・比較　／　<span class="tag-human">人間</span> 目的を伝える・読む・選ぶ　／　例：旅行計画、制度調査、資料収集</p>
+</div>
+<div class="level-box">
+  <p style="margin:0.3rem 0;"><span class="level-num">2</span><strong>判断の鏡</strong> — 自分の考えをAIで照らし返す段階</p>
+  <p style="margin:0.3rem 0; font-size:0.88rem; color:#555; padding-left:32px;"><span class="tag-ai">AI</span> 抜け漏れの指摘・反論の提示　／　<span class="tag-human">人間</span> 自分の判断を持ち、確認する　／　例：進路相談、家計の見直し</p>
+</div>
+<div class="level-box">
+  <p style="margin:0.3rem 0;"><span class="level-num">3</span><strong>壁打ち・共創相手</strong> — 思考プロセスにAIを組み込む段階（Cyborg的）</p>
+  <p style="margin:0.3rem 0; font-size:0.88rem; color:#555; padding-left:32px;"><span class="tag-ai">AI</span> 仮説生成・問いかけ・構成案の提示　／　<span class="tag-human">人間</span> 価値観・違和感を伝え方向修正する　／　例：キャリア整理・アイデア発想</p>
+</div>
+<div class="level-box">
+  <p style="margin:0.3rem 0;"><span class="level-num">4</span><strong>実行代行者</strong> — タスクの実行をAIに分担する段階（Centaur的）</p>
+  <p style="margin:0.3rem 0; font-size:0.88rem; color:#555; padding-left:32px;"><span class="tag-ai">AI</span> 下書き・手順化・タスク整理・自動化　／　<span class="tag-human">人間</span> 承認・修正・最終判断　／　例：メール文書、資料作成</p>
+</div>
+<div class="level-box">
+  <p style="margin:0.3rem 0;"><span class="level-num">5</span><strong>長期伴走者</strong> — 人生の目標・振り返りをAIと続ける段階</p>
+  <p style="margin:0.3rem 0; font-size:0.88rem; color:#555; padding-left:32px;"><span class="tag-ai">AI</span> 目標管理・振り返り支援・習慣化サポート　／　<span class="tag-human">人間</span> 人生目標・優先順位・納得感を更新する　／　例：キャリア設計、学習継続</p>
+</div>
+
+<div class="note">
+  <strong>段階は順番通りに進む必要はない</strong><br>
+  多くの人はレベル1（情報収集）から入るが、用途によってどのレベルから始めてもよい。大切なのは「今自分はどのレベルを使っているか」を意識することで、次の使い方が見えてくる点。
+</div>
+
+<!-- ========== Section 4 ========== -->
+<h2>4. AI-augmented human の設計原則</h2>
+
+<p>学術研究・産業界のフレームワークを横断して共通する設計原則をまとめると、以下になる。</p>
+
+<ol>
+  <li>
+    <strong>人間が意図と価値観を保持し続ける</strong><br>
+    <span style="font-size:0.88rem; color:#555;">AIに任せる範囲が広がるほど、「なぜそうしたいか」を人間が明確にしておくことの重要性が増す。意図が薄れると、AIのもっともらしい出力に引きずられる。</span>
+  </li>
+  <li>
+    <strong>AIを信頼する段階を意識して深める</strong><br>
+    <span style="font-size:0.88rem; color:#555;">最初から高度な使い方を目指す必要はない。レベル1（情報収集）から始めて、実感を積み重ねながらレベル2・3へ進む。段階を飛ばすと「使ってみたが変化がない」で止まりやすい。</span>
+  </li>
+  <li>
+    <strong>AIが間違えることを前提に設計する</strong><br>
+    <span style="font-size:0.88rem; color:#555;">AIを過信しない仕組みを持つことが長期利用の安定につながる。人間が最終確認者であり続けることが鍵。</span>
+  </li>
+  <li>
+    <strong>「自動化の高さ」と「人間の制御権」は両立できる</strong><br>
+    <span style="font-size:0.88rem; color:#555;">Human-Centered AI（Shneiderman）の核心。AIにたくさん任せながら、重要な判断は人間が握り続けることは矛盾しない。</span>
+  </li>
+</ol>
+
+<div class="nav-pages">
+  <a href="index.html">← はじめに</a>
+  <a href="ch2.html">第2章：日本の実態 →</a>
+</div>
+
+<p class="meta">
+  調査・整理：zooming-augmented ／ 2026年4月<br>
+  <a href="index.html">↑ ミッドライフ × AI の現状 目次</a>　／　<a href="../../index.html">← zooming-knowledge-strata トップ</a>
+</p>
+
+</body>
+</html>

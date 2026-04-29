@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第4章：見えてきた問い — ミッドライフ × AI</title>
+  <style>
+    body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
+    h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
+    h2 { font-size: 1.15rem; color: #222; margin-top: 2.8rem; border-left: 4px solid #0066cc; padding-left: 10px; }
+    h3 { font-size: 0.97rem; color: #444; margin-top: 1.6rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.88rem; }
+    th { background: #f0f4f8; text-align: left; padding: 8px 12px; border: 1px solid #ccc; }
+    td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
+    tr:nth-child(even) td { background: #fafafa; }
+    .note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.88rem; }
+    .summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
+    .gap-box { background: #f4f4f4; border: 1px solid #ccc; border-radius: 6px; padding: 14px 18px; margin: 1rem 0; }
+    .note-link { background: #eef8ee; border: 1px solid #88c888; border-radius: 6px; padding: 16px 20px; margin: 2rem 0; text-align: center; }
+    .note-link a { color: #227722; font-weight: bold; font-size: 1rem; }
+    .ref { font-size: 0.82rem; color: #666; margin-top: 0.3rem; }
+    .meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
+    .breadcrumb { font-size: 0.85rem; margin-bottom: 2rem; color: #888; }
+    .nav-pages { display: flex; justify-content: space-between; margin-top: 2.5rem; font-size: 0.9rem; }
+    a { color: #0066cc; }
+    ul, ol { padding-left: 1.4rem; }
+    li { margin: 5px 0; }
+  </style>
+</head>
+<body>
+
+<p class="breadcrumb">
+  <a href="../../index.html" style="color: #0066cc; text-decoration: none;">← zooming-knowledge-strata</a>
+  　／　<a href="index.html" style="color: #0066cc; text-decoration: none;">ミッドライフ × AI の現状</a>
+</p>
+
+<h1>第4章：見えてきた問い</h1>
+<p style="color:#666; font-style:italic; margin-top:0.3rem;">調査を通じて浮き彫りになった空白</p>
+
+<div class="summary-box">
+  <strong>この章のポイント</strong>
+  <ul>
+    <li>AI-augmented human の学術フレームワークは、業務・創作・知識労働を主な対象としている</li>
+    <li>40代・50代の日常・身体性の文脈でAIとどう付き合うかを示した情報は、まだ少ない</li>
+    <li>「仕事・副業での効率化」以外の関係性——内省・家族・健康・人生設計——に関する整理がほぼない</li>
+  </ul>
+</div>
+
+<!-- ========== Section 1 ========== -->
+<h2>1. 学術フレームワークが前提とする文脈</h2>
+
+<p>第1章で整理した AI-augmented human の研究・フレームワークは、いずれも主に以下の文脈で議論されている。</p>
+
+<div class="gap-box">
+  <ul style="margin:0;">
+    <li>知識労働・ホワイトカラーの業務効率化（BCG × MIT Sloan）</li>
+    <li>専門職の意思決定支援（医療・法律・エンジニアリング）</li>
+    <li>クリエイターの創作プロセス</li>
+    <li>一般ユーザーの日常タスク（検索・スケジュール・情報整理）</li>
+  </ul>
+</div>
+
+<p>「AI-augmented human」という言葉は学術的に存在する。しかし、40代・50代の日常生活——子育て・介護・健康管理・キャリアの転換期・人生の問い直し——との接点が体系的に言語化された資料は、現時点でほぼ見当たらない。</p>
+
+<!-- ========== Section 2 ========== -->
+<h2>2. ミッドライフ × AI の空白</h2>
+
+<p>調査を通じて見えてきた空白を整理する。</p>
+
+<table>
+  <tr>
+    <th>テーマ</th>
+    <th>現状</th>
+    <th>空白</th>
+  </tr>
+  <tr>
+    <td><strong>仕事・副業</strong></td>
+    <td>事例・フレームワーク・データが豊富</td>
+    <td>40〜50代の当事者が語る情報が少ない</td>
+  </tr>
+  <tr>
+    <td><strong>日常・家族</strong></td>
+    <td>タスク効率化の事例は存在する</td>
+    <td>家族・介護・子育て文脈でのAI関係性がほぼない</td>
+  </tr>
+  <tr>
+    <td><strong>内省・意味づけ</strong></td>
+    <td>千葉大学研究で「対話型AIと幸福感」が示された</td>
+    <td>具体的なアプローチ・事例・言語化がまだない</td>
+  </tr>
+  <tr>
+    <td><strong>身体・健康</strong></td>
+    <td>医療・専門職向け研究はある</td>
+    <td>日常の健康管理・加齢とAIの関係性がない</td>
+  </tr>
+  <tr>
+    <td><strong>人生設計</strong></td>
+    <td>GOLF（長期目標タスク）として研究がある</td>
+    <td>ミッドライフ特有の「問い直し」との接点がない</td>
+  </tr>
+</table>
+
+<!-- ========== Section 3 ========== -->
+<h2>3. 整理されていないこと</h2>
+
+<p>データとして確認できたのは「利用経験率が低い」「重要と認識しているが使えていない」という現状だ。しかし、より根本的な問いがある。</p>
+
+<ul>
+  <li>40〜50代が「AIとどう付き合うか」を自分の言葉で語った一次情報が少ない</li>
+  <li>「使い始めた先の自分が想像できない」という感覚に、どう答えるか</li>
+  <li>仕事の効率化でも副業の収益化でもない、もう一つのAI活用の軸が言葉になっていない</li>
+</ul>
+
+<div class="note">
+  これは批判ではない。学術研究も産業界の整理も、まず汎用的なフレームワークを作り、それを個別の文脈に落とし込んでいく順序をたどる。ミッドライフ × AI の接点は、まだその段階にある。
+</div>
+
+<!-- ========== Section 4 ========== -->
+<h2>4. 参考文献・データ出典</h2>
+
+<table>
+  <tr>
+    <th>出典</th>
+    <th>内容</th>
+    <th>URL</th>
+  </tr>
+  <tr>
+    <td>総務省 令和7年版情報通信白書</td>
+    <td>年代別AI利用経験率</td>
+    <td><a href="https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd112210.html" target="_blank">soumu.go.jp</a></td>
+  </tr>
+  <tr>
+    <td>博報堂100年生活者研究所（2025年）</td>
+    <td>AI活用と幸福度の関係</td>
+    <td><a href="https://www.hakuhodo.co.jp/news/newsrelease/115754/" target="_blank">hakuhodo.co.jp</a></td>
+  </tr>
+  <tr>
+    <td>BEYOND AGE（2026年）</td>
+    <td>50〜65歳のAI認識と障壁</td>
+    <td><a href="https://jinjibu.jp/news/detl/26269/" target="_blank">jinjibu.jp</a></td>
+  </tr>
+  <tr>
+    <td>カオナビ（2025年）</td>
+    <td>業務での生成AI活用実態</td>
+    <td><a href="https://codezine.jp/news/detail/21743" target="_blank">codezine.jp</a></td>
+  </tr>
+  <tr>
+    <td>千葉大学（2026年）</td>
+    <td>対話型AIと幸福感の関係</td>
+    <td><a href="https://www.cn.chiba-u.jp/news/260121/" target="_blank">chiba-u.jp</a></td>
+  </tr>
+  <tr>
+    <td>Papachristos et al., 2021</td>
+    <td>日常利用のAI協働スタイル分類</td>
+    <td>ResearchGate</td>
+  </tr>
+  <tr>
+    <td>Dell'Acqua et al. / BCG×MIT Sloan, 2023–2025</td>
+    <td>Centaur / Cyborg / Self-Automator</td>
+    <td>HBS Working Paper</td>
+  </tr>
+</table>
+
+<!-- note記事公開後にリンクを追加 -->
+<!--
+<div class="note-link">
+  <p>このレポートで見えてきた課題への実践記録：</p>
+  <a href="https://note.com/zooming_aug/n/xxxxx">→ [記事タイトル]（note）</a>
+</div>
+-->
+
+<div class="nav-pages">
+  <a href="ch3.html">← 第3章：動き始めた人たち</a>
+  <a href="index.html">↑ 目次に戻る</a>
+</div>
+
+<p class="meta">
+  調査・整理：zooming-augmented ／ 2026年4月<br>
+  <a href="index.html">↑ ミッドライフ × AI の現状 目次</a>　／　<a href="../../index.html">← zooming-knowledge-strata トップ</a>
+</p>
+
+</body>
+</html>
