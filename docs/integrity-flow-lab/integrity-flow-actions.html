@@ -3,198 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Integrity Flow Actions — Integrity Flow Lab</title>
+  <title>Integrity Flow Actions（初級） — Integrity Flow Lab</title>
   <style>
-    body { font-family: sans-serif; max-width: 860px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
-    h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
-    h2 { font-size: 1.15rem; color: #222; margin-top: 2.8rem; border-left: 4px solid #0066cc; padding-left: 10px; }
-    h3 { font-size: 1rem; color: #444; margin-top: 1.6rem; }
-    a { color: #0066cc; }
-    ul, ol { padding-left: 1.4rem; }
-    li { margin: 5px 0; }
-    .lead { color: #555; font-size: 1rem; margin: 1rem 0 1.6rem; }
-    .summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
-    .action { border: 1px solid #ddd; border-radius: 6px; padding: 14px 18px; margin: 1rem 0; background: #fff; }
-    .action h3 { margin-top: 0; }
-    .note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.9rem; }
-    .level-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
-    .level-table th { background: #eef4ff; padding: 8px 12px; text-align: left; border: 1px solid #b0c8f0; }
-    .level-table td { padding: 8px 12px; border: 1px solid #ddd; }
-    .flow-box { background: #f7f7f7; border: 1px solid #ddd; border-radius: 6px; padding: 14px 18px; font-size: 0.9rem; white-space: pre-wrap; margin: 1rem 0; }
-    .meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
+    body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #222; line-height: 1.7; font-size: 0.95rem; }
+    h1 { font-size: 1.2rem; border-bottom: 1px solid #ccc; padding-bottom: 6px; margin-bottom: 0.3rem; }
+    h2 { font-size: 1rem; color: #0066cc; margin-top: 2rem; margin-bottom: 0.4rem; }
+    h3 { font-size: 0.95rem; color: #444; margin-top: 1.4rem; margin-bottom: 0.3rem; }
+    .lead { color: #777; font-size: 0.85rem; margin: 0.3rem 0 0.5rem; }
+    ul { margin: 0.3rem 0 0.3rem 1.2rem; padding: 0; }
+    li { margin: 3px 0; }
+    a { color: #0066cc; font-size: 0.85rem; }
+    .day-label { display: inline-block; background: #0066cc; color: white; font-size: 0.75rem; padding: 2px 8px; border-radius: 3px; margin-bottom: 0.5rem; }
+    .check { color: #888; font-size: 0.82rem; font-style: italic; margin: 0.4rem 0 0.2rem; }
+    .note { color: #888; font-size: 0.82rem; margin-top: 2rem; border-top: 1px solid #eee; padding-top: 0.8rem; }
   </style>
 </head>
 <body>
 
-<p style="font-size: 0.85rem; margin-bottom: 2rem; color: #888;">
-  <a href="index.html" style="color: #0066cc; text-decoration: none;">← Integrity Flow Lab</a>
-</p>
+<h1>Integrity Flow Actions — 初級編</h1>
+<p class="lead">v5 / 2026-05-04 — <a href="index.html">← Integrity Flow Lab</a></p>
 
-<h1>Integrity Flow Actions</h1>
-<p class="lead">小さな一歩から、人生を自分に取り戻す — アクション候補一覧</p>
+<p style="font-size:0.9rem; color:#555; margin: 1rem 0 0.5rem;">input（起点）からoutput（発信）まで、AIと一緒に小さく動くための行動フロー。<br>
+<strong>目標：記事の60〜80%は自分の言葉・体験・感情から書く。AIはつなぎと引き出し役。</strong></p>
 
-<div class="summary-box">
-  自分に合う一歩を1つ選んで、5〜15分で試してみてください。<br>
-  完璧にやる必要はありません。公開しなくても大丈夫です。<br>
-  <strong>起点は Direction（仮の最終形）かときめき。どちらもなければ A01 から。</strong>
+<div style="background:#f5f9ff; border:1px solid #b0c8f0; border-radius:6px; padding:12px 16px; margin: 1rem 0; font-size:0.88rem;">
+<strong>Day 1</strong> 環境・起点を整える ／
+<strong>Day 2</strong> 素材・設計・骨格を作る ／
+<strong>Day 3</strong> 書いて、出す
 </div>
 
-<h2>起点の見つけ方</h2>
+<!-- Day 1 -->
+<p class="day-label">Day 1</p>
+<h2>STEP 0｜起点の確認</h2>
+<ul>
+  <li><strong>Direction</strong>：向かいたい方向を仮置きする。曖昧でOK。</li>
+  <li><strong>テーマ</strong>：今日書きたいこと・試したいことを1つ決める。</li>
+  <li><strong>読者</strong>：届けたい相手のイメージを確認する。</li>
+  <li>決まっているものはそのまま入力。「まだ」のものだけAIと一緒に決める。</li>
+</ul>
 
-<div class="summary-box">
-  <strong>Direction（仮の最終形）</strong>：「こういう方向に進みたい」という仮の目的地。正確でなくていい。曖昧でOK。<br><br>
-  <strong>ときめき</strong>：内側から出てくる「これ、やってみたい」という感覚。他人の期待や義務感ではなく、自分の反応を起点にする。<br><br>
-  どちらもなければ A01 から始めてください。AIと話しながら見つかります。
-</div>
+<!-- Day 2 -->
+<p class="day-label" style="margin-top:1.6rem;">Day 2</p>
+<h2>STEP 1｜素材を集める ＋ 場面を引き出す</h2>
+<ul>
+  <li><strong>素材確認</strong>：体験・気づき・参考情報のうち、手元にあるものを選ぶ。</li>
+  <li><strong>場面を引き出す（重要）</strong>：「その素材の中で、感情が一番動いた瞬間・場面はいつか？」を1つ言葉にする。ここが記事の核になる。</li>
+  <li>まだ何もない場合：STEP 4で今日の小さな試行を決めてから書く。</li>
+</ul>
 
-<h2>レベル設計</h2>
+<h2>STEP 2｜設計する（誰に・何を・どこで）＋ マーケティング</h2>
+<h3>2-A｜マーケティングリサーチ（任意）</h3>
+<ul>
+  <li>AIに調べてもらう / 自分の調査結果を貼る / スキップ　の3択。</li>
+  <li>note・X・Webの「競合」と「空白地帯」を確認する。</li>
+</ul>
+<h3>2-B｜記事を設計する</h3>
+<ul>
+  <li><strong>切り口</strong>：AIに2〜3案出させて選ぶ。</li>
+  <li><strong>独自性の確認（重要）</strong>：「この切り口、あなたにしか言えない理由は何か？」を1つ言葉にする。答えが出ない場合は切り口を変える。</li>
+  <li><strong>成功の定義</strong>：「この記事を読んだ人が次の5分でやりたくなることは何か？」を1文で言えるか確認する。</li>
+  <li><strong>書く範囲</strong>：1段落 / 構成と一言メモ / 500字 / 全部　の中から今日の範囲を決める。</li>
+</ul>
 
-<table class="level-table">
-  <tr><th>レベル</th><th>対象</th><th>AI活用</th></tr>
-  <tr><td><strong>初級（共通）</strong></td><td>誰でも。AI初心者OK</td><td>相談・補助・指示</td></tr>
-  <tr><td><strong>中級（職種別）</strong></td><td>エンジニア・バックオフィス・製造など</td><td>コンテキスト設計</td></tr>
-  <tr><td><strong>上級（個人最適化）</strong></td><td>人事・マーケター・SWエンジニアなど</td><td>自動化・パイプライン</td></tr>
-</table>
+<h2>STEP 3｜動けない理由を1つ見つける</h2>
+<ul>
+  <li>時間 / 何を書くか迷っている / 公開への不安 / 完成への自信 のどれかを1つ選ぶ。</li>
+  <li>AIに「このボトルネックを崩す最小の一歩は何か」を聞く。</li>
+</ul>
 
-<p>上から順にやる必要はありません。一部だけ選んで構いません。</p>
+<h2>STEP 4｜今日のアクションを1つ決める</h2>
+<ul>
+  <li>5〜15分でできる形に小さくする。できなければさらに分割する。</li>
+  <li>「今日はここまで」を明示する。完璧な計画より、動ける計画を優先する。</li>
+</ul>
 
-<h2>初級フロー</h2>
+<!-- Day 3 -->
+<p class="day-label" style="margin-top:1.6rem;">Day 3</p>
+<h2>STEP 5｜実践 ＋ 自分の言葉チェック</h2>
+<ul>
+  <li>計画した最初の一歩を実行する。70点で次のステップへ進む。</li>
+  <li><strong>自分の言葉チェック（重要）</strong>：書いた内容のうち、自分の経験・感情から書いた部分はどこか確認する。60%未満なら1か所だけ自分の言葉に書き直す。</li>
+</ul>
 
-<div class="flow-box">Direction またはときめき
-  → リサーチする
-  → アクションを選ぶ
-  → 動けない理由（ボトルネック）を特定する
-  → 5〜15分の計画を立てる
-  → 実践する
-  → 観察・振り返り
-  → 次の一歩を決める
-  → 公開する（任意）
+<h2>STEP 6｜振り返り</h2>
+<ul>
+  <li><strong>3行記録</strong>：今日やったこと / 気づき / 次にやること</li>
+  <li><strong>人間比率の確認</strong>：今日書いたもので、自分にしか書けない部分はどこか記録する。次回はその割合を少し増やすことを意識する。</li>
+  <li><strong>Direction更新</strong>：実践を通じて変わったことを反映する。</li>
+</ul>
 
-成功の定義：次の一歩が決まり、次の循環に入れたら成功</div>
+<h2>STEP 7｜Output（任意）</h2>
+<ul>
+  <li>公開できる部分だけ外に出す。全部出す必要はない。</li>
+  <li>発信の形：note / X / GitHub Pages / 社内メモ / 誰かへのシェア</li>
+  <li>発信した内容を次の起点（Direction・テーマ）にする。</li>
+</ul>
 
-<h2>まず始める</h2>
+<hr style="margin-top: 2rem; border-color: #eee;">
 
-<div class="action">
-  <h3>A01. AIに「いま気になっていること」を話す</h3>
-  <p><strong>目的：</strong>頭の中のもやもやを外に出す</p>
-  <p><strong>やること：</strong>ChatGPTやClaudeに、音声または文章で3分だけ話す</p>
-  <p><strong>例：</strong>「最近気になっていることを整理したい。結論を急がず、問いを一緒に見つけて」</p>
-  <p><strong>記録：</strong>気づいた言葉を1つだけ残す</p>
-</div>
+<p style="font-size:0.85rem; color:#555; margin: 1rem 0 0.3rem;"><strong>原則</strong></p>
+<ul style="font-size:0.85rem; color:#555;">
+  <li>上から順にやる必要はない。詰まったステップから始めてよい。</li>
+  <li>成功の定義：次の一歩が決まり、次の循環に入れたら成功。</li>
+  <li>このリストは使うたびに育てる。tune our flow — 小さな一歩を、集めよう</li>
+</ul>
 
-<div class="action">
-  <h3>A02. 今日の小さな一歩をAIと決める</h3>
-  <p><strong>目的：</strong>情報収集で止まらず、行動に移る</p>
-  <p><strong>やること：</strong>Direction・ときめき・今の状態・使える時間を伝えて、5〜15分の行動候補を出してもらう</p>
-  <p><strong>例：</strong>「今日は疲れているけど、5分だけ進めたい。私に合う一歩を3つ出して」</p>
-  <p><strong>記録：</strong>選んだ一歩と、選んだ理由</p>
-</div>
-
-<div class="action">
-  <h3>A03. 「何を知るか」より「何のために動くか」を確認する</h3>
-  <p><strong>目的：</strong>AI情報の洪水で迷子にならない</p>
-  <p><strong>やること：</strong>新しいAIニュースやツールを見た時に、自分の目的と関係するかを確認する</p>
-  <p><strong>例：</strong>「この情報は、私の生活・仕事・家族・発信のどれに効く？」</p>
-  <p><strong>記録：</strong>今はやらないことも書く</p>
-</div>
-
-<div class="action">
-  <h3>A04. 動けない理由（ボトルネック）を1つ見つける</h3>
-  <p><strong>目的：</strong>動けない理由を特定して、小さく崩す</p>
-  <p><strong>やること：</strong>やりたいことに対して、時間・不安・情報不足・技術不足・公開抵抗のどれが詰まりかをAIと確認する</p>
-  <p><strong>例：</strong>「この行動が進まない理由を、ボトルネックとして3つに分解して。最初に崩すならどれ？」</p>
-  <p><strong>記録：</strong>今日崩すボトルネック / 崩し方</p>
-</div>
-
-<h2>Life Flow — 生活を整える</h2>
-
-<div class="action">
-  <h3>L01. 睡眠・食事・運動のどれか1つを観察する</h3>
-  <p><strong>目的：</strong>AI実践を続ける土台を整える</p>
-  <p><strong>やること：</strong>今日の生活の中で、乱れているものを1つだけ見る</p>
-  <p><strong>例：</strong>「最近の睡眠を整えるために、今日できる一歩を一緒に考えて」</p>
-  <p><strong>記録：</strong>今日できたこと / 明日変えること</p>
-</div>
-
-<div class="action">
-  <h3>L02. 家族や身近な人との時間を1つ守る</h3>
-  <p><strong>目的：</strong>AI活用が生活を削る方向に進まないようにする</p>
-  <p><strong>やること：</strong>15分だけ、スマホを置いて会話・家事・散歩などをする</p>
-  <p><strong>記録：</strong>やってよかったこと</p>
-</div>
-
-<div class="action">
-  <h3>L03. 自分のときめきセンサーを観察する</h3>
-  <p><strong>目的：</strong>dutyに押されて鈍った感覚を取り戻す</p>
-  <p><strong>やること：</strong>今日少しワクワクしたことを1つ書く</p>
-  <p><strong>例：</strong>「今日のこの反応は、本物のときめきか、短期的な刺激かを一緒に見て」</p>
-  <p><strong>記録：</strong>ワクワクした理由の仮説</p>
-</div>
-
-<h2>Focus Flow — 集中して作る</h2>
-
-<div class="action">
-  <h3>F01. 1つのテーマを15分だけ深掘りする</h3>
-  <p><strong>目的：</strong>情報収集を、自分の問いに結びつける</p>
-  <p><strong>やること：</strong>気になるテーマを1つ選び、AIと壁打ちする</p>
-  <p><strong>例：</strong>「このテーマについて、私が発信するならどこに独自性がある？」</p>
-  <p><strong>記録：</strong>使えそうな問い・タイトル・一文</p>
-</div>
-
-<div class="action">
-  <h3>F02. AIに調べてもらう前に、自分の仮説を書く</h3>
-  <p><strong>目的：</strong>AI任せの整理にしない</p>
-  <p><strong>やること：</strong>調査前に、自分はどう思っているかを3行書く</p>
-  <p><strong>例：</strong>「調査前の仮説を読んで、確認すべき論点を出して」</p>
-  <p><strong>記録：</strong>調査前後で変わったこと</p>
-</div>
-
-<div class="action">
-  <h3>F03. 下書きを完成させずに公開候補へ進める</h3>
-  <p><strong>目的：</strong>完璧主義で止まらない</p>
-  <p><strong>やること：</strong>70点の下書きを、公開候補として保存する</p>
-  <p><strong>例：</strong>「この下書きを、完成版ではなく進行中の記録として読める形に整えて」</p>
-  <p><strong>記録：</strong>まだ不安な点 / 公開してもよい点</p>
-</div>
-
-<h2>Integrity Flow — 外へ流す</h2>
-
-<div class="action">
-  <h3>I01. 今日の実践を3行で残す</h3>
-  <p><strong>目的：</strong>行動を一次価値にする</p>
-  <p><strong>フォーマット：</strong></p>
-  <ul>
-    <li>今日やったこと：</li>
-    <li>気づき：</li>
-    <li>次にやること：</li>
-  </ul>
-  <p><strong>例：</strong>「この3行を、noteやXに出せる短い観察文に整えて」</p>
-</div>
-
-<div class="action">
-  <h3>I02. 公開してよい部分だけ外に出す</h3>
-  <p><strong>目的：</strong>公開のハードルを下げる</p>
-  <p><strong>やること：</strong>privateな思索から、公開してもよい一文だけ抜き出す</p>
-  <p><strong>例：</strong>「このメモから、公開してよい範囲の短文を3案作って」</p>
-  <p><strong>記録：</strong>出した一文 / 出さなかった理由</p>
-</div>
-
-<div class="action">
-  <h3>I03. 100円でプロセスを売る実験をする</h3>
-  <p><strong>目的：</strong>行動を続ける仕組みを作る</p>
-  <p><strong>やること：</strong>noteで、完成品ではなく「試行錯誤のストーリー」を100円で出す</p>
-  <p><strong>例：</strong>「この記事を、役立つ情報の販売ではなく、プロセス共有として誠実に説明して」</p>
-  <p><strong>記録：</strong>出した理由 / 次にやること</p>
-</div>
-
-<div class="note" style="margin-top: 2.5rem;">
-  <strong>tune our flow — 小さな一歩を、集めよう</strong><br>
-  次の一歩が決まり、次の循環に入れたら成功です。
-</div>
-
-<p class="meta">
-  v0 / 2026-05-03 / zooming with AI — 週1回更新予定<br>
-  <a href="index.html">← Integrity Flow Lab トップ</a>
+<p class="note">
+  初級 v5 / 2026-05-04 — 定期更新予定<br>
+  <a href="index.html">← Integrity Flow Lab</a>
 </p>
 
 </body>
