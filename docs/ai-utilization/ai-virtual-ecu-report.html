@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIエージェント × 仮想ECU／マイコンシミュレータ 事例調査</title>
+  <style>
+    body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
+    h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
+    h2 { font-size: 1.15rem; color: #222; margin-top: 2.8rem; border-left: 4px solid #0066cc; padding-left: 10px; }
+    h3 { font-size: 0.97rem; color: #444; margin-top: 1.6rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.86rem; }
+    th { background: #f0f4f8; text-align: left; padding: 8px 12px; border: 1px solid #ccc; }
+    td { padding: 8px 12px; border: 1px solid #ddd; vertical-align: top; }
+    tr:nth-child(even) td { background: #fafafa; }
+    .note { background: #f9f5e8; border-left: 4px solid #e6b800; padding: 12px 16px; margin: 1rem 0; font-size: 0.88rem; }
+    .summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
+    .toc { background: #f7f7f7; border: 1px solid #ddd; border-radius: 4px; padding: 12px 20px; margin: 1.4rem 0; font-size: 0.88rem; }
+    .toc ol { margin: 0; padding-left: 1.4rem; }
+    .toc li { margin: 4px 0; }
+    .meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
+    a { color: #0066cc; }
+    ul, ol { padding-left: 1.4rem; }
+    li { margin: 5px 0; }
+    .flow { background: #f7faff; border: 1px solid #d6e4f5; border-radius: 6px; padding: 14px 18px; margin: 1.2rem 0; font-size: 0.9rem; }
+    .flow code { display: block; white-space: pre-wrap; font-family: "SFMono-Regular", Consolas, monospace; font-size: 0.82rem; color: #234; line-height: 1.5; }
+    .tag { display:inline-block; border-radius:3px; padding:2px 7px; font-size:0.76rem; font-weight:bold; }
+    .t-acad { background:#e0eeff; color:#004db3; }
+    .t-vendor { background:#e8f3e8; color:#1a6e1a; }
+  </style>
+</head>
+<body>
+
+<p style="font-size: 0.85rem; margin-bottom: 2rem; color: #888;">
+  <a href="../index.html" style="color: #0066cc; text-decoration: none;">← zooming-knowledge-strata</a>
+</p>
+
+<h1>AIエージェント × 仮想ECU／マイコンシミュレータ 事例調査</h1>
+<p style="color:#666; font-style:italic; margin-top:0.3rem;">AIエージェントが設計・実装・テストに関与し、マイコンシミュレータ（仮想ECU／仮想MCU）をパイプラインに接続している公開事例（2026年6月時点）</p>
+
+<div class="summary-box">
+  <strong>このページの結論</strong>
+  <ul>
+    <li>「AIエージェント × 仮想MCU をクローズドループで結んだ」公開事例は<strong>まだ少数</strong>。確実に追えるのは研究原型とベンダー公式リファレンスに集中。</li>
+    <li>棲み分けは明確で、<strong>Wokwi＝回路＋ファーム＋仮想I/Oの機能検証</strong>、<strong>QEMU＝RTOS・ネットワーク・セキュリティ・性能の深い検証</strong>。</li>
+    <li>勝ち筋は「完全自律」より<strong>観測設計</strong>。シミュレータの結果をAIに返すフィードバック経路を先に作るほど成功率が高い。</li>
+  </ul>
+</div>
+
+<div class="toc">
+  <strong>目次</strong>
+  <ol>
+    <li><a href="#conclusion">何がわかったか（結論）</a></li>
+    <li><a href="#cases">注目事例（5件）</a></li>
+    <li><a href="#arch">典型アーキテクチャ</a></li>
+    <li><a href="#howto">実装を検討するなら（現実解）</a></li>
+    <li><a href="#wrapup">総括</a></li>
+  </ol>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="conclusion">1. 何がわかったか（結論）</h2>
+
+<p>AIが設計・コード生成・テスト・修正のいずれかを担い、<strong>仮想MCUの実行結果を次の修正判断の入力に使う</strong>——この条件を公開資料で厳密に満たす事例は、現状ごく少数です。確実に追えるのは大きく2層に分かれます。</p>
+
+<ol>
+  <li><strong>研究原型・評価パイプライン</strong>（AIループ自体は先進的だが、CI/CD製品名の開示は弱い）</li>
+  <li><strong>ベンダー公式リファレンス実装</strong>（CI/CD連携は強いが、AIの自律性はまだ「コーディング支援」寄り）</li>
+</ol>
+
+<p>両者は補完関係にあります。研究側が「AI＋仮想MCUループ」の形を先に示し、商用ツール側がCI/CDへの実装容易性を埋めている、というのが2025〜2026年時点の現実的な見立てです。</p>
+
+<!-- ============================================================ -->
+<h2 id="cases">2. 注目事例（5件）</h2>
+
+<table>
+  <tr>
+    <th>事例</th>
+    <th>性格</th>
+    <th>仮想環境</th>
+    <th>AIの主役割</th>
+    <th>主な指標・成果</th>
+  </tr>
+  <tr>
+    <td><strong>EmbedAgent / EmbedBench</strong><br>（中国科学院ほか）</td>
+    <td><span class="tag t-acad">学術・厳密</span></td>
+    <td>Wokwi</td>
+    <td>回路設計・コード生成・クロスプラットフォーム移植</td>
+    <td>pass@1中心。compiler feedback + RAG で DeepSeek-R1 を 55.6%→65.1% に改善</td>
+  </tr>
+  <tr>
+    <td><strong>Securing LLM-Generated Embedded Firmware</strong><br>（Ontario Tech Univ.）</td>
+    <td><span class="tag t-acad">学術＋公開リポジトリ</span></td>
+    <td>QEMU（FreeRTOS / Cortex-M3）</td>
+    <td>生成＋脅威検出・最適化・コンプライアンス・自動パッチ</td>
+    <td>脆弱性修復率 67.3%→92.4%、WCET 12.8→8.6ms、Jitter 345→195µs</td>
+  </tr>
+  <tr>
+    <td><strong>APIOT</strong><br>（産業OT向け研究）</td>
+    <td><span class="tag t-acad">学術・厳密</span></td>
+    <td>IoT Virtual Lab（QEMUベース / Cortex-M3・M4F, Zephyr）</td>
+    <td>発見→攻撃→パッチ→再検証を自律実行＋Overseer統制</td>
+    <td>ミッション成功率 90%（Overseer有効時 100%、かつ 20.5%高速化）</td>
+  </tr>
+  <tr>
+    <td><strong>Wokwi MCP + Wokwi CI + GitHub Actions</strong><br>（Wokwi / CodeMagic）</td>
+    <td><span class="tag t-vendor">ベンダー公式</span></td>
+    <td>Wokwi Simulator / CI / CLI</td>
+    <td>MCP経由でAIがテスト起動・仮想ハード操作・シリアル監視</td>
+    <td>every commit実行、expect_text / automation scenario成否</td>
+  </tr>
+  <tr>
+    <td><strong>MPLAB AI Coding Assistant + CI/CD Wizard</strong><br>（Microchip）</td>
+    <td><span class="tag t-vendor">ベンダー公式</span></td>
+    <td>MPLAB X IDE 内蔵 Simulator</td>
+    <td>Microchip特化のコード生成・レビュー・エラー検出</td>
+    <td>Jenkins+Docker。Unity/MISRA/カバレッジを一体化</td>
+  </tr>
+</table>
+
+<div class="note">
+  <strong>読み解き：</strong> 研究3件（EmbedAgent / Securing… / APIOT）が要求条件に最も近い「AIが仮想MCUの結果を再入力に使うクローズドループ」を成立させています。一方、Wokwi系・Microchip系は CI/CD への組み込みやすさで先行する公式リファレンスです。
+</div>
+
+<!-- ============================================================ -->
+<h2 id="arch">3. 典型アーキテクチャ</h2>
+
+<p>公開事例を横断すると、共通パターンはほぼ次の閉ループです。</p>
+
+<div class="flow">
+<code>[要求・仕様・タスク記述]
+        ↓
+[AIエージェント：設計支援・コード生成]
+        ↓
+[ビルド/コンパイル]  ←──────────────┐
+        ↓                           │
+[MCUシミュレータ/仮想ボード]          │ 修正ループ
+  Wokwi / QEMU / IDE Simulator       │
+        ↓                           │
+[自動テスト：シリアル検証・仮想I/O・   │
+  ファジング・静的解析]               │
+        ↓                           │
+[計測：pass率・カバレッジ・WCET・Jitter]│
+        ↓                           │
+[AIエージェント：バグ修正・最適化・再生成]┘
+
+  ※ CI/CD or Orchestrator
+    （GitHub Actions / Jenkins / Custom Scripts）が
+     ビルド・シミュレータ・テストを駆動</code>
+</div>
+
+<p>ポイントは、ボトルネックが「生成能力」そのものより <strong>「何を根拠に次の修正をさせるか」という観測設計</strong> にあること。EmbedAgentはcompiler feedbackで、Securing…はfuzz/static/runtimeの複数観測で、APIOTはOverseerによるランタイム統制で、それぞれ精度・信頼性を引き上げています。</p>
+
+<!-- ============================================================ -->
+<h2 id="howto">4. 実装を検討するなら（現実解）</h2>
+
+<ul>
+  <li>まず<strong>「観測可能な仮想ターゲット」を整備し、その上にAIエージェントを載せる</strong>。</li>
+  <li>短期にCI/CD連携まで整えたい → <strong>Wokwi MCP + GitHub Actions</strong> または <strong>MPLAB X CI/CD Wizard + Simulator/Jenkins</strong>。</li>
+  <li>セキュリティ検証や性能検証を深く回したい → <strong>QEMU + RTOS + fuzz/static/runtime instrumentation</strong>。</li>
+  <li>機能・回路・仮想I/Oの検証は <strong>Wokwi</strong>、RTOS・ネットワーク・性能・セキュリティの深い検証は <strong>QEMU</strong> が向く。</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2 id="wrapup">5. 総括</h2>
+
+<p>「AIエージェント」と「MCUシミュレータ」が公開資料で明確に結び付く事例はまだ少ないものの、2025〜2026年にかけて確実に増え始めています。その増加を支えるのは、<strong>MCPのような標準化された外部ツール接続</strong>と、<strong>シミュレータを単なるデバッグ補助ではなくAIの観測器兼オラクルとして扱う設計</strong>です。次の焦点は、日本国内の自動車・FA・計測器ベンダーがこの形をどこまで内製導入しているか——ただし公開情報ベースでは「未記載」がまだ多い、というのが現時点の厳密な結論です。</p>
+
+<p class="meta">
+  作成：2026年6月 ／ 本ページは社内ディープリサーチ報告の要約版です。考察を主とし、参考資料は名称で示しています。情報の正確性には注意を払っていますが、各ツール・論文のアップデートにより内容が変わる場合があります。<br>
+  主な出典：EmbedAgent論文 ／ Securing LLM-Generated Embedded Firmware論文・公開リポジトリ ／ APIOT論文 ／ Wokwi CI・MCP公式ドキュメント ／ Microchip MPLAB AI Coding Assistant・CI/CD Wizard公式ヘルプ。
+</p>
+
+</body>
+</html>
