@@ -4,14 +4,24 @@
 
 *知は積み重なる。実践と失敗と振り返りを経て、地層のように。*
 
+## GitHub repository description
+
+```text
+Published knowledge strata: research, practice notes, and Integrity Flow experiments for redesigning life in the age of AI.
+```
+
 ---
 
 ## What this is
 
-A living record of someone redesigning their life in the age of AI.
+A public layer of someone redesigning their life in the age of AI.
 
 Not polished conclusions.
 The **process itself** — in real time.
+
+Private logs and raw thinking stay elsewhere.
+What appears here is the shareable layer: research, practice notes,
+and small experiments that may help someone else take a next step.
 
 ---
 
@@ -64,12 +74,15 @@ This is what I'm exploring.
 
 ## What you'll find here
 
-- Daily practice logs and reflections
+- Published research and reports
+- Practice notes and reflections
 - AI-assisted life design experiments
 - Tools, systems, and setups — including what failed
 - Over time: guides for setting up your own version
 
 Old layers are never erased. Everything remains as context.
+
+**→ [Browse the published pages](https://zooming-augmented.github.io/zooming-knowledge-strata/)**
 
 ---
 
