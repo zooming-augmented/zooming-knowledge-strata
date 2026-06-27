@@ -3,72 +3,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>zooming-knowledge-strata</title>
+  <title>Integrity Flow Lab — zooming-knowledge-strata</title>
   <style>
-    body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.7; }
-    h1 { font-size: 1.4rem; border-bottom: 2px solid #333; padding-bottom: 8px; }
-    h2 { font-size: 1.1rem; color: #555; margin-top: 2rem; }
+    body { font-family: sans-serif; max-width: 860px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.75; }
+    h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
+    h2 { font-size: 1.15rem; color: #222; margin-top: 2.6rem; border-left: 4px solid #0066cc; padding-left: 10px; }
+    h3 { font-size: 1rem; color: #444; margin: 1.4rem 0 0.4rem; }
     ul { list-style: none; padding: 0; }
     li { margin: 12px 0; }
     a { color: #0066cc; text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .meta { color: #888; font-size: 0.85rem; margin-left: 8px; }
-    .tagline { color: #666; font-style: italic; margin-bottom: 2rem; }
+    .lead { color: #555; font-size: 1rem; margin: 1rem 0 1.6rem; }
+    .summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 18px 22px; margin: 1.6rem 0; }
+    .route-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin: 1.4rem 0; }
+    .route-card { border: 1px solid #d5dfec; border-radius: 6px; padding: 14px 16px; background: #fbfdff; display: block; color: #333; }
+    .route-card strong { display: block; color: #0066cc; margin-bottom: 4px; }
+    .route-card span { color: #555; font-size: 0.88rem; }
     .section-intro { color: #555; font-size: 0.9rem; margin-bottom: 0.8rem; }
+    .meta { color: #888; font-size: 0.85rem; margin-left: 8px; }
+    .note-map li { margin: 8px 0; }
     .footer { color: #aaa; font-size: 0.8rem; margin-top: 3rem; border-top: 1px solid #eee; padding-top: 1rem; }
   </style>
 </head>
 <body>
-  <h1>zooming-knowledge-strata</h1>
-  <p class="tagline">Knowledge accumulates in layers — through practice, failure, and reflection.</p>
+  <h1>Integrity Flow Lab</h1>
+  <p class="lead">公開された知の地層。AIとともに人生後半を意図的に設計し、日々の探究を無料で開き、そこからnoteが育つ場所です。</p>
 
-  <h2>AI Utilization — AI活用</h2>
-  <p class="section-intro">AIと人間の関係性、活用の実態、実践事例の調査・整理です。</p>
+  <div class="summary-box">
+    <strong>tune our flow — 小さな一歩を、集めよう</strong>
+    <p style="margin: 10px 0 0;">完成した正解ではなく、試して、観察して、また動くための公開層です。privateな記録は内側に残し、ここには誰かの次の一歩に使えるresearch、practice notes、experimentsを置いていきます。</p>
+  </div>
+
+  <h2>4つの入口</h2>
+  <div class="route-grid">
+    <a class="route-card" href="#about-pending">
+      <strong>この人は何者</strong>
+      <span>プロフィールと、この実験を続けている理由。公開前確認中。</span>
+    </a>
+    <a class="route-card" href="integrity-flow-lab/index.html">
+      <strong>探究テーマ</strong>
+      <span>Integrity Flow Labの実験ページと今日の一歩。</span>
+    </a>
+    <a class="route-card" href="research/index.html">
+      <strong>リサーチの庭</strong>
+      <span>公開済みの調査・レポート・参考資料。</span>
+    </a>
+    <a class="route-card" href="#note-map">
+      <strong>note記事マップ</strong>
+      <span>公開済み記事と、これから育てる流れ。</span>
+    </a>
+  </div>
+
+  <h2>探究テーマ</h2>
+  <p class="section-intro">Life Flow、Focus Flow、Integrity Flowを整えながら、AIを単なる効率化ではなく、問いを育てる相手として使う実験です。</p>
   <ul>
     <li>
       <a href="integrity-flow-lab/index.html">Integrity Flow Lab</a>
-      <span class="meta">tune our flow · 私の一歩を発信し、誰かの一歩を応援する実験の場 · 2026-05</span>
+      <span class="meta">私の一歩を発信し、誰かの一歩を応援する実験の場</span>
     </li>
     <li>
+      <a href="integrity-flow-lab/one-step-ignition.html">One Step Ignition</a>
+      <span class="meta">AIとの対話を始めるプロンプト</span>
+    </li>
+    <li>
+      <a href="integrity-flow-lab/integrity-flow-actions.html">Integrity Flow Actions</a>
+      <span class="meta">Life / Focus / Integrity Flowの行動候補</span>
+    </li>
+  </ul>
+
+  <h2 id="about-pending">この人は何者</h2>
+  <p class="section-intro">プロフィールページは、私的情報を抽象化した下書きを確認してから公開します。現時点では、Integrity Flow Labとリサーチの庭から全体像をたどれるようにしています。</p>
+
+  <h2>リサーチの庭</h2>
+  <p class="section-intro">noteの土台になる公開リサーチを、AI / Community / Integrity Flowの3つの棚で整理しています。</p>
+  <ul>
+    <li>
+      <a href="research/index.html">research index</a>
+      <span class="meta">既公開レポートの逆引き入口</span>
+    </li>
+  </ul>
+
+  <h2 id="note-map">note記事マップ</h2>
+  <p class="section-intro">GitHub Pagesは調査と実験の公開層、noteは身体性を含むストーリーと実践の収穫です。</p>
+  <ul class="note-map">
+    <li><a href="https://note.com/zooming_aug/m/m869facd27dd4" target="_blank">noteマガジン: ミッドライフカイロス</a></li>
+    <li><a href="https://note.com/zooming_aug/n/nee64386f2cc3" target="_blank">第1話 ミッドライフはチャンスだ！</a></li>
+    <li><a href="https://note.com/zooming_aug/n/n6d853a6f6d4c" target="_blank">第2話 AIが均すなら、人間は尖れ</a></li>
+    <li><a href="https://note.com/zooming_aug/n/n7c41b017a978" target="_blank">第3話 自分とのクオリティタイム</a></li>
+    <li><a href="https://note.com/zooming_aug/n/n7cca4f2f7226" target="_blank">第4話 人の感性で、AIの知識を呼び起こす</a></li>
+  </ul>
+  <p class="section-intro">これからの流れ: 整える → 育てる → 放つ。詳細な身体性や有料部分の内容はnote側で扱います。</p>
+
+  <h2>既公開コンテンツ</h2>
+  <h3>AI</h3>
+  <ul>
+    <li>
       <a href="ai-utilization/midlife-ai-report/index.html">ミッドライフ × AI の現状</a>
-      <span class="meta">40〜60代のAI活用データ · AI-augmented human · 実践事例 · 2026-04</span>
+      <span class="meta">40〜60代のAI活用データ · AI-augmented human · 2026-04</span>
     </li>
     <li>
       <a href="ai-utilization/automotive-copilot-guide/index.html">車載SW開発チームのためのGitHub Copilot導入ガイド</a>
-      <span class="meta">情報セキュリティを守りながら小さく始める · AIツール比較 · 2026-04</span>
+      <span class="meta">research下層に整理 · 2026-04</span>
     </li>
     <li>
       <a href="ai-utilization/ai-virtual-ecu-report.html">AIエージェント × 仮想ECU／マイコンシミュレータ 事例調査</a>
-      <span class="meta">Wokwi / QEMU · AI＋仮想MCUのクローズドループ · 公開事例まとめ · 2026-06</span>
+      <span class="meta">research下層に整理 · 2026-06</span>
     </li>
     <li>
       <a href="ai-utilization/enterprise-ai-coding-env.html">企業向けAIコーディング環境 比較ガイド</a>
-      <span class="meta">Claude Code / GitHub Copilot · セキュリティ・機能比較 · 2026-03</span>
+      <span class="meta">research下層に整理 · 2026-03</span>
     </li>
     <li>
       <a href="ai-utilization/3-Tier_AI_Governance.pdf">3-Tier AI Governance</a>
-      <span class="meta">PDF · 17MB</span>
+      <span class="meta">PDF · 17MB · research下層</span>
     </li>
   </ul>
 
-  <h2>Community — コミュニティ</h2>
-  <p class="section-intro">組織・コミュニティ設計に関する調査・事例研究です。</p>
+  <h3>Community</h3>
   <ul>
     <li>
       <a href="internal-community/index.html">つながりが、動きになる</a>
-      <span class="meta">越境コミュニティ 3年目以降の設計指針 · 国内外の事例研究 · 2026-04</span>
-    </li>
-  </ul>
-
-  <h2>About</h2>
-  <ul>
-    <li>
-      <a href="https://github.com/zooming-augmented/zooming-knowledge-strata/blob/main/README.md">README</a>
-      <span class="meta">このリポジトリについて</span>
-    </li>
-    <li>
-      <a href="https://github.com/zooming-augmented/zooming-knowledge-strata/blob/main/start-here.md">Start Here</a>
-      <span class="meta">背景・目指すところ・参加への入口</span>
+      <span class="meta">越境コミュニティ 3年目以降の設計指針 · 2026-04</span>
     </li>
   </ul>
 

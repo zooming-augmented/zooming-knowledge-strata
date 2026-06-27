@@ -19,7 +19,7 @@ A public layer of someone redesigning their life in the age of AI.
 Not polished conclusions.
 The **process itself** — in real time.
 
-Private logs and raw thinking stay elsewhere.
+Private seeds and working notes stay elsewhere.
 What appears here is the shareable layer: research, practice notes,
 and small experiments that may help someone else take a next step.
 
@@ -88,7 +88,7 @@ Old layers are never erased. Everything remains as context.
 
 ## Follow along
 
-**GitHub** → raw process, tools, systems *(here)*
+**GitHub** → shareable research, practice notes, tools, systems *(here)*
 **note** → stories, reflections, curated insights *(coming)*
 **YouTube** → visual documentation of the practice *(coming)*
 
