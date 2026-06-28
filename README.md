@@ -4,10 +4,13 @@
 
 *知は積み重なる。実践と失敗と振り返りを経て、地層のように。*
 
+**[Integrity Flow Lab.](https://zooming-augmented.github.io/zooming-knowledge-strata/)** lives here —
+a practice in AI-assisted life design, documented in real time.
+
 ## GitHub repository description
 
 ```text
-Published knowledge strata: research, practice notes, and Integrity Flow experiments for redesigning life in the age of AI.
+Home of Integrity Flow Lab. — AI-assisted life design in midlife: research, practice notes, and public experiments.
 ```
 
 ---
@@ -89,7 +92,7 @@ Old layers are never erased. Everything remains as context.
 ## Follow along
 
 **GitHub** → shareable research, practice notes, tools, systems *(here)*
-**note** → stories, reflections, curated insights *(coming)*
+**note** → stories, reflections, curated insights — [ミッドライフカイロス マガジン](https://note.com/zooming_aug/m/m869facd27dd4)
 **YouTube** → visual documentation of the practice *(coming)*
 
 ---
