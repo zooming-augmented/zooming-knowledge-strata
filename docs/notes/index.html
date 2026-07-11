@@ -5,16 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>note記事マップ — Integrity Flow Lab.</title>
   <style>
-    body { font-family: sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
+    body { font-family: sans-serif; max-width: 980px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.8; }
     h1 { font-size: 1.5rem; border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 0.4rem; }
     h2 { font-size: 1.15rem; color: #222; margin-top: 2.8rem; border-left: 4px solid #0066cc; padding-left: 10px; }
     a { color: #0066cc; text-decoration: none; }
     a:hover { text-decoration: underline; }
-    table { border-collapse: collapse; width: 100%; margin: 1.4rem 0; }
+    .table-scroll { overflow-x: auto; margin: 1.4rem 0; }
+    table { border-collapse: collapse; width: 100%; min-width: 920px; margin: 0; }
     th, td { border: 1px solid #d9e2ef; padding: 10px 12px; vertical-align: top; }
     th { background: #f3f7fc; text-align: left; }
     .lead { color: #555; margin: 1rem 0 1.6rem; }
     .summary-box { background: #eef4ff; border: 1px solid #b0c8f0; border-radius: 6px; padding: 16px 20px; margin: 1.6rem 0; }
+    .chapter-summary { background: #fbfdff; border: 1px solid #d5dfec; border-radius: 6px; padding: 14px 18px; margin: 1rem 0; }
+    .chapter-summary strong { display: block; color: #222; margin-bottom: 4px; }
     .meta { color: #888; font-size: 0.82rem; margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; }
   </style>
 </head>
@@ -24,53 +27,92 @@
   </p>
 
   <h1>note記事マップ</h1>
-  <p class="lead">AIとともに人生後半の流れを整える実験を、noteでは物語として、GitHub Pagesでは公開地層として残しています。</p>
+  <p class="lead">AIとともに人生後半の流れを整える実験を、noteでは物語として、GitHub Pagesでは公開地層として残しています。第1章「整える」、第2章「育てる」まで公開済みです。</p>
 
   <div class="summary-box">
     <strong>ミッドライフカイロス noteマガジン</strong>
-    <p style="margin:10px 0 0;"><a href="https://note.com/zooming_aug/m/m869facd27dd4" target="_blank">noteで読む</a></p>
+    <p style="margin:10px 0 0;">第1章では、人生後半の流れを整えるための小さな実践を扱いました。第2章では、AIとの対話や記録が、渦と地層として育っていく過程を扱っています。</p>
+    <p style="margin:10px 0 0;"><a href="https://note.com/zooming_aug/m/m869facd27dd4" target="_blank" rel="noopener noreferrer">noteで読む</a></p>
   </div>
 
   <h2>公開済み記事</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>話</th>
-        <th>タイトル</th>
-        <th>One Message</th>
-        <th>URL</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>第1話</td>
-        <td>ミッドライフはチャンスだ！</td>
-        <td>人生後半は、遅すぎる時間ではなく、問い直せる時間。</td>
-        <td><a href="https://note.com/zooming_aug/n/nee64386f2cc3" target="_blank">noteで読む</a></td>
-      </tr>
-      <tr>
-        <td>第2話</td>
-        <td>AIが均すなら、人間は尖れ</td>
-        <td>AIが平均へならす時代ほど、自分の違和感と言葉が価値になる。</td>
-        <td><a href="https://note.com/zooming_aug/n/n6d853a6f6d4c" target="_blank">noteで読む</a></td>
-      </tr>
-      <tr>
-        <td>第3話</td>
-        <td>ミッドライフで取り戻す、自分とのクオリティタイム</td>
-        <td>自分との関係を取り戻す時間が、人生後半の土台になる。</td>
-        <td><a href="https://note.com/zooming_aug/n/n7c41b017a978" target="_blank">noteで読む</a></td>
-      </tr>
-      <tr>
-        <td>第4話</td>
-        <td>人の感性で、AIの知識を呼び起こす</td>
-        <td>AIの知識は、人の感性に触れてはじめて意味として立ち上がる。</td>
-        <td><a href="https://note.com/zooming_aug/n/n7cca4f2f7226" target="_blank">noteで読む</a></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>話</th>
+          <th>章</th>
+          <th>タイトル</th>
+          <th>サムネイル一言</th>
+          <th>One Message</th>
+          <th>URL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>第1話</td>
+          <td>第1章 整える</td>
+          <td>ミッドライフはチャンスだ！</td>
+          <td>まだ始めていい</td>
+          <td>足りないのは情報じゃない、小さな実践だった。</td>
+          <td><a href="https://note.com/zooming_aug/n/nee64386f2cc3" target="_blank" rel="noopener noreferrer">noteで読む</a></td>
+        </tr>
+        <tr>
+          <td>第2話</td>
+          <td>第1章 整える</td>
+          <td>AIが均すなら、人間は尖れ</td>
+          <td>尖ろう</td>
+          <td>AIが均すほど、人間の尖った特異点の価値が上がる。</td>
+          <td><a href="https://note.com/zooming_aug/n/n6d853a6f6d4c" target="_blank" rel="noopener noreferrer">noteで読む</a></td>
+        </tr>
+        <tr>
+          <td>第3話</td>
+          <td>第1章 整える</td>
+          <td>ミッドライフで取り戻す、自分とのクオリティタイム</td>
+          <td>自分と、いい時間を</td>
+          <td>意識して自分とのクオリティタイムを作ることが、自分との接続を取り戻し、流れを整える入口になる。</td>
+          <td><a href="https://note.com/zooming_aug/n/n7c41b017a978" target="_blank" rel="noopener noreferrer">noteで読む</a></td>
+        </tr>
+        <tr>
+          <td>第4話</td>
+          <td>第2章 育てる</td>
+          <td>人の感性で、AIの知識を呼び起こす</td>
+          <td>ことばにしていい</td>
+          <td>検索ではなく、共鳴。感性を言葉にして渡すと、AIの知識が呼び起こされる。</td>
+          <td><a href="https://note.com/zooming_aug/n/n7cca4f2f7226" target="_blank" rel="noopener noreferrer">noteで読む</a></td>
+        </tr>
+        <tr>
+          <td>第5話</td>
+          <td>第2章 育てる</td>
+          <td>点は線になり、線は渦になる</td>
+          <td>渦を、感じよう</td>
+          <td>点は線になり、線は渦になる。AIと繋いで自分の渦を感じよう。</td>
+          <td><a href="https://note.com/zooming_aug/n/n19af7532b74d" target="_blank" rel="noopener noreferrer">noteで読む</a></td>
+        </tr>
+        <tr>
+          <td>第6話</td>
+          <td>第2章 育てる</td>
+          <td>足跡は地層になり、地層は渦を回す</td>
+          <td>渦と、地層と</td>
+          <td>悩みながらの足跡も、積もれば地層になる。地層は、次の渦を回してくれる。</td>
+          <td><a href="https://note.com/zooming_aug/n/na6b1514e2414" target="_blank" rel="noopener noreferrer">noteで読む</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="chapter-summary">
+    <strong>第1章：整える</strong>
+    人生後半をもう一度動かすための土台づくりです。小さく始めること、AI時代に自分の尖りを残すこと、自分との時間を取り戻すこと。まずは流れを整える章です。
+  </div>
+
+  <div class="chapter-summary">
+    <strong>第2章：育てる</strong>
+    問いや記録が育っていく過程です。人の感性がAIの知識を呼び起こし、点が線になり、線が渦になり、残した足跡が地層として次の渦を回していく。第1章で整えた流れを、知の地層として育てる章です。
+  </div>
 
   <h2>これから育てる流れ</h2>
-  <p>点を打つ。つながりを見つける。渦が螺旋に見えてくる。</p>
+  <p>整える。育てる。次は、放つ。第3章では、育った流れをどう世界へ循環させるかを扱っていきます。</p>
 
   <h2>GitHub Pages側の公開地層</h2>
   <ul>
